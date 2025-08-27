@@ -19,19 +19,23 @@ Un boilerplate moderno y robusto para proyectos frontend construido con **Next.j
 ## 🚀 **Tecnologías Utilizadas**
 
 ### **Core Framework**
+
 - **Next.js 15.5.1** - React Framework con App Router
 - **React 19.1.1** - Biblioteca de UI más reciente
 - **TypeScript 5.3.3** - JavaScript tipado
 
 ### **UI & Styling**
+
 - **Material-UI (MUI) 7.3.1** - Componentes de UI profesionales
 - **Emotion** - CSS-in-JS para MUI
 - **Material Icons** - Iconografía consistente
 
 ### **State Management**
+
 - **Zustand 5.0.8** - Gestión de estado minimalista
 
 ### **Development Tools**
+
 - **ESLint** - Linting de código
 - **Prettier** - Formateo automático
 - **TypeScript ESLint** - Reglas específicas para TS
@@ -84,6 +88,7 @@ fe-boilerplate/
 ## 🎯 **Funcionalidades Implementadas**
 
 ### **🌐 Sistema de Navegación**
+
 - **Navbar Responsive** - Adaptable a móviles y desktop
 - **Navegación Principal** - Home, About, Contact
 - **Botones de Acción** - Login, Sign Up
@@ -91,6 +96,7 @@ fe-boilerplate/
 - **Estado Global** - Gestión del estado del navbar con Zustand
 
 ### **📱 Páginas Implementadas**
+
 - **🏠 Home** - Landing page principal con características del boilerplate
 - **ℹ️ About** - Página de información del proyecto
 - **📞 Contact** - Página de contacto
@@ -98,12 +104,14 @@ fe-boilerplate/
 - **👤 Sign Up** - Página de registro
 
 ### **🎨 Sistema de Diseño**
+
 - **Tema Personalizado** - Colores, tipografía y componentes MUI
 - **Componentes Consistentes** - Cards, botones, iconos uniformes
 - **Responsive Grid** - Layout adaptable a diferentes tamaños
 - **Accesibilidad** - ARIA labels, roles y navegación por teclado
 
 ### **🛠️ Herramientas de Desarrollo**
+
 - **ESLint** - Reglas de código y detección de errores
 - **Prettier** - Formateo automático del código
 - **TypeScript** - Verificación de tipos en tiempo de compilación
@@ -113,23 +121,27 @@ fe-boilerplate/
 ## 🚀 **Inicio Rápido**
 
 ### **Prerrequisitos**
+
 - **Node.js 18+** (recomendado: última versión LTS)
 - **npm** o **yarn**
 
 ### **Instalación**
 
 1. **Clonar el repositorio**
+
    ```bash
    git clone <tu-repositorio>
    cd fe-boilerplate
    ```
 
 2. **Instalar dependencias**
+
    ```bash
    npm install
    ```
 
 3. **Ejecutar en desarrollo**
+
    ```bash
    npm run dev
    ```
@@ -165,20 +177,26 @@ npm run test:coverage # Tests con coverage
 ## 🎨 **Personalización**
 
 ### **Tema MUI**
+
 Edita `app/theme.ts` para personalizar:
+
 - Colores del tema
 - Tipografía
 - Componentes específicos
 - Espaciado y bordes
 
 ### **Navegación**
+
 Modifica `src/constants/navigation.ts` para:
+
 - Agregar/remover páginas
 - Cambiar iconos
 - Modificar rutas
 
 ### **Componentes**
+
 Los componentes están organizados en `src/components/`:
+
 - Estructura modular y reutilizable
 - Props tipadas con TypeScript
 - Fácil de extender y modificar
@@ -186,21 +204,25 @@ Los componentes están organizados en `src/components/`:
 ## 🔧 **Configuración**
 
 ### **ESLint**
+
 - Configuración automática de Next.js
 - Reglas para TypeScript y React
 - Integración con Prettier
 
 ### **Prettier**
+
 - Formateo automático del código
 - Reglas consistentes para todo el proyecto
 - Integración con ESLint
 
 ### **TypeScript**
+
 - Configuración estricta
 - Path aliases configurados (`@/*`)
 - Soporte completo para Next.js 15
 
 ### **Testing**
+
 - **Jest** - Framework de testing configurado
 - **React Testing Library** - Testing de componentes React
 - **Mocks básicos** - Para Next.js, MUI y Zustand
@@ -210,6 +232,7 @@ Los componentes están organizados en `src/components/`:
 ## 📱 **Responsive Design**
 
 El boilerplate está optimizado para:
+
 - **📱 Móviles** - Drawer de navegación, botones adaptativos
 - **💻 Tablets** - Layout intermedio
 - **🖥️ Desktop** - Navegación completa, botones de acción visibles
@@ -224,12 +247,14 @@ El boilerplate está optimizado para:
 ## 🚀 **Despliegue**
 
 ### **Vercel (Recomendado)**
+
 ```bash
 npm run build
 # Conectar con Vercel para despliegue automático
 ```
 
 ### **Otros Proveedores**
+
 ```bash
 npm run build
 # El build se genera en la carpeta .next/

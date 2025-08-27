@@ -33,7 +33,12 @@ export function NavbarDrawer({ open, onClose, onNavigate }: NavbarDrawerProps) {
 
   const handleItemClick = (path: string) => {
     // For home, features, about, and get-started, use smooth scroll
-    if (path === '/' || path === '/features' || path === '/about' || path === '/get-started') {
+    if (
+      path === '/' ||
+      path === '/features' ||
+      path === '/about' ||
+      path === '/get-started'
+    ) {
       const sectionId = path === '/' ? 'hero' : path.slice(1);
       scrollToSection(sectionId);
     } else {

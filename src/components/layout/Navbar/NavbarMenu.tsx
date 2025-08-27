@@ -25,9 +25,47 @@ export function NavbarMenu({ onNavigate }: NavbarMenuProps) {
     >
       {NAVIGATION_ITEMS.map(item => {
         const Icon = item.icon;
-        // For home, features, about, and get-started, use smooth scroll
-        if (item.path === '/' || item.path === '/features' || item.path === '/about' || item.path === '/get-started') {
-          const sectionId = item.path === '/' ? 'hero' : item.path.slice(1);
+
+        // Special handling for home - scroll to top
+        if (item.path === '/') {
+          return (
+            <Button
+              key={item.path}
+              variant='text'
+              color='inherit'
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              startIcon={<Icon sx={{ fontSize: { xs: 18, md: 20 } }} />}
+              sx={{
+                textTransform: 'none',
+                fontWeight: 600,
+                px: { xs: 1.5, md: 2.5 },
+                py: { xs: 1, md: 1.25 },
+                borderRadius: 1.5,
+                fontSize: { xs: '0.8rem', md: '0.9rem' },
+                color: 'text.primary',
+                transition: 'all 0.2s ease',
+                minHeight: 'auto',
+                lineHeight: 1.2,
+                '&:hover': {
+                  backgroundColor: 'primary.light',
+                  color: 'white',
+                  transform: 'translateY(-1px)',
+                },
+              }}
+              aria-label={`Scroll to ${item.label} section`}
+            >
+              {item.label}
+            </Button>
+          );
+        }
+
+        // For features, about, and get-started, use smooth scroll
+        if (
+          item.path === '/features' ||
+          item.path === '/about' ||
+          item.path === '/get-started'
+        ) {
+          const sectionId = item.path.slice(1);
           return (
             <Button
               key={item.path}
@@ -58,7 +96,7 @@ export function NavbarMenu({ onNavigate }: NavbarMenuProps) {
             </Button>
           );
         }
-        
+
         // For other items (login, signup), use normal navigation
         return (
           <Button

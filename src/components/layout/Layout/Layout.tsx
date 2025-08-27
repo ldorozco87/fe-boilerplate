@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { Box } from '@mui/material'
-import { Navbar } from '../Navbar'
-import { Footer } from '../Footer'
+import React from 'react';
+import { Box } from '@mui/material';
+import { Navbar } from '../Navbar';
+import { Footer } from '../Footer';
 
 interface LayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
@@ -20,10 +20,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     >
       {/* Header */}
       <Navbar />
-      
+
       {/* Main Content */}
       <Box
-        component="main"
+        component='main'
         sx={{
           flex: 1,
           display: 'flex',
@@ -33,11 +33,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       >
         {children}
       </Box>
-      
+
       {/* Footer */}
       <Footer />
     </Box>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

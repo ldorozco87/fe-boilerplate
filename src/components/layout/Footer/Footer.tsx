@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 import {
   Box,
   Container,
@@ -10,23 +10,23 @@ import {
   Divider,
   useTheme,
   useMediaQuery,
-} from '@mui/material'
+} from '@mui/material';
 import {
   GitHub as GitHubIcon,
   LinkedIn as LinkedInIcon,
   Twitter as TwitterIcon,
   Email as EmailIcon,
-} from '@mui/icons-material'
+} from '@mui/icons-material';
 
 interface FooterLink {
-  label: string
-  href: string
-  external?: boolean
+  label: string;
+  href: string;
+  external?: boolean;
 }
 
 interface FooterSection {
-  title: string
-  links: FooterLink[]
+  title: string;
+  links: FooterLink[];
 }
 
 const footerSections: FooterSection[] = [
@@ -64,26 +64,26 @@ const footerSections: FooterSection[] = [
       { label: 'Política de Privacidad', href: '/privacy' },
       { label: 'Cookies', href: '/cookies' },
       { label: 'Licencias', href: '/licenses' },
-  ],
+    ],
   },
-]
+];
 
 const socialLinks = [
   { icon: GitHubIcon, href: 'https://github.com', label: 'GitHub' },
   { icon: LinkedInIcon, href: 'https://linkedin.com', label: 'LinkedIn' },
   { icon: TwitterIcon, href: 'https://twitter.com', label: 'Twitter' },
   { icon: EmailIcon, href: 'mailto:contact@example.com', label: 'Email' },
-]
+];
 
 const Footer: React.FC = () => {
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
     <Box
-      component="footer"
+      component='footer'
       sx={{
         backgroundColor: theme.palette.background.paper,
         borderTop: `1px solid ${theme.palette.divider}`,
@@ -91,20 +91,22 @@ const Footer: React.FC = () => {
         py: 6,
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth='lg'>
         {/* Main Footer Content */}
-        <Box sx={{ 
-          display: 'flex', 
-          flexWrap: 'wrap', 
-          gap: 4, 
-          mb: 4 
-        }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 4,
+            mb: 4,
+          }}
+        >
           {/* Company Info */}
           <Box sx={{ flex: '1 1 300px', minWidth: '250px' }}>
             <Box sx={{ mb: 3 }}>
               <Typography
-                variant="h6"
-                component="div"
+                variant='h6'
+                component='div'
                 sx={{
                   fontWeight: 700,
                   color: theme.palette.primary.main,
@@ -114,16 +116,17 @@ const Footer: React.FC = () => {
                 🚀 Boilerplate
               </Typography>
               <Typography
-                variant="body2"
-                color="text.secondary"
+                variant='body2'
+                color='text.secondary'
                 sx={{ mb: 2, lineHeight: 1.6 }}
               >
-                Una base sólida para construir aplicaciones web modernas y escalables.
-                Diseñado para desarrolladores que quieren empezar rápido.
+                Una base sólida para construir aplicaciones web modernas y
+                escalables. Diseñado para desarrolladores que quieren empezar
+                rápido.
               </Typography>
               <Typography
-                variant="body2"
-                color="text.secondary"
+                variant='body2'
+                color='text.secondary'
                 sx={{ fontSize: '0.875rem' }}
               >
                 Construido con Next.js, TypeScript, MUI y más.
@@ -132,11 +135,14 @@ const Footer: React.FC = () => {
           </Box>
 
           {/* Footer Sections */}
-          {footerSections.map((section) => (
-            <Box key={section.title} sx={{ flex: '1 1 150px', minWidth: '120px' }}>
+          {footerSections.map(section => (
+            <Box
+              key={section.title}
+              sx={{ flex: '1 1 150px', minWidth: '120px' }}
+            >
               <Typography
-                variant="subtitle2"
-                component="h3"
+                variant='subtitle2'
+                component='h3'
                 sx={{
                   fontWeight: 600,
                   mb: 2,
@@ -145,9 +151,9 @@ const Footer: React.FC = () => {
               >
                 {section.title}
               </Typography>
-              <Box component="ul" sx={{ listStyle: 'none', p: 0, m: 0 }}>
-                {section.links.map((link) => (
-                  <Box component="li" key={link.label} sx={{ mb: 1 }}>
+              <Box component='ul' sx={{ listStyle: 'none', p: 0, m: 0 }}>
+                {section.links.map(link => (
+                  <Box component='li' key={link.label} sx={{ mb: 1 }}>
                     <Link
                       href={link.href}
                       target={link.external ? '_blank' : undefined}
@@ -186,8 +192,8 @@ const Footer: React.FC = () => {
         >
           {/* Copyright */}
           <Typography
-            variant="body2"
-            color="text.secondary"
+            variant='body2'
+            color='text.secondary'
             sx={{ fontSize: '0.875rem' }}
           >
             © {currentYear} Boilerplate. Todos los derechos reservados.
@@ -201,14 +207,14 @@ const Footer: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            {socialLinks.map((social) => (
+            {socialLinks.map(social => (
               <IconButton
                 key={social.label}
                 href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target='_blank'
+                rel='noopener noreferrer'
                 aria-label={social.label}
-                size="small"
+                size='small'
                 sx={{
                   color: theme.palette.text.secondary,
                   '&:hover': {
@@ -218,14 +224,14 @@ const Footer: React.FC = () => {
                   transition: 'all 0.2s ease-in-out',
                 }}
               >
-                <social.icon fontSize="small" />
+                <social.icon fontSize='small' />
               </IconButton>
             ))}
           </Box>
         </Box>
       </Container>
     </Box>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
