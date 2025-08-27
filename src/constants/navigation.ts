@@ -1,7 +1,8 @@
 import {
   Home as HomeIcon,
-  Info as InfoIcon,
-  ContactSupport as ContactIcon,
+  Star as FeaturesIcon,
+  Info as AboutIcon,
+  RocketLaunch as GetStartedIcon,
   Login as LoginIcon,
   PersonAdd as SignUpIcon,
 } from '@mui/icons-material';
@@ -14,14 +15,19 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     icon: HomeIcon,
   },
   {
-    label: 'About',
-    path: '/about',
-    icon: InfoIcon,
+    label: 'Features',
+    path: '/features',
+    icon: FeaturesIcon,
   },
   {
-    label: 'Contact',
-    path: '/contact',
-    icon: ContactIcon,
+    label: 'About',
+    path: '/about',
+    icon: AboutIcon,
+  },
+  {
+    label: 'Get Started',
+    path: '/get-started',
+    icon: GetStartedIcon,
   },
 ] as const;
 
@@ -40,8 +46,9 @@ export const ACTION_ITEMS: NavigationItem[] = [
 
 export const PATHS = {
   HOME: '/',
+  FEATURES: '/features',
   ABOUT: '/about',
-  CONTACT: '/contact',
+  GET_STARTED: '/get-started',
   LOGIN: '/login',
   SIGNUP: '/signup',
 } as const;

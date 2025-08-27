@@ -23,9 +23,24 @@ interface NavbarDrawerProps {
 export function NavbarDrawer({ open, onClose, onNavigate }: NavbarDrawerProps) {
   const theme = useTheme();
 
-  const handleItemClick = (path: string) => {
-    onNavigate(path);
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
     onClose();
+  };
+
+  const handleItemClick = (path: string) => {
+    // For home, features, about, and get-started, use smooth scroll
+    if (path === '/' || path === '/features' || path === '/about' || path === '/get-started') {
+      const sectionId = path === '/' ? 'hero' : path.slice(1);
+      scrollToSection(sectionId);
+    } else {
+      // For other items (login, signup), use normal navigation
+      onNavigate(path);
+      onClose();
+    }
   };
 
   return (

@@ -5,6 +5,7 @@ Un boilerplate moderno y robusto para proyectos frontend construido con **Next.j
 ## ✨ **Características Principales**
 
 - **⚡ Next.js 15.5.1** - Framework React más reciente con App Router
+- **⚛️ React 19.1.1** - Biblioteca de UI más reciente
 - **🔷 TypeScript 5.3.3** - Tipado estático completo
 - **🎨 Material-UI 7.3.1** - Sistema de diseño profesional
 - **📱 Responsive Design** - Optimizado para móviles y desktop
@@ -28,7 +29,7 @@ Un boilerplate moderno y robusto para proyectos frontend construido con **Next.j
 - **Material Icons** - Iconografía consistente
 
 ### **State Management**
-- **Zustand 4.5.4** - Gestión de estado minimalista
+- **Zustand 5.0.8** - Gestión de estado minimalista
 
 ### **Development Tools**
 - **ESLint** - Linting de código
