@@ -5,20 +5,26 @@
     "about": "About",
     "features": "Features",
     "ecommerce": "E-commerce",
+    "zustand": "Zustand Demo",
     "language": "Language"
   },
   "HomePage": {
     "title": "Welcome to Next.js Boilerplate",
-    "subtitle": "A modern, production-ready boilerplate with React 19, comprehensive testing, and advanced SEO",
-    "description": "Built with Next.js 15, React 19, Material UI, TypeScript, Jest testing, and more cutting-edge technologies.",
+    "subtitle": "A modern, production-ready boilerplate with React 19, Zustand state management, comprehensive testing, and advanced SEO",
+    "description": "Built with Next.js 15, React 19, Material UI, TypeScript, Zustand, Jest testing, and more cutting-edge technologies.",
     "getStarted": "Get Started",
     "viewGithub": "View on GitHub",
     "exploreEcommerce": "Explore E-commerce",
+    "exploreZustand": "Explore Zustand",
     "featuresTitle": "Features",
     "features": {
       "nextjs": {
         "title": "Next.js 15 + React 19",
         "description": "Latest Next.js with App Router and React 19 features"
+      },
+      "zustand": {
+        "title": "Zustand State Management",
+        "description": "Lightweight, scalable state management with persistence"
       },
       "performance": {
         "title": "High Performance",
@@ -88,6 +94,10 @@
         "title": "Comprehensive Testing",
         "description": "18+ passing tests with Jest & React Testing Library"
       },
+      "zustand": {
+        "title": "Zustand State Management",
+        "description": "Lightweight, scalable state management with persistence"
+      },
       "seo": {
         "title": "Advanced SEO",
         "description": "Structured data, metadata & search optimization"
@@ -106,5 +116,9 @@
       "location": "Location",
       "phone": "Phone"
     }
+  },
+  "ZustandDemo": {
+    "title": "Zustand State Management Demo",
+    "subtitle": "Explore different Zustand stores and their capabilities"
   }
 }

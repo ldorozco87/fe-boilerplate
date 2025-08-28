@@ -67,13 +67,15 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.62.0",
     "sass": "^1.91.0",
-    "zod": "^4.1.4"
+    "zod": "^4.1.4",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

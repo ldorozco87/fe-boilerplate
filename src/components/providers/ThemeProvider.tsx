@@ -1,64 +1,41 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
-import {
-  createAppTheme,
-  type ThemeMode,
-  type ThemeContextType,
-} from '@/styles/theme';
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-};
+import { createAppTheme } from '@/styles/theme';
+import { useThemeStore } from '@/stores/themeStore';
 
 interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
 export default function ThemeProvider({ children }: ThemeProviderProps) {
-  const [mode, setMode] = useState<ThemeMode>('light');
+  const { isDark, initializeTheme } = useThemeStore();
 
-  // Load theme preference from localStorage on mount
+  // Initialize theme on mount
   useEffect(() => {
-    const savedMode = localStorage.getItem('theme-mode') as ThemeMode;
-    if (savedMode && ['light', 'dark'].includes(savedMode)) {
-      setMode(savedMode);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia(
-        '(prefers-color-scheme: dark)'
-      ).matches;
-      setMode(prefersDark ? 'dark' : 'light');
-    }
-  }, []);
+    initializeTheme();
+  }, [initializeTheme]);
 
-  const toggleTheme = () => {
-    const newMode = mode === 'light' ? 'dark' : 'light';
-    setMode(newMode);
-    localStorage.setItem('theme-mode', newMode);
-  };
+  // Convert Zustand mode to MUI theme mode
+  const muiMode: 'light' | 'dark' = isDark ? 'dark' : 'light';
 
-  const theme = createAppTheme(mode);
-
-  const contextValue: ThemeContextType = {
-    mode,
-    toggleTheme,
-  };
+  const theme = createAppTheme(muiMode);
 
   return (
-    <ThemeContext.Provider value={contextValue}>
-      <MUIThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-      </MUIThemeProvider>
-    </ThemeContext.Provider>
+    <MUIThemeProvider theme={theme}>
+      <CssBaseline />
+      {children}
+    </MUIThemeProvider>
   );
 }
+
+// Export a hook for backward compatibility
+export const useTheme = () => {
+  const { mode, toggleMode } = useThemeStore();
+  return {
+    mode,
+    toggleTheme: toggleMode,
+  };
+};

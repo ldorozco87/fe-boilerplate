@@ -200,6 +200,29 @@ export default function HeroSection() {
               </Button>
 
               <Button
+                variant="contained"
+                size="large"
+                component={Link}
+                href={`/${locale}/zustand-demo`}
+                endIcon={<ArrowForwardIcon />}
+                sx={{
+                  px: 4,
+                  py: 2,
+                  fontSize: '1.1rem',
+                  fontWeight: 600,
+                  borderRadius: 3,
+                  background: `linear-gradient(45deg, ${theme.palette.secondary.main}, ${theme.palette.primary.main})`,
+                  '&:hover': {
+                    background: `linear-gradient(45deg, ${theme.palette.secondary.dark}, ${theme.palette.primary.dark})`,
+                    transform: 'translateY(-2px)',
+                  },
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                {t('exploreZustand')}
+              </Button>
+
+              <Button
                 variant="outlined"
                 size="large"
                 component={Link}

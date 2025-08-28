@@ -35,6 +35,14 @@ A modern, production-ready boilerplate for building high-performance static webs
 - **Real-time validation** - Instant user feedback
 - **Accessible forms** - WCAG compliant form components
 
+### 🗃️ **State Management**
+
+- **Zustand** - Lightweight, scalable state management
+- **Persistent stores** - Automatic localStorage integration
+- **TypeScript support** - Full type safety for stores
+- **DevTools integration** - Redux DevTools support
+- **Multiple stores** - Cart, user, theme, and app state management
+
 ### ⚡ **Performance & SEO**
 
 - **Static Site Generation (SSG)** - Lightning-fast loading
@@ -273,6 +281,52 @@ export function MyForm() {
   );
 }
 ```
+
+## 🗃️ State Management with Zustand
+
+The boilerplate includes Zustand for lightweight, scalable state management:
+
+### Available Stores
+
+- **Cart Store** - Shopping cart with localStorage persistence
+- **User Store** - Authentication and profile management
+- **Theme Store** - Theme preferences with system detection
+- **App Store** - Global UI state and notifications
+
+### Basic Usage
+
+```typescript
+import { useCartStore } from '@/stores/cartStore';
+
+export function CartButton() {
+  const { items, addToCart, getTotalItems } = useCartStore();
+
+  return (
+    <Button onClick={() => addToCart(product)}>
+      Cart ({getTotalItems()})
+    </Button>
+  );
+}
+```
+
+### Store with Persistence
+
+```typescript
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+export const useStore = create(
+  persist(
+    (set) => ({
+      data: [],
+      setData: (data) => set({ data }),
+    }),
+    { name: 'storage-key' }
+  )
+);
+```
+
+Visit `/zustand-demo` to see live examples and check `docs/ZUSTAND_GUIDE.md` for detailed documentation.
 
 ## 🎭 Animations
 

@@ -22,30 +22,31 @@ import {
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { useTheme as useCustomTheme } from '@/components/providers/ThemeProvider';
+import { useThemeStore } from '@/stores/themeStore';
+import { useAppStore } from '@/stores/appStore';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 
 export default function Navbar() {
   const locale = useLocale();
   const pathname = usePathname();
-  const { mode, toggleTheme } = useCustomTheme();
+  const { mode, toggleMode } = useThemeStore();
+  const { isScrolled, setScrolled } = useAppStore();
   const t = useTranslations('Navigation');
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMenuAnchor, setMobileMenuAnchor] =
     React.useState<null | HTMLElement>(null);
-  const [scrolled, setScrolled] = React.useState(false);
 
   // Add scroll listener to change navbar appearance
   React.useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      setScrolled(isScrolled);
+      const scrolled = window.scrollY > 20;
+      setScrolled(scrolled);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [setScrolled]);
 
   // Check if we're on the home page for scroll spy
   const isHomePage = pathname === `/${locale}` || pathname === `/${locale}/`;
@@ -106,6 +107,11 @@ export default function Navbar() {
           href: `/${locale}/ecommerce`,
           label: t('ecommerce'),
         },
+        {
+          key: 'zustand',
+          href: `/${locale}/zustand-demo`,
+          label: t('zustand'),
+        },
       ]
     : [
         { key: 'home', href: `/${locale}`, label: t('home') },
@@ -114,21 +120,26 @@ export default function Navbar() {
           href: `/${locale}/ecommerce`,
           label: t('ecommerce'),
         },
+        {
+          key: 'zustand',
+          href: `/${locale}/zustand-demo`,
+          label: t('zustand'),
+        },
       ];
 
   return (
     <AppBar
       position="fixed"
-      elevation={scrolled ? 4 : 0}
+      elevation={isScrolled ? 4 : 0}
       sx={{
         backgroundColor: (theme) =>
-          alpha(theme.palette.background.paper, scrolled ? 0.95 : 0.8),
+          alpha(theme.palette.background.paper, isScrolled ? 0.95 : 0.8),
         backdropFilter: 'blur(20px)',
-        borderBottom: scrolled ? 0 : 1,
+        borderBottom: isScrolled ? 0 : 1,
         borderColor: 'divider',
         zIndex: 1300,
         transition: 'all 0.3s ease-in-out',
-        boxShadow: scrolled
+        boxShadow: isScrolled
           ? (theme) => `0 4px 20px ${alpha(theme.palette.common.black, 0.1)}`
           : 'none',
       }}
@@ -209,7 +220,7 @@ export default function Navbar() {
 
             {/* Theme Toggle */}
             <IconButton
-              onClick={toggleTheme}
+              onClick={toggleMode}
               sx={{
                 color: 'text.primary',
                 ml: 1,
@@ -244,7 +255,7 @@ export default function Navbar() {
             }}
           >
             <IconButton
-              onClick={toggleTheme}
+              onClick={toggleMode}
               sx={{ color: 'text.primary' }}
               aria-label="toggle theme"
             >

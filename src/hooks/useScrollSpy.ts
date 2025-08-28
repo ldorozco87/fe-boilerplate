@@ -1,13 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useAppStore } from '@/stores/appStore';
 
+/**
+ * Legacy useScrollSpy hook - now uses Zustand as backend
+ *
+ * @deprecated Consider using useAppStore directly for new components
+ */
 export function useScrollSpy(sectionIds: string[], offset: number = 0): string {
-  const [activeSection, setActiveSection] = useState<string>('');
+  const { activeSection, setActiveSection } = useAppStore();
 
   useEffect(() => {
     if (sectionIds.length === 0) {
-      setActiveSection('');
+      if (activeSection !== '') {
+        setActiveSection('');
+      }
       return;
     }
 
@@ -25,7 +33,9 @@ export function useScrollSpy(sectionIds: string[], offset: number = 0): string {
             scrollPosition >= sectionTop &&
             scrollPosition < sectionTop + sectionHeight
           ) {
-            setActiveSection(sectionIds[i]);
+            if (activeSection !== sectionIds[i]) {
+              setActiveSection(sectionIds[i]);
+            }
             return;
           }
         }
@@ -33,7 +43,10 @@ export function useScrollSpy(sectionIds: string[], offset: number = 0): string {
 
       // If we're at the top, set the first section as active
       if (scrollPosition < 100) {
-        setActiveSection(sectionIds[0] || '');
+        const firstSection = sectionIds[0] || '';
+        if (activeSection !== firstSection) {
+          setActiveSection(firstSection);
+        }
       }
     };
 
@@ -47,7 +60,7 @@ export function useScrollSpy(sectionIds: string[], offset: number = 0): string {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [sectionIds, offset]);
+  }, [sectionIds, offset, setActiveSection, activeSection]);
 
   return activeSection;
 }

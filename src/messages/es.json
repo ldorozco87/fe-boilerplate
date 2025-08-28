@@ -5,20 +5,26 @@
     "about": "Acerca de",
     "features": "Características",
     "ecommerce": "E-commerce",
+    "zustand": "Demo Zustand",
     "language": "Idioma"
   },
   "HomePage": {
     "title": "Bienvenido al Boilerplate de Next.js",
-    "subtitle": "Un boilerplate moderno y listo para producción con React 19, testing completo y SEO avanzado",
-    "description": "Construido con Next.js 15, React 19, Material UI, TypeScript, testing con Jest y más tecnologías de vanguardia.",
+    "subtitle": "Un boilerplate moderno y listo para producción con React 19, gestión de estado con Zustand, testing completo y SEO avanzado",
+    "description": "Construido con Next.js 15, React 19, Material UI, TypeScript, Zustand, testing con Jest y más tecnologías de vanguardia.",
     "getStarted": "Comenzar",
     "viewGithub": "Ver en GitHub",
     "exploreEcommerce": "Explorar E-commerce",
+    "exploreZustand": "Explorar Zustand",
     "featuresTitle": "Características",
     "features": {
       "nextjs": {
         "title": "Next.js 15 + React 19",
         "description": "Última versión de Next.js con App Router y características de React 19"
+      },
+      "zustand": {
+        "title": "Gestión de Estado con Zustand",
+        "description": "Gestión de estado ligera y escalable con persistencia"
       },
       "performance": {
         "title": "Alto Rendimiento",
@@ -88,6 +94,10 @@
         "title": "Testing Completo",
         "description": "18+ tests pasando con Jest & React Testing Library"
       },
+      "zustand": {
+        "title": "Gestión de Estado con Zustand",
+        "description": "Gestión de estado ligera y escalable con persistencia"
+      },
       "seo": {
         "title": "SEO Avanzado",
         "description": "Datos estructurados, metadatos y optimización de búsqueda"
@@ -106,5 +116,9 @@
       "location": "Ubicación",
       "phone": "Teléfono"
     }
+  },
+  "ZustandDemo": {
+    "title": "Demo de Gestión de Estado con Zustand",
+    "subtitle": "Explora diferentes stores de Zustand y sus capacidades"
   }
 }

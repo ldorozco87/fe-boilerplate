@@ -16,6 +16,7 @@ import {
   BugReport as TestingIcon,
   Search as SearchIcon,
   Language as LanguageIcon,
+  Storage as StorageIcon,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
@@ -35,6 +36,13 @@ export default function ShowcaseSection() {
       link: '#',
       icon: TestingIcon,
       gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    },
+    {
+      title: t('features.zustand.title'),
+      description: t('features.zustand.description'),
+      link: `/${locale}/zustand-demo`,
+      icon: StorageIcon,
+      gradient: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
     },
     {
       title: t('features.seo.title'),
