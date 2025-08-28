@@ -30,10 +30,13 @@ export default function HeroSection() {
     <Box
       id="hero"
       sx={{
-        minHeight: '100vh',
+        // Mobile: altura automática para evitar solapamiento
+        minHeight: { xs: 'auto', md: '100vh' },
+        height: { xs: 'auto', md: '100vh' },
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
+        py: { xs: 4, md: 0 },
         background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${alpha(theme.palette.secondary.main, 0.1)} 100%)`,
         overflow: 'hidden',
       }}
@@ -100,10 +103,10 @@ export default function HeroSection() {
 
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
         <Stack
-          spacing={4}
+          spacing={{ xs: 3, md: 4 }}
           alignItems="center"
           textAlign="center"
-          sx={{ py: 8 }}
+          sx={{ py: { xs: 4, md: 8 } }}
         >
           <MotionBox
             initial={{ opacity: 0, y: 50 }}

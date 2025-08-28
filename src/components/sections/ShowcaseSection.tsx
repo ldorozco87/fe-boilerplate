@@ -64,14 +64,21 @@ export default function ShowcaseSection() {
     <Box
       id="showcase"
       sx={{
-        height: '100vh',
+        // Mobile: altura automática para evitar solapamiento
+        minHeight: { xs: 'auto', md: '100vh' },
+        height: { xs: 'auto', md: '100vh' },
         display: 'flex',
         alignItems: 'center',
+        py: { xs: 4, md: 0 },
         background: `linear-gradient(135deg, ${alpha(theme.palette.secondary.main, 0.03)} 0%, ${alpha(theme.palette.primary.main, 0.03)} 100%)`,
       }}
     >
       <Container maxWidth="lg" sx={{ width: '100%' }}>
-        <Stack spacing={6} alignItems="center" textAlign="center">
+        <Stack
+          spacing={{ xs: 4, md: 6 }}
+          alignItems="center"
+          textAlign="center"
+        >
           {/* Header */}
           <MotionBox
             initial={{ opacity: 0, y: 30 }}
@@ -110,8 +117,8 @@ export default function ShowcaseSection() {
           </MotionBox>
 
           {/* Showcase Grid */}
-          <Box sx={{ maxWidth: 1000, width: '100%' }}>
-            <Grid container spacing={4} justifyContent="center">
+          <Box sx={{ maxWidth: 1200, width: '100%' }}>
+            <Grid container spacing={{ xs: 3, md: 4 }} justifyContent="center">
               {showcaseItems.map((item, index) => {
                 const IconComponent = item.icon;
                 const isExternal = item.link.startsWith('http');
@@ -121,7 +128,7 @@ export default function ShowcaseSection() {
                     : item.link;
 
                 return (
-                  <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.title}>
+                  <Grid size={{ xs: 12, sm: 6, lg: 3 }} key={item.title}>
                     <MotionBox
                       initial={{ opacity: 0, y: 50 }}
                       whileInView={{ opacity: 1, y: 0 }}

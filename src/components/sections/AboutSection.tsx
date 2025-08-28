@@ -56,14 +56,21 @@ export default function AboutSection() {
     <Box
       id="about"
       sx={{
-        height: '100vh',
+        // Mobile: altura automática para evitar solapamiento
+        minHeight: { xs: 'auto', md: '100vh' },
+        height: { xs: 'auto', md: '100vh' },
         display: 'flex',
         alignItems: 'center',
+        py: { xs: 4, md: 0 },
         background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.03)} 0%, ${alpha(theme.palette.secondary.main, 0.03)} 100%)`,
       }}
     >
       <Container maxWidth="lg" sx={{ width: '100%' }}>
-        <Stack spacing={6} alignItems="center" textAlign="center">
+        <Stack
+          spacing={{ xs: 4, md: 6 }}
+          alignItems="center"
+          textAlign="center"
+        >
           {/* Header */}
           <MotionBox
             initial={{ opacity: 0, y: 30 }}

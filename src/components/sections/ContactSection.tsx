@@ -51,21 +51,17 @@ export default function ContactSection() {
     <Box
       id="contact"
       sx={{
-        // Configuración para que Contact + Footer = 100vh exacto
-        flex: '1 0 auto',
+        // Mobile: altura automática para evitar solapamiento
+        minHeight: { xs: 'auto', md: 'calc(100vh - 64px - 145px)' }, // 100vh - navbar (64px) - footer (145px)
+        height: { xs: 'auto', md: 'calc(100vh - 64px - 145px)' },
         display: 'flex',
         alignItems: 'center',
-        py: { xs: 2, md: 3 },
+        py: { xs: 4, md: 0 },
         background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.02)} 0%, ${alpha(theme.palette.secondary.main, 0.02)} 100%)`,
-        // Usar viewport units más precisos
-        minHeight: '60vh', // Mínimo para que se vea bien
-        '@media (min-height: 700px)': {
-          minHeight: 'calc(100vh - 145px)', // Incluyendo border del footer (1px) + margen
-        },
       }}
     >
       <Container maxWidth="lg" sx={{ width: '100%' }}>
-        <Grid container spacing={6} alignItems="center">
+        <Grid container spacing={{ xs: 4, md: 6 }} alignItems="center">
           {/* Contact Information */}
           <Grid size={{ xs: 12, md: 5 }}>
             <MotionBox
