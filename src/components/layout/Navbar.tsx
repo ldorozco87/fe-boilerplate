@@ -19,7 +19,7 @@ import {
   DarkMode as DarkModeIcon,
   Menu as MenuIcon,
 } from '@mui/icons-material';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useTheme as useCustomTheme } from '@/components/providers/ThemeProvider';
@@ -31,6 +31,7 @@ export default function Navbar() {
   const locale = useLocale();
   const pathname = usePathname();
   const { mode, toggleTheme } = useCustomTheme();
+  const t = useTranslations('Navigation');
   
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMenuAnchor, setMobileMenuAnchor] = React.useState<null | HTMLElement>(null);
@@ -96,15 +97,14 @@ export default function Navbar() {
   };
 
   const navigationItems = isHomePage ? [
-    { key: 'home', href: '#hero', label: 'Home' },
-    { key: 'about', href: '#about', label: 'About' },
-    { key: 'showcase', href: '#showcase', label: 'Features' },
-    { key: 'contact', href: '#contact', label: 'Contact' },
-    { key: 'ecommerce', href: `/${locale}/ecommerce`, label: 'E-commerce' },
+    { key: 'home', href: '#hero', label: t('home') },
+    { key: 'about', href: '#about', label: t('about') },
+    { key: 'showcase', href: '#showcase', label: t('features') },
+    { key: 'contact', href: '#contact', label: t('contact') },
+    { key: 'ecommerce', href: `/${locale}/ecommerce`, label: t('ecommerce') },
   ] : [
-    { key: 'home', href: `/${locale}`, label: 'Home' },
-    { key: 'ecommerce', href: `/${locale}/ecommerce`, label: 'E-commerce' },
-    { key: 'contact', href: `/${locale}#contact`, label: 'Contact' },
+    { key: 'home', href: `/${locale}`, label: t('home') },
+    { key: 'ecommerce', href: `/${locale}/ecommerce`, label: t('ecommerce') },
   ];
 
   return (
@@ -305,7 +305,7 @@ export default function Navbar() {
               ))}
               <MenuItem onClick={handleLanguageMenuOpen}>
                 <LanguageIcon sx={{ mr: 1 }} />
-                Language
+                {t('language')}
               </MenuItem>
             </Menu>
           </Toolbar>

@@ -105,66 +105,66 @@ export default function HeroSection() {
           textAlign="center"
           sx={{ py: 8 }}
         >
-          <Typography
-            variant="h1"
-            component="h1"
-            sx={{
-              fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
-              fontWeight: 800,
-              background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              mb: 2,
-              lineHeight: 1.1,
-            }}
+          <MotionBox
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <MotionBox
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+            <Typography
+              variant="h1"
+              component="h1"
+              sx={{
+                fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
+                fontWeight: 800,
+                background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                mb: 2,
+                lineHeight: 1.1,
+              }}
             >
               {t('title')}
-            </MotionBox>
-          </Typography>
+            </Typography>
+          </MotionBox>
 
-          <Typography
-            variant="h5"
-            component="h2"
-            color="text.secondary"
-            sx={{
-              maxWidth: 700,
-              fontSize: { xs: '1.2rem', sm: '1.5rem' },
-              lineHeight: 1.4,
-              mb: 2,
-            }}
+          <MotionBox
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <MotionBox
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+            <Typography
+              variant="h5"
+              component="h2"
+              color="text.secondary"
+              sx={{
+                maxWidth: 700,
+                fontSize: { xs: '1.2rem', sm: '1.5rem' },
+                lineHeight: 1.4,
+                mb: 2,
+              }}
             >
               {t('subtitle')}
-            </MotionBox>
-          </Typography>
+            </Typography>
+          </MotionBox>
 
-          <Typography
-            variant="body1"
-            color="text.secondary"
-            sx={{
-              maxWidth: 600,
-              fontSize: { xs: '1rem', sm: '1.1rem' },
-              mb: 4,
-            }}
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <MotionBox
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{
+                maxWidth: 600,
+                fontSize: { xs: '1rem', sm: '1.1rem' },
+                mb: 4,
+              }}
             >
               {t('description')}
-            </MotionBox>
-          </Typography>
+            </Typography>
+          </MotionBox>
 
           <MotionBox
             initial={{ opacity: 0, y: 20 }}
@@ -196,7 +196,7 @@ export default function HeroSection() {
                   transition: 'all 0.3s ease',
                 }}
               >
-                Explore E-commerce
+{t('exploreEcommerce')}
               </Button>
 
               <Button

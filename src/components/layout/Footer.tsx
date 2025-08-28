@@ -43,7 +43,7 @@ export default function Footer() {
     <Box
       component="footer"
       sx={{
-        py: 6,
+        py: 4, // Reducido de 6 a 4 para mejor ajuste con contact section
         px: 2,
         mt: 'auto',
         backgroundColor: 'background.paper',

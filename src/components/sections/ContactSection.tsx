@@ -9,246 +9,175 @@ import {
   Stack,
   useTheme,
   alpha,
-  Card,
-  CardContent,
 } from '@mui/material';
 import {
   Email as EmailIcon,
   LocationOn as LocationIcon,
   Phone as PhoneIcon,
-  Schedule as ScheduleIcon,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 import ContactForm from '@/components/forms/ContactForm';
 
 const MotionBox = motion.create(Box);
-const MotionCard = motion.create(Card);
 
-const contactInfo = [
-  {
-    icon: EmailIcon,
-    title: 'Email Us',
-    description: 'Get in touch via email',
-    value: 'hello@nextjs-boilerplate.com',
-    color: '#1976d2',
-  },
-  {
-    icon: PhoneIcon,
-    title: 'Call Us',
-    description: 'Speak with our team',
-    value: '+1 (555) 123-4567',
-    color: '#2e7d32',
-  },
-  {
-    icon: LocationIcon,
-    title: 'Visit Us',
-    description: 'Our office location',
-    value: 'San Francisco, CA',
-    color: '#ed6c02',
-  },
-  {
-    icon: ScheduleIcon,
-    title: 'Working Hours',
-    description: 'Monday to Friday',
-    value: '9:00 AM - 6:00 PM PST',
-    color: '#9c27b0',
-  },
-];
+
 
 export default function ContactSection() {
   const theme = useTheme();
+  const t = useTranslations('ContactSection');
+
+  const contactInfo = [
+    {
+      icon: EmailIcon,
+      title: t('info.email'),
+      value: 'hello@nextjs-boilerplate.com',
+      color: '#1976d2',
+    },
+    {
+      icon: LocationIcon,
+      title: t('info.location'),
+      value: 'San Francisco, CA',
+      color: '#ed6c02',
+    },
+    {
+      icon: PhoneIcon,
+      title: t('info.phone'),
+      value: '+1 (555) 123-4567',
+      color: '#2e7d32',
+    },
+  ];
 
   return (
     <Box
       id="contact"
       sx={{
-        py: { xs: 8, md: 12 },
-        background: alpha(theme.palette.background.paper, 0.5),
+        // Configuración para que Contact + Footer = 100vh exacto
+        flex: '1 0 auto',
+        display: 'flex',
+        alignItems: 'center',
+        py: { xs: 2, md: 3 },
+        background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.02)} 0%, ${alpha(theme.palette.secondary.main, 0.02)} 100%)`,
+        // Usar viewport units más precisos
+        minHeight: '60vh', // Mínimo para que se vea bien
+        '@media (min-height: 700px)': {
+          minHeight: 'calc(100vh - 145px)', // Incluyendo border del footer (1px) + margen
+        },
       }}
     >
-      <Container maxWidth="lg">
-        <Stack spacing={8}>
-          {/* Header */}
-          <MotionBox
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            textAlign="center"
-          >
-            <Typography
-              variant="h2"
-              component="h2"
-              gutterBottom
-              sx={{
-                fontWeight: 700,
-                mb: 2,
-                background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
+      <Container maxWidth="lg" sx={{ width: '100%' }}>
+        <Grid container spacing={6} alignItems="center">
+          {/* Contact Information */}
+          <Grid size={{ xs: 12, md: 5 }}>
+            <MotionBox
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
             >
-              Get In Touch
-            </Typography>
-            <Typography
-              variant="h6"
-              color="text.secondary"
-              sx={{ maxWidth: 600, mx: 'auto', lineHeight: 1.6 }}
-            >
-              Have questions about the boilerplate? Want to collaborate? 
-              We&apos;d love to hear from you!
-            </Typography>
-          </MotionBox>
+              <Typography
+                variant="h2"
+                component="h2"
+                gutterBottom
+                sx={{
+                  fontWeight: 700,
+                  mb: 3,
+                  background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontSize: { xs: '2.5rem', md: '3rem' },
+                }}
+              >
+{t('title')}
+              </Typography>
+              <Typography
+                variant="h6"
+                color="text.secondary"
+                sx={{ mb: 4, lineHeight: 1.6, fontWeight: 300 }}
+              >
+{t('subtitle')}
+              </Typography>
 
-          <Grid container spacing={6}>
-            {/* Contact Information */}
-            <Grid size={{ xs: 12, md: 5 }}>
-              <Stack spacing={4}>
-                <MotionBox
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                >
-                  <Typography
-                    variant="h4"
-                    component="h3"
-                    gutterBottom
-                    sx={{ fontWeight: 600, mb: 3 }}
-                  >
-                    Let&apos;s Connect
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    sx={{ mb: 4, lineHeight: 1.7 }}
-                  >
-                    Whether you&apos;re interested in using this boilerplate for your next project, 
-                    have suggestions for improvements, or want to contribute to the open-source 
-                    community, we&apos;re here to help.
-                  </Typography>
-                </MotionBox>
-
-                <Stack spacing={3}>
-                  {contactInfo.map((info, index) => {
-                    const IconComponent = info.icon;
-                    return (
-                      <MotionCard
-                        key={info.title}
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: index * 0.1 }}
-                        whileHover={{ x: 8 }}
+              <Stack spacing={3}>
+                {contactInfo.map((info, index) => {
+                  const IconComponent = info.icon;
+                  return (
+                    <MotionBox
+                      key={info.title}
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      whileHover={{ x: 8 }}
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        p: 2,
+                        borderRadius: 2,
+                        background: `linear-gradient(135deg, ${alpha(info.color, 0.05)}, ${alpha(info.color, 0.02)})`,
+                        border: `1px solid ${alpha(info.color, 0.1)}`,
+                        transition: 'all 0.3s ease',
+                        cursor: 'pointer',
+                        '&:hover': {
+                          border: `1px solid ${alpha(info.color, 0.3)}`,
+                          boxShadow: `0 8px 30px ${alpha(info.color, 0.15)}`,
+                        },
+                      }}
+                    >
+                      <Box
                         sx={{
-                          background: `linear-gradient(135deg, ${alpha(info.color, 0.05)}, ${alpha(info.color, 0.02)})`,
-                          border: `1px solid ${alpha(info.color, 0.1)}`,
-                          borderRadius: 2,
-                          transition: 'all 0.3s ease',
-                          '&:hover': {
-                            border: `1px solid ${alpha(info.color, 0.3)}`,
-                            boxShadow: `0 8px 30px ${alpha(info.color, 0.15)}`,
-                          },
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          width: 45,
+                          height: 45,
+                          borderRadius: '50%',
+                          background: `linear-gradient(135deg, ${info.color}, ${alpha(info.color, 0.8)})`,
+                          color: 'white',
+                          mr: 3,
                         }}
                       >
-                        <CardContent sx={{ p: 3 }}>
-                          <Stack direction="row" spacing={3} alignItems="center">
-                            <Box
-                              sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                width: 50,
-                                height: 50,
-                                borderRadius: '50%',
-                                background: `linear-gradient(135deg, ${info.color}, ${alpha(info.color, 0.7)})`,
-                                color: 'white',
-                              }}
-                            >
-                              <IconComponent />
-                            </Box>
-                            <Box>
-                              <Typography
-                                variant="h6"
-                                component="h4"
-                                sx={{ fontWeight: 600, mb: 0.5 }}
-                              >
-                                {info.title}
-                              </Typography>
-                              <Typography
-                                variant="body2"
-                                color="text.secondary"
-                                sx={{ mb: 0.5 }}
-                              >
-                                {info.description}
-                              </Typography>
-                              <Typography
-                                variant="body2"
-                                sx={{ 
-                                  fontWeight: 500,
-                                  color: info.color,
-                                }}
-                              >
-                                {info.value}
-                              </Typography>
-                            </Box>
-                          </Stack>
-                        </CardContent>
-                      </MotionCard>
-                    );
-                  })}
-                </Stack>
+                        <IconComponent sx={{ fontSize: 20 }} />
+                      </Box>
+                      <Box>
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{ fontSize: '0.875rem' }}
+                        >
+                          {info.title}
+                        </Typography>
+                        <Typography
+                          variant="body1"
+                          sx={{ 
+                            fontWeight: 500,
+                            color: theme.palette.text.primary,
+                          }}
+                        >
+                          {info.value}
+                        </Typography>
+                      </Box>
+                    </MotionBox>
+                  );
+                })}
               </Stack>
-            </Grid>
-
-            {/* Contact Form */}
-            <Grid size={{ xs: 12, md: 7 }}>
-              <MotionBox
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <ContactForm />
-              </MotionBox>
-            </Grid>
+            </MotionBox>
           </Grid>
 
-          {/* Additional Info */}
-          <MotionBox
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            textAlign="center"
-            sx={{
-              p: 4,
-              borderRadius: 3,
-              background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.05)} 0%, ${alpha(theme.palette.secondary.main, 0.05)} 100%)`,
-              border: `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
-            }}
-          >
-            <Typography
-              variant="h5"
-              component="h3"
-              gutterBottom
-              sx={{ fontWeight: 600, mb: 2 }}
+          {/* Contact Form */}
+          <Grid size={{ xs: 12, md: 7 }}>
+            <MotionBox
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Open Source & Community
-            </Typography>
-            <Typography
-              variant="body1"
-              color="text.secondary"
-              sx={{ maxWidth: 600, mx: 'auto', lineHeight: 1.6 }}
-            >
-              This boilerplate is open source and constantly evolving with community contributions. 
-              Found a bug? Have a feature request? Check out our GitHub repository or join our 
-              community discussions.
-            </Typography>
-          </MotionBox>
-        </Stack>
+              <ContactForm />
+            </MotionBox>
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );

@@ -6,8 +6,6 @@ import {
   Typography,
   Container,
   Grid,
-  Card,
-  CardContent,
   Stack,
   useTheme,
   alpha,
@@ -17,74 +15,63 @@ import {
   Security as SecurityIcon,
   Devices as DevicesIcon,
   Code as CodeIcon,
-  Language as LanguageIcon,
-  Palette as PaletteIcon,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
-
+import { useTranslations } from 'next-intl';
 
 const MotionBox = motion.create(Box);
-const MotionCard = motion.create(Card);
 
-const features = [
-  {
-    icon: SpeedIcon,
-    title: 'High Performance',
-    description: 'Optimized for speed with Next.js 15, static generation, and modern build tools.',
-    color: '#4caf50',
-  },
-  {
-    icon: SecurityIcon,
-    title: 'Production Ready',
-    description: 'Built with TypeScript, ESLint, and best practices for enterprise applications.',
-    color: '#f44336',
-  },
-  {
-    icon: DevicesIcon,
-    title: 'Responsive Design',
-    description: 'Mobile-first approach with Material UI for consistent cross-device experience.',
-    color: '#2196f3',
-  },
-  {
-    icon: CodeIcon,
-    title: 'Developer Experience',
-    description: 'Hot reload, TypeScript support, and comprehensive tooling for productivity.',
-    color: '#ff9800',
-  },
-  {
-    icon: LanguageIcon,
-    title: 'Internationalization',
-    description: 'Multi-language support with next-intl for global applications.',
-    color: '#9c27b0',
-  },
-  {
-    icon: PaletteIcon,
-    title: 'Modern UI/UX',
-    description: 'Beautiful components with Material Design and custom theming system.',
-    color: '#00bcd4',
-  },
-];
+
 
 export default function AboutSection() {
   const theme = useTheme();
+  const t = useTranslations('AboutSection');
+
+  const coreFeatures = [
+    {
+      icon: SpeedIcon,
+      title: t('features.performance.title'),
+      description: t('features.performance.description'),
+      color: '#4caf50',
+    },
+    {
+      icon: SecurityIcon,
+      title: t('features.production.title'),
+      description: t('features.production.description'),
+      color: '#f44336',
+    },
+    {
+      icon: DevicesIcon,
+      title: t('features.responsive.title'),
+      description: t('features.responsive.description'),
+      color: '#2196f3',
+    },
+    {
+      icon: CodeIcon,
+      title: t('features.developer.title'),
+      description: t('features.developer.description'),
+      color: '#ff9800',
+    },
+  ];
 
   return (
     <Box
       id="about"
       sx={{
-        py: { xs: 8, md: 12 },
-        background: alpha(theme.palette.background.paper, 0.5),
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.03)} 0%, ${alpha(theme.palette.secondary.main, 0.03)} 100%)`,
       }}
     >
-      <Container maxWidth="lg">
-        <Stack spacing={8}>
+      <Container maxWidth="lg" sx={{ width: '100%' }}>
+        <Stack spacing={6} alignItems="center" textAlign="center">
           {/* Header */}
           <MotionBox
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            textAlign="center"
           >
             <Typography
               variant="h2"
@@ -92,71 +79,79 @@ export default function AboutSection() {
               gutterBottom
               sx={{
                 fontWeight: 700,
-                mb: 2,
+                mb: 3,
                 background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
+                fontSize: { xs: '2.5rem', md: '3.5rem' },
               }}
             >
-              Why Choose This Boilerplate?
+{t('title')}
             </Typography>
             <Typography
-              variant="h6"
+              variant="h5"
               color="text.secondary"
-              sx={{ maxWidth: 800, mx: 'auto', lineHeight: 1.6 }}
+              sx={{ 
+                maxWidth: 700, 
+                mx: 'auto', 
+                lineHeight: 1.6,
+                fontWeight: 300,
+              }}
             >
-              A comprehensive foundation for modern web applications, combining cutting-edge 
-              technologies with battle-tested patterns for rapid development.
+{t('subtitle')}
             </Typography>
           </MotionBox>
 
-          {/* Features Grid */}
-          <Grid container spacing={4}>
-            {features.map((feature, index) => {
-              const IconComponent = feature.icon;
-              return (
-                <Grid size={{ xs: 12, sm: 6, md: 4 }} key={feature.title}>
-                  <MotionCard
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    whileHover={{ 
-                      y: -8,
-                      transition: { duration: 0.3 }
-                    }}
-                    sx={{
-                      height: '100%',
-                      background: `linear-gradient(135deg, ${alpha(feature.color, 0.05)}, ${alpha(feature.color, 0.02)})`,
-                      border: `1px solid ${alpha(feature.color, 0.1)}`,
-                      borderRadius: 3,
-                      transition: 'all 0.3s ease',
-                      '&:hover': {
-                        border: `1px solid ${alpha(feature.color, 0.3)}`,
-                        boxShadow: `0 10px 40px ${alpha(feature.color, 0.2)}`,
-                      },
-                    }}
-                  >
-                    <CardContent sx={{ p: 4, textAlign: 'center' }}>
+          {/* Core Features Grid */}
+          <Box sx={{ maxWidth: 900, width: '100%' }}>
+            <Grid container spacing={3} justifyContent="center">
+              {coreFeatures.map((feature, index) => {
+                const IconComponent = feature.icon;
+                return (
+                  <Grid size={{ xs: 12, sm: 6, md: 3 }} key={feature.title}>
+                    <MotionBox
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      whileHover={{ 
+                        y: -8,
+                        transition: { duration: 0.3 }
+                      }}
+                      sx={{
+                        p: 3,
+                        borderRadius: 3,
+                        background: `linear-gradient(135deg, ${alpha(feature.color, 0.08)}, ${alpha(feature.color, 0.03)})`,
+                        border: `1px solid ${alpha(feature.color, 0.15)}`,
+                        textAlign: 'center',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                          border: `1px solid ${alpha(feature.color, 0.4)}`,
+                          boxShadow: `0 8px 32px ${alpha(feature.color, 0.25)}`,
+                          transform: 'translateY(-8px)',
+                        },
+                      }}
+                    >
                       <Box
                         sx={{
                           display: 'inline-flex',
-                          p: 2,
+                          p: 1.5,
                           borderRadius: '50%',
-                          background: `linear-gradient(135deg, ${feature.color}, ${alpha(feature.color, 0.7)})`,
+                          background: `linear-gradient(135deg, ${feature.color}, ${alpha(feature.color, 0.8)})`,
                           color: 'white',
-                          mb: 3,
+                          mb: 2,
                         }}
                       >
-                        <IconComponent sx={{ fontSize: 32 }} />
+                        <IconComponent sx={{ fontSize: 28 }} />
                       </Box>
                       
                       <Typography
                         variant="h6"
                         component="h3"
                         gutterBottom
-                        sx={{ fontWeight: 600, mb: 2 }}
+                        sx={{ fontWeight: 600, mb: 1 }}
                       >
                         {feature.title}
                       </Typography>
@@ -164,32 +159,30 @@ export default function AboutSection() {
                       <Typography
                         variant="body2"
                         color="text.secondary"
-                        sx={{ lineHeight: 1.6 }}
+                        sx={{ lineHeight: 1.5 }}
                       >
                         {feature.description}
                       </Typography>
-                    </CardContent>
-                  </MotionCard>
-                </Grid>
-              );
-            })}
-          </Grid>
+                    </MotionBox>
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Box>
 
-          {/* Tech Stack */}
+          {/* Tech Stack Pills */}
           <MotionBox
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            textAlign="center"
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
             <Typography
-              variant="h4"
-              component="h3"
-              gutterBottom
-              sx={{ fontWeight: 600, mb: 4 }}
+              variant="body1"
+              color="text.secondary"
+              sx={{ mb: 3, fontWeight: 500 }}
             >
-              Built With Modern Technologies
+{t('builtWithTech')}
             </Typography>
             
             <Box
@@ -197,38 +190,40 @@ export default function AboutSection() {
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
-                gap: 2,
-                mt: 4,
+                gap: 1.5,
+                maxWidth: 600,
+                mx: 'auto',
               }}
             >
-              {[
-                'Next.js 15', 'React 19', 'TypeScript', 'Material UI', 
-                'Framer Motion', 'React Hook Form', 'Zod', 'SASS'
-              ].map((tech, index) => (
+              {['Next.js 15', 'React 19', 'TypeScript', 'Material UI', 'Framer Motion'].map((tech, index) => (
                 <MotionBox
                   key={tech}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                   sx={{
-                    px: 3,
-                    py: 1.5,
-                    borderRadius: 25,
+                    px: 2.5,
+                    py: 1,
+                    borderRadius: 20,
                     background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.1)}, ${alpha(theme.palette.secondary.main, 0.1)})`,
                     border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     '&:hover': {
-                      background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.2)}, ${alpha(theme.palette.secondary.main, 0.2)})`,
+                      background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.15)}, ${alpha(theme.palette.secondary.main, 0.15)})`,
                       border: `1px solid ${alpha(theme.palette.primary.main, 0.4)}`,
                     },
                   }}
                 >
                   <Typography
                     variant="body2"
-                    sx={{ fontWeight: 600, color: theme.palette.primary.main }}
+                    sx={{ 
+                      fontWeight: 600, 
+                      color: theme.palette.primary.main,
+                      fontSize: '0.875rem',
+                    }}
                   >
                     {tech}
                   </Typography>

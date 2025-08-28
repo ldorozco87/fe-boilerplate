@@ -18,7 +18,23 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      "*.config.js",
+      "*.config.mjs",
     ],
+  },
+  {
+    rules: {
+      // Reglas adicionales para mejor feedback
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "react/no-unescaped-entities": "warn",
+      "react-hooks/exhaustive-deps": "warn",
+      // Prevenir errores de hidratación
+      "react/no-danger-with-children": "error",
+      "react/no-children-prop": "error",
+      // Asegurar elementos HTML válidos
+      "react/button-has-type": "warn",
+    },
   },
 ];
 

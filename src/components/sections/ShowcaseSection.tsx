@@ -6,89 +6,72 @@ import {
   Typography,
   Container,
   Grid,
-  Card,
-  CardContent,
-
   Button,
   Stack,
   useTheme,
   alpha,
-  Chip,
 } from '@mui/material';
 import {
   ArrowForward as ArrowForwardIcon,
   ShoppingCart as ShoppingCartIcon,
   ContactMail as ContactMailIcon,
   Language as LanguageIcon,
-  Palette as PaletteIcon,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 const MotionBox = motion.create(Box);
-const MotionCard = motion.create(Card);
 
-const showcaseItems = [
-  {
-    title: 'E-commerce Platform',
-    description: 'Complete shopping experience with cart, checkout, and product management. Demonstrates state management and complex UI patterns.',
-    image: '/api/placeholder/600/400',
-    link: '/ecommerce',
-    icon: ShoppingCartIcon,
-    tags: ['React Query', 'Local Storage', 'Forms', 'State Management'],
-    gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-  },
-  {
-    title: 'Contact System',
-    description: 'Professional contact form with validation, internationalization, and beautiful animations. Perfect for business websites.',
-    image: '/api/placeholder/600/400',
-    link: '#contact',
-    icon: ContactMailIcon,
-    tags: ['React Hook Form', 'Zod Validation', 'Animations', 'i18n'],
-    gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-  },
-  {
-    title: 'Multi-language Support',
-    description: 'Seamless internationalization with next-intl. Switch between languages with persistent user preferences.',
-    image: '/api/placeholder/600/400',
-    link: '#',
-    icon: LanguageIcon,
-    tags: ['next-intl', 'SSR', 'Dynamic Routes', 'Localization'],
-    gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-  },
-  {
-    title: 'Theme System',
-    description: 'Advanced theming with light/dark mode, custom colors, and Material UI customization. Fully responsive design system.',
-    image: '/api/placeholder/600/400',
-    link: '#',
-    icon: PaletteIcon,
-    tags: ['Material UI', 'Dark Mode', 'Responsive', 'Custom Themes'],
-    gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-  },
-];
+
 
 export default function ShowcaseSection() {
   const theme = useTheme();
   const locale = useLocale();
+  const t = useTranslations('ShowcaseSection');
+
+  const showcaseItems = [
+    {
+      title: t('features.ecommerce.title'),
+      description: t('features.ecommerce.description'),
+      link: '/ecommerce',
+      icon: ShoppingCartIcon,
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    },
+    {
+      title: t('features.contact.title'),
+      description: t('features.contact.description'),
+      link: '#contact',
+      icon: ContactMailIcon,
+      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    },
+    {
+      title: t('features.multilang.title'),
+      description: t('features.multilang.description'),
+      link: '#',
+      icon: LanguageIcon,
+      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    },
+  ];
 
   return (
     <Box
       id="showcase"
       sx={{
-        py: { xs: 8, md: 12 },
-        background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.02)} 0%, ${alpha(theme.palette.secondary.main, 0.02)} 100%)`,
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        background: `linear-gradient(135deg, ${alpha(theme.palette.secondary.main, 0.03)} 0%, ${alpha(theme.palette.primary.main, 0.03)} 100%)`,
       }}
     >
-      <Container maxWidth="lg">
-        <Stack spacing={8}>
+      <Container maxWidth="lg" sx={{ width: '100%' }}>
+        <Stack spacing={6} alignItems="center" textAlign="center">
           {/* Header */}
           <MotionBox
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            textAlign="center"
           >
             <Typography
               variant="h2"
@@ -96,104 +79,94 @@ export default function ShowcaseSection() {
               gutterBottom
               sx={{
                 fontWeight: 700,
-                mb: 2,
+                mb: 3,
                 background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
+                fontSize: { xs: '2.5rem', md: '3.5rem' },
               }}
             >
-              Live Examples & Features
+{t('title')}
             </Typography>
             <Typography
-              variant="h6"
+              variant="h5"
               color="text.secondary"
-              sx={{ maxWidth: 800, mx: 'auto', lineHeight: 1.6 }}
+              sx={{ 
+                maxWidth: 700, 
+                mx: 'auto', 
+                lineHeight: 1.6,
+                fontWeight: 300,
+              }}
             >
-              Explore real-world implementations and see how this boilerplate handles 
-              complex scenarios with elegant solutions.
+{t('subtitle')}
             </Typography>
           </MotionBox>
 
           {/* Showcase Grid */}
-          <Grid container spacing={4}>
-            {showcaseItems.map((item, index) => {
-              const IconComponent = item.icon;
-              const isExternal = item.link.startsWith('http');
-              const href = item.link.startsWith('/') && !item.link.startsWith('/#') 
-                ? `/${locale}${item.link}` 
-                : item.link;
+          <Box sx={{ maxWidth: 1000, width: '100%' }}>
+            <Grid container spacing={4} justifyContent="center">
+              {showcaseItems.map((item, index) => {
+                const IconComponent = item.icon;
+                const isExternal = item.link.startsWith('http');
+                const href = item.link.startsWith('/') && !item.link.startsWith('/#') 
+                  ? `/${locale}${item.link}` 
+                  : item.link;
 
-              return (
-                <Grid size={{ xs: 12, md: 6 }} key={item.title}>
-                  <MotionCard
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.2 }}
-                    whileHover={{ 
-                      y: -8,
-                      transition: { duration: 0.3 }
-                    }}
-                    sx={{
-                      height: '100%',
-                      borderRadius: 3,
-                      overflow: 'hidden',
-                      transition: 'all 0.3s ease',
-                      '&:hover': {
-                        boxShadow: theme.shadows[20],
-                      },
-                    }}
-                  >
-                    {/* Card Header with Gradient */}
-                    <Box
+                return (
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.title}>
+                    <MotionBox
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.2 }}
+                      whileHover={{ 
+                        y: -12,
+                        transition: { duration: 0.3 }
+                      }}
                       sx={{
-                        height: 200,
-                        background: item.gradient,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                        p: 4,
+                        borderRadius: 4,
+                        background: `linear-gradient(135deg, ${alpha('#ffffff', 0.8)} 0%, ${alpha('#ffffff', 0.4)} 100%)`,
+                        border: `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+                        textAlign: 'center',
+                        cursor: 'pointer',
+                        transition: 'all 0.4s ease',
                         position: 'relative',
                         overflow: 'hidden',
+                        '&:hover': {
+                          border: `1px solid ${alpha(theme.palette.primary.main, 0.3)}`,
+                          boxShadow: `0 20px 60px ${alpha(theme.palette.primary.main, 0.15)}`,
+                        },
+                        '&::before': {
+                          content: '""',
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          height: 4,
+                          background: item.gradient,
+                          borderRadius: '4px 4px 0 0',
+                        },
                       }}
                     >
+                      {/* Icon */}
                       <MotionBox
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ duration: 0.3 }}
                         sx={{
+                          display: 'inline-flex',
+                          p: 2.5,
+                          borderRadius: '50%',
+                          background: item.gradient,
                           color: 'white',
-                          opacity: 0.9,
+                          mb: 3,
+                          boxShadow: `0 8px 32px ${alpha(theme.palette.primary.main, 0.2)}`,
                         }}
                       >
-                        <IconComponent sx={{ fontSize: 80 }} />
+                        <IconComponent sx={{ fontSize: 36 }} />
                       </MotionBox>
                       
-                      {/* Decorative circles */}
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          top: -50,
-                          right: -50,
-                          width: 100,
-                          height: 100,
-                          borderRadius: '50%',
-                          background: alpha('#ffffff', 0.1),
-                        }}
-                      />
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          bottom: -30,
-                          left: -30,
-                          width: 60,
-                          height: 60,
-                          borderRadius: '50%',
-                          background: alpha('#ffffff', 0.1),
-                        }}
-                      />
-                    </Box>
-
-                    <CardContent sx={{ p: 4, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                       <Typography
                         variant="h5"
                         component="h3"
@@ -204,93 +177,61 @@ export default function ShowcaseSection() {
                       </Typography>
                       
                       <Typography
-                        variant="body2"
+                        variant="body1"
                         color="text.secondary"
-                        sx={{ mb: 3, lineHeight: 1.6, flexGrow: 1 }}
+                        sx={{ mb: 4, lineHeight: 1.6 }}
                       >
                         {item.description}
                       </Typography>
 
-                      {/* Tags */}
-                      <Box sx={{ mb: 3 }}>
-                        <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-                          {item.tags.map((tag) => (
-                            <Chip
-                              key={tag}
-                              label={tag}
-                              size="small"
-                              sx={{
-                                bgcolor: alpha(theme.palette.primary.main, 0.1),
-                                color: theme.palette.primary.main,
-                                fontWeight: 500,
-                                fontSize: '0.75rem',
-                              }}
-                            />
-                          ))}
-                        </Stack>
-                      </Box>
-
                       {/* Action Button */}
                       <Button
-                        variant="contained"
+                        variant="outlined"
                         component={item.link.startsWith('#') ? 'a' : Link}
                         href={href}
                         target={isExternal ? '_blank' : undefined}
                         rel={isExternal ? 'noopener noreferrer' : undefined}
                         endIcon={<ArrowForwardIcon />}
                         sx={{
-                          alignSelf: 'flex-start',
                           px: 3,
                           py: 1.5,
-                          borderRadius: 2,
+                          borderRadius: 3,
                           textTransform: 'none',
                           fontWeight: 600,
-                          background: item.gradient,
+                          borderColor: alpha(theme.palette.primary.main, 0.3),
+                          color: theme.palette.primary.main,
                           '&:hover': {
+                            background: item.gradient,
+                            color: 'white',
+                            borderColor: 'transparent',
                             transform: 'translateY(-2px)',
-                            boxShadow: `0 8px 25px ${alpha(theme.palette.primary.main, 0.3)}`,
                           },
                           transition: 'all 0.3s ease',
                         }}
                       >
-                        {item.link.startsWith('#') ? 'Try It' : 'Explore'}
+                        {item.link.startsWith('#') ? t('tryIt') : t('explore')}
                       </Button>
-                    </CardContent>
-                  </MotionCard>
-                </Grid>
-              );
-            })}
-          </Grid>
+                    </MotionBox>
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Box>
 
           {/* Call to Action */}
           <MotionBox
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            textAlign="center"
-            sx={{
-              p: 6,
-              borderRadius: 4,
-              background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${alpha(theme.palette.secondary.main, 0.1)} 100%)`,
-              border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
-            }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            sx={{ maxWidth: 600, mx: 'auto' }}
           >
             <Typography
-              variant="h4"
-              component="h3"
-              gutterBottom
-              sx={{ fontWeight: 600, mb: 2 }}
-            >
-              Ready to Build Something Amazing?
-            </Typography>
-            <Typography
-              variant="body1"
+              variant="h6"
               color="text.secondary"
-              sx={{ mb: 4, maxWidth: 600, mx: 'auto' }}
+              sx={{ mb: 4, fontWeight: 400 }}
             >
-              This boilerplate provides everything you need to start building modern, 
-              scalable web applications with confidence.
+{t('readyToBuild')}
             </Typography>
             <Button
               variant="contained"
@@ -310,11 +251,12 @@ export default function ShowcaseSection() {
                 '&:hover': {
                   background: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})`,
                   transform: 'translateY(-2px)',
+                  boxShadow: `0 12px 40px ${alpha(theme.palette.primary.main, 0.3)}`,
                 },
                 transition: 'all 0.3s ease',
               }}
             >
-              Start Building
+{t('startBuilding')}
             </Button>
           </MotionBox>
         </Stack>
@@ -322,3 +264,4 @@ export default function ShowcaseSection() {
     </Box>
   );
 }
+

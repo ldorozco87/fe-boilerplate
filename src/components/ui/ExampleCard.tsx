@@ -22,7 +22,7 @@ export default function ExampleCard({
     <div className={`${styles.card} ${featured ? styles.featured : ''}`}>
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.description}>{description}</p>
-      <button className={styles.button} onClick={onClick}>
+      <button type="button" className={styles.button} onClick={onClick}>
         {buttonText}
       </button>
     </div>
