@@ -20,7 +20,7 @@ import {
   Menu as MenuIcon,
 } from '@mui/icons-material';
 import { useLocale, useTranslations } from 'next-intl';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useThemeStore } from '@/stores/themeStore';
 import { useAppStore } from '@/stores/appStore';
@@ -29,6 +29,7 @@ import { useScrollSpy } from '@/hooks/useScrollSpy';
 export default function Navbar() {
   const locale = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
   const { mode, toggleMode } = useThemeStore();
   const { isScrolled, setScrolled } = useAppStore();
   const t = useTranslations('Navigation');
@@ -74,6 +75,20 @@ export default function Navbar() {
   };
 
   const handleLanguageChange = (newLocale: string) => {
+    // Save current scroll position before navigation
+    const currentScrollY = window.scrollY;
+    const currentScrollX = window.scrollX;
+
+    // Store scroll position in sessionStorage
+    sessionStorage.setItem(
+      'scrollPosition',
+      JSON.stringify({
+        x: currentScrollX,
+        y: currentScrollY,
+        timestamp: Date.now(),
+      })
+    );
+
     // Remove current locale from pathname and add new one
     const segments = pathname.split('/').filter(Boolean);
     if (segments[0] === locale) {
@@ -81,8 +96,8 @@ export default function Navbar() {
     }
     const newPath = `/${newLocale}/${segments.join('/')}`;
 
-    // Use window.location for full page reload to ensure proper locale context
-    window.location.href = newPath;
+    // Use router.push for client-side navigation (no page reload)
+    router.push(newPath);
     handleLanguageMenuClose();
   };
 

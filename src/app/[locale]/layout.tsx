@@ -11,6 +11,7 @@ import ThemeProvider from '@/components/providers/ThemeProvider';
 import HtmlLangProvider from '@/components/providers/HtmlLangProvider';
 import Analytics from '@/components/analytics/Analytics';
 import DevTools from '@/components/dev/DevTools';
+import ScrollPreservation from '@/components/ScrollPreservation';
 import {
   generateWebSiteSchema,
   generateOrganizationSchema,
@@ -98,6 +99,7 @@ export default async function LocaleLayout({
       <NextIntlClientProvider messages={messages} locale={locale}>
         <HtmlLangProvider />
         <ThemeProvider>
+          <ScrollPreservation />
           <Analytics />
           <Navbar />
           <main>{children}</main>

@@ -53,7 +53,22 @@
     "emailRequired": "El correo electrónico es requerido",
     "emailInvalid": "Por favor ingresa un correo electrónico válido",
     "messageRequired": "El mensaje es requerido",
-    "messageMinLength": "El mensaje debe tener al menos 10 caracteres"
+    "messageMinLength": "El mensaje debe tener al menos 10 caracteres",
+    "fieldRequired": "Este campo es obligatorio",
+    "minLength": "Debe tener al menos 10 caracteres"
+  },
+  "FormValidation": {
+    "fieldRequired": "Este campo es obligatorio",
+    "emailRequired": "El email es obligatorio",
+    "emailInvalid": "Por favor ingresa un email válido",
+    "phoneRequired": "El número de teléfono es obligatorio",
+    "phoneInvalid": "Por favor ingresa un número de teléfono válido",
+    "urlInvalid": "Por favor ingresa una URL válida",
+    "passwordMinLength": "La contraseña debe tener al menos 8 caracteres",
+    "passwordComplexity": "La contraseña debe contener mayúsculas, minúsculas y números",
+    "minLength": "Debe tener al menos 10 caracteres",
+    "maxLength": "No debe tener más de 500 caracteres",
+    "genericError": "Por favor revisa este campo"
   },
   "Footer": {
     "copyright": "© {year} Boilerplate de Next.js. Todos los derechos reservados.",

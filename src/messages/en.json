@@ -53,7 +53,22 @@
     "emailRequired": "Email is required",
     "emailInvalid": "Please enter a valid email",
     "messageRequired": "Message is required",
-    "messageMinLength": "Message must be at least 10 characters long"
+    "messageMinLength": "Message must be at least 10 characters long",
+    "fieldRequired": "This field is required",
+    "minLength": "Must be at least 10 characters"
+  },
+  "FormValidation": {
+    "fieldRequired": "This field is required",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email address",
+    "phoneRequired": "Phone number is required",
+    "phoneInvalid": "Please enter a valid phone number",
+    "urlInvalid": "Please enter a valid URL",
+    "passwordMinLength": "Password must be at least 8 characters",
+    "passwordComplexity": "Password must contain uppercase, lowercase, and number",
+    "minLength": "Must be at least 10 characters",
+    "maxLength": "Must be no more than 500 characters",
+    "genericError": "Please check this field"
   },
   "Footer": {
     "copyright": "© {year} Next.js Boilerplate. All rights reserved.",

@@ -10,33 +10,33 @@ import {
   CardContent,
   Grid,
   Alert,
-} from '@mui/material';
+} from '@/lib/mui';
 import { Send as SendIcon } from '@mui/icons-material';
-import { useForm, Controller } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { useTranslations } from 'next-intl';
 import { trackFormSubmission } from '@/components/analytics/Analytics';
+import { useFormValidation } from '@/hooks/useFormValidation';
+import {
+  createCardStyles,
+  createFormStyles,
+  createButtonStyles,
+} from '@/lib/styles';
+import { useTheme } from '@/lib/mui';
 
-// Validation schema
+// Validation schema using common schemas
 const createContactSchema = (t: (key: string) => string) =>
   z.object({
-    name: z.string().min(1, t('nameRequired')),
+    name: z.string().min(1, t('fieldRequired')),
     email: z.string().min(1, t('emailRequired')).email(t('emailInvalid')),
-    message: z
-      .string()
-      .min(1, t('messageRequired'))
-      .min(10, t('messageMinLength')),
+    message: z.string().min(1, t('fieldRequired')).min(10, t('minLength')),
   });
 
-type ContactFormData = {
-  name: string;
-  email: string;
-  message: string;
-};
+type ContactFormData = z.infer<ReturnType<typeof createContactSchema>>;
 
 export default function ContactForm() {
   const t = useTranslations('ContactForm');
+  const theme = useTheme();
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
   const contactSchema = createContactSchema(t);
@@ -45,15 +45,19 @@ export default function ContactForm() {
     control,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      message: '',
-    },
+    hasFieldError,
+    getFieldHelperText,
+    isSubmitting,
+  } = useFormValidation(contactSchema, {
+    name: '',
+    email: '',
+    message: '',
   });
+
+  // Style objects
+  const cardStyles = createCardStyles(theme);
+  const formStyles = createFormStyles(theme);
+  const buttonStyles = createButtonStyles(theme);
 
   const onSubmit = async (data: ContactFormData) => {
     try {
@@ -97,8 +101,8 @@ export default function ContactForm() {
   };
 
   return (
-    <Card elevation={2} sx={{ maxWidth: 600, mx: 'auto' }}>
-      <CardContent sx={{ p: 4 }}>
+    <Card sx={{ ...cardStyles.card, maxWidth: 600, mx: 'auto' }}>
+      <CardContent sx={cardStyles.cardContent}>
         <Typography variant="h5" component="h2" gutterBottom fontWeight={600}>
           {t('submit')}
         </Typography>
@@ -123,8 +127,12 @@ export default function ContactForm() {
           </Alert>
         )}
 
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
-          <Grid container spacing={3}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit(onSubmit as (data: ContactFormData) => void)}
+          noValidate
+        >
+          <Grid container spacing={4}>
             <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="name"
@@ -134,9 +142,10 @@ export default function ContactForm() {
                     {...field}
                     fullWidth
                     label={t('name')}
-                    error={!!errors.name}
-                    helperText={errors.name?.message}
+                    error={hasFieldError('name')}
+                    helperText={getFieldHelperText('name')}
                     variant="outlined"
+                    sx={formStyles.field}
                   />
                 )}
               />
@@ -152,9 +161,10 @@ export default function ContactForm() {
                     fullWidth
                     label={t('email')}
                     type="email"
-                    error={!!errors.email}
-                    helperText={errors.email?.message}
+                    error={hasFieldError('email')}
+                    helperText={getFieldHelperText('email')}
                     variant="outlined"
+                    sx={formStyles.field}
                   />
                 )}
               />
@@ -171,9 +181,10 @@ export default function ContactForm() {
                     label={t('message')}
                     multiline
                     rows={4}
-                    error={!!errors.message}
-                    helperText={errors.message?.message}
+                    error={hasFieldError('message')}
+                    helperText={getFieldHelperText('message')}
                     variant="outlined"
+                    sx={formStyles.field}
                   />
                 )}
               />
@@ -187,11 +198,8 @@ export default function ContactForm() {
                 disabled={isSubmitting}
                 startIcon={<SendIcon />}
                 sx={{
+                  ...buttonStyles.primary,
                   mt: 2,
-                  px: 4,
-                  py: 1.5,
-                  textTransform: 'none',
-                  fontWeight: 600,
                 }}
               >
                 {isSubmitting ? 'Sending...' : t('submit')}
