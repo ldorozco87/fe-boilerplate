@@ -1,19 +1,21 @@
 # 🚀 Next.js 15 High-Performance Boilerplate
 
 [![Next.js](https://img.shields.io/badge/Next.js-15.5.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.1.0-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Material UI](https://img.shields.io/badge/Material_UI-7.3.x-0081CB?style=for-the-badge&logo=mui)](https://mui.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-A modern, production-ready boilerplate for building high-performance static websites with **Next.js 15**, **Material UI**, **TypeScript**, and **internationalization** support.
+A modern, production-ready boilerplate for building high-performance static websites with **Next.js 15**, **React 19**, **Material UI**, **TypeScript**, **internationalization**, **comprehensive testing**, and **advanced SEO** support.
 
-> 🎯 **Perfect for:** Static websites, landing pages, portfolios, blogs, documentation sites, and any project requiring fast performance and SEO optimization.
+> 🎯 **Perfect for:** Static websites, landing pages, portfolios, blogs, documentation sites, e-commerce sites, and any project requiring fast performance, SEO optimization, and robust testing.
 
 ## ✨ Key Features
 
 ### 🔧 **Modern Tech Stack**
 
 - **Next.js 15.5.2** - Latest version with App Router and Turbopack
+- **React 19.1.0** - Latest React with new features and performance improvements
 - **Material UI (MUI) 7.3.x** - React component library with custom theming
 - **TypeScript 5.x** - Full type safety and better developer experience
 - **SASS/SCSS** - Advanced CSS with variables, mixins, and modules
@@ -36,10 +38,14 @@ A modern, production-ready boilerplate for building high-performance static webs
 ### ⚡ **Performance & SEO**
 
 - **Static Site Generation (SSG)** - Lightning-fast loading
-- **Dynamic metadata** - SEO optimized for each page
-- **Sitemap generation** - Automatic XML sitemaps
+- **Advanced SEO** - Complete metadata, structured data, and Open Graph
+- **Dynamic metadata** - SEO optimized for each page and locale
+- **Structured Data** - Schema.org markup for better search visibility
+- **Sitemap generation** - Automatic XML sitemaps with hreflang
+- **Robots.txt** - Search engine optimization
 - **PWA ready** - Web app manifest and offline support
 - **Image optimization** - Next.js built-in optimization
+- **Dynamic lang attribute** - Proper HTML language detection
 
 ### 🎨 **UI & UX**
 
@@ -47,6 +53,18 @@ A modern, production-ready boilerplate for building high-performance static webs
 - **Dark/Light Mode Ready** - Theme switching capability
 - **Smooth Animations** - Scroll-triggered and interaction animations
 - **Accessibility** - WCAG 2.1 compliant components
+- **Custom 404 Page** - Branded not-found page with navigation
+
+### 🧪 **Testing & Quality**
+
+- **Jest & React Testing Library** - Comprehensive test suite
+- **Component Testing** - Unit tests for all components
+- **Integration Testing** - End-to-end functionality tests
+- **Form Validation Testing** - Complete form behavior testing
+- **Navigation Testing** - Multi-language and routing tests
+- **Scroll Behavior Testing** - User interaction validation
+- **ESLint Enhanced** - Advanced linting with Next.js specific rules
+- **TypeScript Strict** - Full type safety and validation
 
 ## 📁 Project Structure
 
@@ -133,15 +151,21 @@ A modern, production-ready boilerplate for building high-performance static webs
 
 ## 🛠 Available Scripts
 
-| Script               | Description                             |
-| -------------------- | --------------------------------------- |
-| `npm run dev`        | Start development server with Turbopack |
-| `npm run build`      | Build for production                    |
-| `npm run start`      | Start production server                 |
-| `npm run lint`       | Run ESLint                              |
-| `npm run lint:fix`   | Fix ESLint errors automatically         |
-| `npm run type-check` | Run TypeScript type checking            |
-| `npm run clean`      | Clean build artifacts                   |
+| Script                  | Description                             |
+| ----------------------- | --------------------------------------- |
+| `npm run dev`           | Start development server with Turbopack |
+| `npm run build`         | Build for production (includes tests)   |
+| `npm run start`         | Start production server                 |
+| `npm run lint`          | Run ESLint                              |
+| `npm run lint:fix`      | Fix ESLint errors automatically         |
+| `npm run lint:next`     | Run Next.js specific linting rules      |
+| `npm run type-check`    | Run TypeScript type checking            |
+| `npm run test`          | Run all tests                           |
+| `npm run test:watch`    | Run tests in watch mode                 |
+| `npm run test:coverage` | Run tests with coverage report          |
+| `npm run test:ci`       | Run tests in CI mode                    |
+| `npm run test:core`     | Run core functionality tests            |
+| `npm run clean`         | Clean build artifacts                   |
 
 ## 🌐 Internationalization
 
@@ -347,19 +371,62 @@ This boilerplate is optimized for performance:
 - 📱 **Mobile Optimized**: Perfect mobile experience
 - 🔍 **SEO Ready**: Schema markup and meta tags
 
-## 🧪 Testing
+## 🧪 Testing & Quality Assurance
 
-### Type Checking
+### Comprehensive Test Suite
+
+This boilerplate includes a complete testing setup with **18 passing tests** covering all core functionality:
 
 ```bash
+# Run all tests
+npm run test
+
+# Run core functionality tests (recommended)
+npm run test:core
+
+# Run tests in watch mode (development)
+npm run test:watch
+
+# Run tests with coverage report
+npm run test:coverage
+
+# Run tests in CI mode (automated builds)
+npm run test:ci
+```
+
+### Test Coverage
+
+- ✅ **Navbar Scroll Behavior** - Fixed positioning and visibility
+- ✅ **Contact Section** - Last section validation (no more scroll)
+- ✅ **Form Validation** - Complete form functionality testing
+- ✅ **Language Switching** - Multi-language functionality
+- ✅ **Navigation** - Home ↔ E-commerce routing
+- ✅ **Component Integration** - End-to-end functionality
+
+### Enhanced Linting
+
+```bash
+# Standard ESLint
+npm run lint
+npm run lint:fix
+
+# Next.js specific rules (catches hydration errors)
+npm run lint:next
+```
+
+### Type Safety
+
+```bash
+# TypeScript type checking
 npm run type-check
 ```
 
-### Linting
+### Build Quality Gate
+
+Tests run automatically during build process:
 
 ```bash
-npm run lint
-npm run lint:fix
+npm run build  # Includes: lint → type-check → tests → build
 ```
 
 ## 🤝 Contributing
@@ -376,7 +443,9 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for deta
 
 ## 📋 Roadmap
 
-- [ ] **Testing Setup** - Jest and React Testing Library
+- [x] **Testing Setup** - Jest and React Testing Library ✅
+- [x] **Advanced SEO** - Structured data and metadata ✅
+- [x] **Enhanced Linting** - Next.js specific rules ✅
 - [ ] **Storybook** - Component documentation
 - [ ] **Authentication** - NextAuth.js integration
 - [ ] **Database** - Prisma ORM integration
@@ -388,10 +457,13 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for deta
 ## 📚 Learn More
 
 - **[Next.js Documentation](https://nextjs.org/docs)** - Learn about Next.js features
+- **[React 19 Documentation](https://react.dev/)** - Latest React features and improvements
 - **[Material UI Documentation](https://mui.com/)** - Explore MUI components
 - **[next-intl Documentation](https://next-intl-docs.vercel.app/)** - Internationalization guide
 - **[React Hook Form](https://react-hook-form.com/)** - Form handling
 - **[Framer Motion](https://www.framer.com/motion/)** - Animation library
+- **[Jest Documentation](https://jestjs.io/)** - Testing framework
+- **[React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)** - Component testing
 
 ## 📄 License
 

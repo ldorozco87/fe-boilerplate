@@ -13,8 +13,8 @@ import {
 } from '@mui/material';
 import {
   ArrowForward as ArrowForwardIcon,
-  ShoppingCart as ShoppingCartIcon,
-  ContactMail as ContactMailIcon,
+  BugReport as TestingIcon,
+  Search as SearchIcon,
   Language as LanguageIcon,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
@@ -23,8 +23,6 @@ import Link from 'next/link';
 
 const MotionBox = motion.create(Box);
 
-
-
 export default function ShowcaseSection() {
   const theme = useTheme();
   const locale = useLocale();
@@ -32,17 +30,17 @@ export default function ShowcaseSection() {
 
   const showcaseItems = [
     {
-      title: t('features.ecommerce.title'),
-      description: t('features.ecommerce.description'),
-      link: '/ecommerce',
-      icon: ShoppingCartIcon,
+      title: t('features.testing.title'),
+      description: t('features.testing.description'),
+      link: '#',
+      icon: TestingIcon,
       gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     },
     {
-      title: t('features.contact.title'),
-      description: t('features.contact.description'),
-      link: '#contact',
-      icon: ContactMailIcon,
+      title: t('features.seo.title'),
+      description: t('features.seo.description'),
+      link: '#',
+      icon: SearchIcon,
       gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
     },
     {
@@ -87,19 +85,19 @@ export default function ShowcaseSection() {
                 fontSize: { xs: '2.5rem', md: '3.5rem' },
               }}
             >
-{t('title')}
+              {t('title')}
             </Typography>
             <Typography
               variant="h5"
               color="text.secondary"
-              sx={{ 
-                maxWidth: 700, 
-                mx: 'auto', 
+              sx={{
+                maxWidth: 700,
+                mx: 'auto',
                 lineHeight: 1.6,
                 fontWeight: 300,
               }}
             >
-{t('subtitle')}
+              {t('subtitle')}
             </Typography>
           </MotionBox>
 
@@ -109,9 +107,10 @@ export default function ShowcaseSection() {
               {showcaseItems.map((item, index) => {
                 const IconComponent = item.icon;
                 const isExternal = item.link.startsWith('http');
-                const href = item.link.startsWith('/') && !item.link.startsWith('/#') 
-                  ? `/${locale}${item.link}` 
-                  : item.link;
+                const href =
+                  item.link.startsWith('/') && !item.link.startsWith('/#')
+                    ? `/${locale}${item.link}`
+                    : item.link;
 
                 return (
                   <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.title}>
@@ -120,9 +119,9 @@ export default function ShowcaseSection() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.2 }}
-                      whileHover={{ 
+                      whileHover={{
                         y: -12,
-                        transition: { duration: 0.3 }
+                        transition: { duration: 0.3 },
                       }}
                       sx={{
                         p: 4,
@@ -166,7 +165,7 @@ export default function ShowcaseSection() {
                       >
                         <IconComponent sx={{ fontSize: 36 }} />
                       </MotionBox>
-                      
+
                       <Typography
                         variant="h5"
                         component="h3"
@@ -175,7 +174,7 @@ export default function ShowcaseSection() {
                       >
                         {item.title}
                       </Typography>
-                      
+
                       <Typography
                         variant="body1"
                         color="text.secondary"
@@ -231,7 +230,7 @@ export default function ShowcaseSection() {
               color="text.secondary"
               sx={{ mb: 4, fontWeight: 400 }}
             >
-{t('readyToBuild')}
+              {t('readyToBuild')}
             </Typography>
             <Button
               variant="contained"
@@ -256,7 +255,7 @@ export default function ShowcaseSection() {
                 transition: 'all 0.3s ease',
               }}
             >
-{t('startBuilding')}
+              {t('startBuilding')}
             </Button>
           </MotionBox>
         </Stack>
@@ -264,4 +263,3 @@ export default function ShowcaseSection() {
     </Box>
   );
 }
-

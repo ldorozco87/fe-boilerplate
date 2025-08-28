@@ -9,28 +9,28 @@
   },
   "HomePage": {
     "title": "Welcome to Next.js Boilerplate",
-    "subtitle": "A high-performance static site generator",
-    "description": "Built with Next.js 15, Material UI, TypeScript, and more modern technologies.",
+    "subtitle": "A modern, production-ready boilerplate with React 19, comprehensive testing, and advanced SEO",
+    "description": "Built with Next.js 15, React 19, Material UI, TypeScript, Jest testing, and more cutting-edge technologies.",
     "getStarted": "Get Started",
     "viewGithub": "View on GitHub",
     "exploreEcommerce": "Explore E-commerce",
     "featuresTitle": "Features",
     "features": {
       "nextjs": {
-        "title": "Next.js 15",
-        "description": "Built with the latest version of Next.js with App Router"
+        "title": "Next.js 15 + React 19",
+        "description": "Latest Next.js with App Router and React 19 features"
       },
       "performance": {
         "title": "High Performance",
         "description": "Optimized for speed and SEO with static generation"
       },
-      "i18n": {
-        "title": "Internationalization",
-        "description": "Multi-language support with next-intl"
+      "testing": {
+        "title": "Comprehensive Testing",
+        "description": "Jest & React Testing Library with 18+ passing tests"
       },
-      "ui": {
-        "title": "Material UI",
-        "description": "Beautiful components with Material Design"
+      "seo": {
+        "title": "Advanced SEO",
+        "description": "Structured data, metadata, and search optimization"
       }
     }
   },
@@ -51,46 +51,46 @@
   },
   "Footer": {
     "copyright": "© {year} Next.js Boilerplate. All rights reserved.",
-    "builtWith": "Built with Next.js and Material UI"
+    "builtWith": "Built with Next.js 15, React 19, Material UI, and comprehensive testing"
   },
   "AboutSection": {
     "title": "Modern Web Foundation",
-    "subtitle": "A comprehensive boilerplate combining cutting-edge technologies for rapid, scalable web development.",
+    "subtitle": "A comprehensive boilerplate combining cutting-edge technologies with React 19, comprehensive testing, and advanced SEO for rapid, scalable web development.",
     "builtWithTech": "Built with modern technologies",
     "features": {
       "performance": {
         "title": "High Performance",
-        "description": "Next.js 15 with optimized builds"
+        "description": "Next.js 15 + React 19 with optimized builds"
       },
       "production": {
         "title": "Production Ready",
-        "description": "TypeScript & best practices"
+        "description": "TypeScript, testing & best practices"
       },
       "responsive": {
-        "title": "Responsive Design",
-        "description": "Mobile-first Material UI"
+        "title": "Advanced SEO",
+        "description": "Structured data & metadata optimization"
       },
       "developer": {
-        "title": "Developer Experience",
-        "description": "Modern tooling & hot reload"
+        "title": "Quality Assurance",
+        "description": "Jest testing & enhanced linting"
       }
     }
   },
   "ShowcaseSection": {
     "title": "Live Features",
-    "subtitle": "Explore real-world implementations showcasing modern patterns and best practices.",
+    "subtitle": "Explore real-world implementations showcasing modern patterns, comprehensive testing, and advanced SEO optimization.",
     "readyToBuild": "Ready to build something amazing?",
     "startBuilding": "Start Building",
     "tryIt": "Try It",
     "explore": "Explore",
     "features": {
-      "ecommerce": {
-        "title": "E-commerce",
-        "description": "Complete shopping experience with cart & checkout"
+      "testing": {
+        "title": "Comprehensive Testing",
+        "description": "18+ passing tests with Jest & React Testing Library"
       },
-      "contact": {
-        "title": "Contact System",
-        "description": "Professional forms with validation & i18n"
+      "seo": {
+        "title": "Advanced SEO",
+        "description": "Structured data, metadata & search optimization"
       },
       "multilang": {
         "title": "Multi-language",

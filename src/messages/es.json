@@ -9,28 +9,28 @@
   },
   "HomePage": {
     "title": "Bienvenido al Boilerplate de Next.js",
-    "subtitle": "Un generador de sitios estáticos de alto rendimiento",
-    "description": "Construido con Next.js 15, Material UI, TypeScript y más tecnologías modernas.",
+    "subtitle": "Un boilerplate moderno y listo para producción con React 19, testing completo y SEO avanzado",
+    "description": "Construido con Next.js 15, React 19, Material UI, TypeScript, testing con Jest y más tecnologías de vanguardia.",
     "getStarted": "Comenzar",
     "viewGithub": "Ver en GitHub",
     "exploreEcommerce": "Explorar E-commerce",
     "featuresTitle": "Características",
     "features": {
       "nextjs": {
-        "title": "Next.js 15",
-        "description": "Construido con la última versión de Next.js con App Router"
+        "title": "Next.js 15 + React 19",
+        "description": "Última versión de Next.js con App Router y características de React 19"
       },
       "performance": {
         "title": "Alto Rendimiento",
         "description": "Optimizado para velocidad y SEO con generación estática"
       },
-      "i18n": {
-        "title": "Internacionalización",
-        "description": "Soporte multi-idioma con next-intl"
+      "testing": {
+        "title": "Testing Completo",
+        "description": "Jest & React Testing Library con 18+ tests pasando"
       },
-      "ui": {
-        "title": "Material UI",
-        "description": "Componentes hermosos con Material Design"
+      "seo": {
+        "title": "SEO Avanzado",
+        "description": "Datos estructurados, metadatos y optimización de búsqueda"
       }
     }
   },
@@ -51,46 +51,46 @@
   },
   "Footer": {
     "copyright": "© {year} Boilerplate de Next.js. Todos los derechos reservados.",
-    "builtWith": "Construido con Next.js y Material UI"
+    "builtWith": "Construido con Next.js 15, React 19, Material UI y testing completo"
   },
   "AboutSection": {
     "title": "Base Web Moderna",
-    "subtitle": "Un boilerplate integral que combina tecnologías de vanguardia para desarrollo web rápido y escalable.",
+    "subtitle": "Un boilerplate integral que combina tecnologías de vanguardia con React 19, testing completo y SEO avanzado para desarrollo web rápido y escalable.",
     "builtWithTech": "Construido con tecnologías modernas",
     "features": {
       "performance": {
         "title": "Alto Rendimiento",
-        "description": "Next.js 15 con builds optimizadas"
+        "description": "Next.js 15 + React 19 con builds optimizadas"
       },
       "production": {
         "title": "Listo para Producción",
-        "description": "TypeScript y mejores prácticas"
+        "description": "TypeScript, testing y mejores prácticas"
       },
       "responsive": {
-        "title": "Diseño Responsivo",
-        "description": "Material UI mobile-first"
+        "title": "SEO Avanzado",
+        "description": "Datos estructurados y optimización de metadatos"
       },
       "developer": {
-        "title": "Experiencia de Desarrollador",
-        "description": "Herramientas modernas y hot reload"
+        "title": "Aseguramiento de Calidad",
+        "description": "Testing con Jest y linting mejorado"
       }
     }
   },
   "ShowcaseSection": {
     "title": "Características en Vivo",
-    "subtitle": "Explora implementaciones del mundo real que muestran patrones modernos y mejores prácticas.",
+    "subtitle": "Explora implementaciones del mundo real que muestran patrones modernos, testing completo y optimización SEO avanzada.",
     "readyToBuild": "¿Listo para construir algo increíble?",
     "startBuilding": "Comenzar a Construir",
     "tryIt": "Pruébalo",
     "explore": "Explorar",
     "features": {
-      "ecommerce": {
-        "title": "E-commerce",
-        "description": "Experiencia de compra completa con carrito y checkout"
+      "testing": {
+        "title": "Testing Completo",
+        "description": "18+ tests pasando con Jest & React Testing Library"
       },
-      "contact": {
-        "title": "Sistema de Contacto",
-        "description": "Formularios profesionales con validación e i18n"
+      "seo": {
+        "title": "SEO Avanzado",
+        "description": "Datos estructurados, metadatos y optimización de búsqueda"
       },
       "multilang": {
         "title": "Multi-idioma",

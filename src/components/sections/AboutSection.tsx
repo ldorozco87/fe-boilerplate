@@ -13,15 +13,13 @@ import {
 import {
   Speed as SpeedIcon,
   Security as SecurityIcon,
-  Devices as DevicesIcon,
-  Code as CodeIcon,
+  Search as SearchIcon,
+  BugReport as TestingIcon,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
 const MotionBox = motion.create(Box);
-
-
 
 export default function AboutSection() {
   const theme = useTheme();
@@ -41,13 +39,13 @@ export default function AboutSection() {
       color: '#f44336',
     },
     {
-      icon: DevicesIcon,
+      icon: SearchIcon,
       title: t('features.responsive.title'),
       description: t('features.responsive.description'),
       color: '#2196f3',
     },
     {
-      icon: CodeIcon,
+      icon: TestingIcon,
       title: t('features.developer.title'),
       description: t('features.developer.description'),
       color: '#ff9800',
@@ -87,19 +85,19 @@ export default function AboutSection() {
                 fontSize: { xs: '2.5rem', md: '3.5rem' },
               }}
             >
-{t('title')}
+              {t('title')}
             </Typography>
             <Typography
               variant="h5"
               color="text.secondary"
-              sx={{ 
-                maxWidth: 700, 
-                mx: 'auto', 
+              sx={{
+                maxWidth: 700,
+                mx: 'auto',
                 lineHeight: 1.6,
                 fontWeight: 300,
               }}
             >
-{t('subtitle')}
+              {t('subtitle')}
             </Typography>
           </MotionBox>
 
@@ -115,9 +113,9 @@ export default function AboutSection() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
-                      whileHover={{ 
+                      whileHover={{
                         y: -8,
-                        transition: { duration: 0.3 }
+                        transition: { duration: 0.3 },
                       }}
                       sx={{
                         p: 3,
@@ -146,7 +144,7 @@ export default function AboutSection() {
                       >
                         <IconComponent sx={{ fontSize: 28 }} />
                       </Box>
-                      
+
                       <Typography
                         variant="h6"
                         component="h3"
@@ -155,7 +153,7 @@ export default function AboutSection() {
                       >
                         {feature.title}
                       </Typography>
-                      
+
                       <Typography
                         variant="body2"
                         color="text.secondary"
@@ -182,9 +180,9 @@ export default function AboutSection() {
               color="text.secondary"
               sx={{ mb: 3, fontWeight: 500 }}
             >
-{t('builtWithTech')}
+              {t('builtWithTech')}
             </Typography>
-            
+
             <Box
               sx={{
                 display: 'flex',
@@ -195,7 +193,13 @@ export default function AboutSection() {
                 mx: 'auto',
               }}
             >
-              {['Next.js 15', 'React 19', 'TypeScript', 'Material UI', 'Framer Motion'].map((tech, index) => (
+              {[
+                'Next.js 15',
+                'React 19',
+                'TypeScript',
+                'Material UI',
+                'Framer Motion',
+              ].map((tech, index) => (
                 <MotionBox
                   key={tech}
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -219,8 +223,8 @@ export default function AboutSection() {
                 >
                   <Typography
                     variant="body2"
-                    sx={{ 
-                      fontWeight: 600, 
+                    sx={{
+                      fontWeight: 600,
                       color: theme.palette.primary.main,
                       fontSize: '0.875rem',
                     }}
