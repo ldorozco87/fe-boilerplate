@@ -1,0 +1,65 @@
+{
+  "name": "nextjs-boilerplate",
+  "version": "1.0.0",
+  "description": "A high-performance Next.js 15 boilerplate with Material UI, TypeScript, and internationalization",
+  "private": true,
+  "author": "Next.js Boilerplate Team",
+  "license": "MIT",
+  "homepage": "https://github.com/nextjs-boilerplate/nextjs-boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nextjs-boilerplate/nextjs-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nextjs-boilerplate/nextjs-boilerplate/issues"
+  },
+  "keywords": [
+    "nextjs",
+    "react",
+    "typescript",
+    "material-ui",
+    "sass",
+    "boilerplate",
+    "template",
+    "starter",
+    "i18n",
+    "internationalization",
+    "framer-motion",
+    "react-hook-form",
+    "zod"
+  ],
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "type-check": "tsc --noEmit",
+    "clean": "rimraf .next out"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@hookform/resolvers": "^5.2.1",
+    "@mui/icons-material": "^7.3.1",
+    "@mui/material": "^7.3.1",
+    "@mui/material-nextjs": "^7.3.0",
+    "framer-motion": "^12.23.12",
+    "next": "15.5.2",
+    "next-intl": "^4.3.5",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-hook-form": "^7.62.0",
+    "sass": "^1.91.0",
+    "zod": "^4.1.4"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.2",
+    "typescript": "^5"
+  }
+}

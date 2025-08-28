@@ -1,0 +1,52 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "contact": "Contact",
+    "about": "About"
+  },
+  "HomePage": {
+    "title": "Welcome to Next.js Boilerplate",
+    "subtitle": "A high-performance static site generator",
+    "description": "Built with Next.js 15, Material UI, TypeScript, and more modern technologies.",
+    "getStarted": "Get Started",
+    "viewGithub": "View on GitHub",
+    "featuresTitle": "Features",
+    "features": {
+      "nextjs": {
+        "title": "Next.js 15",
+        "description": "Built with the latest version of Next.js with App Router"
+      },
+      "performance": {
+        "title": "High Performance",
+        "description": "Optimized for speed and SEO with static generation"
+      },
+      "i18n": {
+        "title": "Internationalization",
+        "description": "Multi-language support with next-intl"
+      },
+      "ui": {
+        "title": "Material UI",
+        "description": "Beautiful components with Material Design"
+      }
+    }
+  },
+  "ContactPage": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team"
+  },
+  "ContactForm": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send Message",
+    "nameRequired": "Name is required",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email",
+    "messageRequired": "Message is required",
+    "messageMinLength": "Message must be at least 10 characters long"
+  },
+  "Footer": {
+    "copyright": "© {year} Next.js Boilerplate. All rights reserved.",
+    "builtWith": "Built with Next.js and Material UI"
+  }
+}
