@@ -37,11 +37,11 @@ export const metadata: Metadata = {
     creator: siteConfig.creator,
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
     apple: '/apple-touch-icon.png',
   },
-  manifest: '/manifest.json',
+  manifest: '/manifest.webmanifest',
 };
 
 interface RootLayoutProps {
@@ -50,7 +50,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html>
       <body>
         <ThemeRegistry>{children}</ThemeRegistry>
       </body>

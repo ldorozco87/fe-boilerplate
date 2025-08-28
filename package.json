@@ -35,6 +35,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0 && echo \"✅ ESLint completed successfully - no issues found!\"",
     "lint:stats": "echo \"📊 Running ESLint analysis on ~35 TypeScript/React files...\" && eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0 --format=stylish && echo \"✅ Linting completed successfully - no issues found!\" && echo \"📁 Scanned: Components, pages, hooks, types, and configuration files\"",
     "lint:hydration": "echo \"🔍 Checking for hydration issues...\" && eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0 && echo \"✅ No hydration-related issues found in code structure\"",
+    "lint:next": "echo \"⚡ Running Next.js specific linting rules...\" && eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0 --config eslint.config.mjs && echo \"✅ Next.js lint checks passed!\"",
     "lint:verbose": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0 --format=stylish --debug",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "format": "prettier --write . --ignore-path .gitignore",

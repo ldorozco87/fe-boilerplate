@@ -29,11 +29,24 @@ const eslintConfig = [
       "@typescript-eslint/no-explicit-any": "warn",
       "react/no-unescaped-entities": "warn",
       "react-hooks/exhaustive-deps": "warn",
-      // Prevenir errores de hidratación
+      
+      // Prevenir errores de hidratación críticos
       "react/no-danger-with-children": "error",
       "react/no-children-prop": "error",
-      // Asegurar elementos HTML válidos
+      
+      // Asegurar elementos HTML válidos y evitar anidación incorrecta
       "react/button-has-type": "warn",
+      "react/no-unknown-property": "warn",
+      "react/void-dom-elements-no-children": "error",
+      
+      // Reglas específicas para Next.js y hidratación
+      "@next/next/no-head-element": "error",
+      "@next/next/no-html-link-for-pages": "error",
+      "@next/next/no-sync-scripts": "error",
+      
+      // Detectar patrones que pueden causar errores de hidratación
+      "react/no-render-return-value": "error",
+      "react/no-string-refs": "error",
     },
   },
 ];
