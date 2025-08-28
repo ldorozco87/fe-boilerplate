@@ -1,13 +1,17 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
 const nextConfig: NextConfig = {
-  experimental: {
-    // Enable experimental features if needed
-  },
+  // Enable static export only when NEXT_OUTPUT=export is set
+  ...(process.env.NEXT_OUTPUT === 'export' && {
+    output: 'export',
+    trailingSlash: true,
+  }),
   images: {
+    // Unoptimize images only for static export
+    ...(process.env.NEXT_OUTPUT === 'export' && { unoptimized: true }),
     remotePatterns: [
       {
         protocol: 'https',
@@ -16,36 +20,17 @@ const nextConfig: NextConfig = {
     ],
     formats: ['image/webp', 'image/avif'],
   },
+  experimental: {
+    // Enable experimental features if needed
+  },
   // Enable SASS support
   sassOptions: {
     includePaths: ['./src/styles'],
   },
-  // Security headers for better SEO and security
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
-          },
-        ],
-      },
-    ];
-  },
+  // Note: Security headers are not supported with static export
+  // Configure them at the server level (Apache/Nginx) instead
   // Compression for better performance
   compress: true,
-  // Enable static optimization
-  trailingSlash: false,
 };
 
 export default withNextIntl(nextConfig);

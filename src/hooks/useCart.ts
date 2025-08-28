@@ -34,24 +34,26 @@ export const useCartState = (): CartContextType => {
   }, [items]);
 
   const addToCart = (product: Product, quantity: number = 1) => {
-    setItems(currentItems => {
-      const existingItem = currentItems.find(item => item.product.id === product.id);
-      
+    setItems((currentItems) => {
+      const existingItem = currentItems.find(
+        (item) => item.product.id === product.id
+      );
+
       if (existingItem) {
-        return currentItems.map(item =>
+        return currentItems.map((item) =>
           item.product.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
-      
+
       return [...currentItems, { product, quantity }];
     });
   };
 
   const removeFromCart = (productId: string) => {
-    setItems(currentItems => 
-      currentItems.filter(item => item.product.id !== productId)
+    setItems((currentItems) =>
+      currentItems.filter((item) => item.product.id !== productId)
     );
   };
 
@@ -60,12 +62,10 @@ export const useCartState = (): CartContextType => {
       removeFromCart(productId);
       return;
     }
-    
-    setItems(currentItems =>
-      currentItems.map(item =>
-        item.product.id === productId
-          ? { ...item, quantity }
-          : item
+
+    setItems((currentItems) =>
+      currentItems.map((item) =>
+        item.product.id === productId ? { ...item, quantity } : item
       )
     );
   };
@@ -79,7 +79,10 @@ export const useCartState = (): CartContextType => {
   };
 
   const getTotalPrice = () => {
-    return items.reduce((total, item) => total + (item.product.price * item.quantity), 0);
+    return items.reduce(
+      (total, item) => total + item.product.price * item.quantity,
+      0
+    );
   };
 
   return {

@@ -22,26 +22,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Features
 
 - 🎨 **Modern UI Components**
-
   - Responsive Navbar with language switcher
   - Footer with social links
   - Contact form with validation
   - Animated components with scroll effects
 
 - 🌐 **Internationalization**
-
   - Multi-language support (EN/ES)
   - Dynamic route-based locale switching
   - Translated content for all components
 
 - 📱 **Responsive Design**
-
   - Mobile-first approach
   - Optimized for all screen sizes
   - Touch-friendly interactions
 
 - ⚡ **Performance**
-
   - Static site generation
   - Optimized bundle sizes
   - Fast page transitions

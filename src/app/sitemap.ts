@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next';
 import { siteConfig } from '@/config/site';
 
+// Force static generation for export
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     { path: '', priority: 1.0, changeFrequency: 'weekly' as const },
@@ -18,9 +21,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: route.priority,
       alternates: {
         languages: Object.fromEntries(
-          siteConfig.locales.map(loc => [
-            loc === 'en' ? 'x-default' : loc, 
-            `${siteConfig.url}/${loc}${route.path}`
+          siteConfig.locales.map((loc) => [
+            loc === 'en' ? 'x-default' : loc,
+            `${siteConfig.url}/${loc}${route.path}`,
           ])
         ),
       },

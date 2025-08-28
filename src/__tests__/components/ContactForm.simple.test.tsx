@@ -17,7 +17,6 @@ const MockedContactForm = () => (
 
 describe('Contact Form Core Tests', () => {
   test('3. Contact form basic functionality works', async () => {
-    const user = userEvent.setup();
     render(<MockedContactForm />);
 
     // All form fields should be present

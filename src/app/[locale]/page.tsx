@@ -8,7 +8,9 @@ import ContactSection from '@/components/sections/ContactSection';
 
 export default function HomePage() {
   return (
-    <Box sx={{ pt: 8 }}> {/* Add padding top for fixed navbar */}
+    <Box sx={{ pt: 8 }}>
+      {' '}
+      {/* Add padding top for fixed navbar */}
       <HeroSection />
       <AboutSection />
       <ShowcaseSection />

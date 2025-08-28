@@ -8,9 +8,5 @@ interface ThemeRegistryProps {
 }
 
 export default function ThemeRegistry({ children }: ThemeRegistryProps) {
-  return (
-    <AppRouterCacheProvider>
-      {children}
-    </AppRouterCacheProvider>
-  );
+  return <AppRouterCacheProvider>{children}</AppRouterCacheProvider>;
 }

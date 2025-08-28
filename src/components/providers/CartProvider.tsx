@@ -11,8 +11,6 @@ export default function CartProvider({ children }: CartProviderProps) {
   const cartState = useCartState();
 
   return (
-    <CartContext.Provider value={cartState}>
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={cartState}>{children}</CartContext.Provider>
   );
 }

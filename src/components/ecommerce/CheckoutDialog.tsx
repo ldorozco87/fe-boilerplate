@@ -60,7 +60,12 @@ interface CheckoutDialogProps {
 
 const steps = ['Shipping Information', 'Payment Details', 'Confirmation'];
 
-export default function CheckoutDialog({ open, onClose, total, itemCount }: CheckoutDialogProps) {
+export default function CheckoutDialog({
+  open,
+  onClose,
+  total,
+  itemCount,
+}: CheckoutDialogProps) {
   const theme = useTheme();
   const { clearCart } = useCart();
   const [activeStep, setActiveStep] = useState(0);
@@ -111,18 +116,18 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
 
   const onSubmit = async (data: CheckoutFormData) => {
     setIsProcessing(true);
-    
+
     // Simulate payment processing
     try {
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
       console.log('Order placed:', {
         orderData: data,
         total,
         itemCount,
         timestamp: new Date().toISOString(),
       });
-      
+
       setOrderComplete(true);
       clearCart();
       setActiveStep(2);
@@ -136,12 +141,22 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
   const isStepValid = (step: number): boolean => {
     switch (step) {
       case 0:
-        return !!(watchedFields.email && watchedFields.firstName && watchedFields.lastName && 
-                 watchedFields.address && watchedFields.city && watchedFields.postalCode && 
-                 watchedFields.country);
+        return !!(
+          watchedFields.email &&
+          watchedFields.firstName &&
+          watchedFields.lastName &&
+          watchedFields.address &&
+          watchedFields.city &&
+          watchedFields.postalCode &&
+          watchedFields.country
+        );
       case 1:
-        return !!(watchedFields.cardNumber && watchedFields.expiryDate && 
-                 watchedFields.cvc && watchedFields.nameOnCard);
+        return !!(
+          watchedFields.cardNumber &&
+          watchedFields.expiryDate &&
+          watchedFields.cvc &&
+          watchedFields.nameOnCard
+        );
       default:
         return true;
     }
@@ -155,7 +170,7 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
             <Typography variant="h6" gutterBottom>
               Shipping Information
             </Typography>
-            
+
             <Controller
               name="email"
               control={control}
@@ -170,7 +185,7 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
                 />
               )}
             />
-            
+
             <Grid container spacing={2}>
               <Grid size={{ xs: 12, sm: 6 }}>
                 <Controller
@@ -203,7 +218,7 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
                 />
               </Grid>
             </Grid>
-            
+
             <Controller
               name="address"
               control={control}
@@ -217,7 +232,7 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
                 />
               )}
             />
-            
+
             <Grid container spacing={2}>
               <Grid size={{ xs: 12, sm: 6 }}>
                 <Controller
@@ -274,7 +289,7 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
             <Typography variant="h6" gutterBottom>
               Payment Details
             </Typography>
-            
+
             <Controller
               name="nameOnCard"
               control={control}
@@ -288,7 +303,7 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
                 />
               )}
             />
-            
+
             <Controller
               name="cardNumber"
               control={control}
@@ -303,13 +318,16 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
                   inputProps={{ maxLength: 19 }}
                   onChange={(e) => {
                     // Format card number with spaces
-                    const value = e.target.value.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim();
+                    const value = e.target.value
+                      .replace(/\s/g, '')
+                      .replace(/(.{4})/g, '$1 ')
+                      .trim();
                     field.onChange(value);
                   }}
                 />
               )}
             />
-            
+
             <Grid container spacing={2}>
               <Grid size={{ xs: 12, sm: 6 }}>
                 <Controller
@@ -326,7 +344,9 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
                       inputProps={{ maxLength: 5 }}
                       onChange={(e) => {
                         // Format expiry date
-                        const value = e.target.value.replace(/\D/g, '').replace(/(.{2})/, '$1/');
+                        const value = e.target.value
+                          .replace(/\D/g, '')
+                          .replace(/(.{2})/, '$1/');
                         field.onChange(value);
                       }}
                     />
@@ -368,14 +388,13 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
           >
             {orderComplete ? (
               <Stack spacing={3} alignItems="center">
-                <CheckCircleIcon
-                  sx={{ fontSize: 80, color: 'success.main' }}
-                />
+                <CheckCircleIcon sx={{ fontSize: 80, color: 'success.main' }} />
                 <Typography variant="h5" color="success.main" gutterBottom>
                   Order Placed Successfully!
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                  Thank you for your order. You will receive a confirmation email shortly.
+                  Thank you for your order. You will receive a confirmation
+                  email shortly.
                 </Typography>
                 <Paper
                   sx={{
@@ -395,9 +414,7 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
             ) : (
               <Stack spacing={3} alignItems="center">
                 <CircularProgress size={60} />
-                <Typography variant="h6">
-                  Processing your order...
-                </Typography>
+                <Typography variant="h6">Processing your order...</Typography>
                 <Typography variant="body2" color="text.secondary">
                   Please don&apos;t close this window
                 </Typography>
@@ -425,7 +442,11 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
       }}
     >
       <DialogTitle>
-        <Stack direction="row" justifyContent="space-between" alignItems="center">
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
           <Typography variant="h5" sx={{ fontWeight: 600 }}>
             Checkout
           </Typography>
@@ -445,9 +466,13 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
               <Step key={label}>
                 <StepLabel
                   icon={
-                    index === 0 ? <ShippingIcon /> :
-                    index === 1 ? <CreditCardIcon /> :
-                    <CheckCircleIcon />
+                    index === 0 ? (
+                      <ShippingIcon />
+                    ) : index === 1 ? (
+                      <CreditCardIcon />
+                    ) : (
+                      <CheckCircleIcon />
+                    )
                   }
                 >
                   {label}
@@ -480,9 +505,7 @@ export default function CheckoutDialog({ open, onClose, total, itemCount }: Chec
           )}
 
           {/* Step Content */}
-          <Box sx={{ minHeight: 300 }}>
-            {renderStepContent(activeStep)}
-          </Box>
+          <Box sx={{ minHeight: 300 }}>{renderStepContent(activeStep)}</Box>
         </Stack>
       </DialogContent>
 

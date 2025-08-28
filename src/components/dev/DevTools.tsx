@@ -35,7 +35,10 @@ import { useTheme } from '@/components/providers/ThemeProvider';
 
 export default function DevTools() {
   const [open, setOpen] = useState(false);
-  const [performanceData, setPerformanceData] = useState<Record<string, number> | null>(null);
+  const [performanceData, setPerformanceData] = useState<Record<
+    string,
+    number
+  > | null>(null);
   const { mode } = useTheme();
 
   // Only show in development
@@ -43,13 +46,21 @@ export default function DevTools() {
 
   useEffect(() => {
     if (typeof window !== 'undefined' && 'performance' in window) {
-      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+      const navigation = performance.getEntriesByType(
+        'navigation'
+      )[0] as PerformanceNavigationTiming;
       if (navigation) {
         setPerformanceData({
-          dns: Math.round(navigation.domainLookupEnd - navigation.domainLookupStart),
+          dns: Math.round(
+            navigation.domainLookupEnd - navigation.domainLookupStart
+          ),
           tcp: Math.round(navigation.connectEnd - navigation.connectStart),
-          response: Math.round(navigation.responseEnd - navigation.requestStart),
-          dom: Math.round(navigation.domContentLoadedEventEnd - navigation.responseEnd),
+          response: Math.round(
+            navigation.responseEnd - navigation.requestStart
+          ),
+          dom: Math.round(
+            navigation.domContentLoadedEventEnd - navigation.responseEnd
+          ),
           load: Math.round(navigation.loadEventEnd - navigation.loadEventStart),
           total: Math.round(navigation.loadEventEnd - navigation.fetchStart),
         });
@@ -66,9 +77,9 @@ export default function DevTools() {
     'React Version': '19.1.0',
     'Material UI Version': '7.3.1',
     'Theme Mode': mode,
-    'Environment': process.env.NODE_ENV,
+    Environment: process.env.NODE_ENV,
     'Build Tool': 'Turbopack',
-    'TypeScript': 'Enabled',
+    TypeScript: 'Enabled',
   };
 
   const projectStructure = [
@@ -78,7 +89,10 @@ export default function DevTools() {
     { path: 'src/lib/', description: 'Utility functions and configurations' },
     { path: 'src/types/', description: 'TypeScript type definitions' },
     { path: 'src/data/', description: 'Static data and mock APIs' },
-    { path: 'src/styles/', description: 'Global styles and theme configuration' },
+    {
+      path: 'src/styles/',
+      description: 'Global styles and theme configuration',
+    },
   ];
 
   const features = [
@@ -117,7 +131,7 @@ export default function DevTools() {
         maxWidth="md"
         fullWidth
         PaperProps={{
-          sx: { borderRadius: 3 }
+          sx: { borderRadius: 3 },
         }}
       >
         <DialogTitle>
@@ -126,10 +140,10 @@ export default function DevTools() {
             <Typography variant="h5" sx={{ fontWeight: 600 }}>
               Developer Tools
             </Typography>
-            <Chip 
-              label="DEV MODE" 
-              color="error" 
-              size="small" 
+            <Chip
+              label="DEV MODE"
+              color="error"
+              size="small"
               sx={{ fontWeight: 600 }}
             />
           </Stack>
@@ -138,7 +152,7 @@ export default function DevTools() {
         <DialogContent>
           <Stack spacing={3}>
             <Alert severity="info">
-              This panel is only visible in development mode and provides useful 
+              This panel is only visible in development mode and provides useful
               information about the boilerplate structure and performance.
             </Alert>
 
@@ -181,7 +195,9 @@ export default function DevTools() {
                       <TableHead>
                         <TableRow>
                           <TableCell sx={{ fontWeight: 600 }}>Metric</TableCell>
-                          <TableCell sx={{ fontWeight: 600 }}>Time (ms)</TableCell>
+                          <TableCell sx={{ fontWeight: 600 }}>
+                            Time (ms)
+                          </TableCell>
                           <TableCell sx={{ fontWeight: 600 }}>Status</TableCell>
                         </TableRow>
                       </TableHead>
@@ -190,9 +206,15 @@ export default function DevTools() {
                           <TableCell>DNS Lookup</TableCell>
                           <TableCell>{performanceData.dns}</TableCell>
                           <TableCell>
-                            <Chip 
-                              label={performanceData.dns < 100 ? 'Good' : 'Slow'} 
-                              color={performanceData.dns < 100 ? 'success' : 'warning'}
+                            <Chip
+                              label={
+                                performanceData.dns < 100 ? 'Good' : 'Slow'
+                              }
+                              color={
+                                performanceData.dns < 100
+                                  ? 'success'
+                                  : 'warning'
+                              }
                               size="small"
                             />
                           </TableCell>
@@ -201,9 +223,15 @@ export default function DevTools() {
                           <TableCell>Server Response</TableCell>
                           <TableCell>{performanceData.response}</TableCell>
                           <TableCell>
-                            <Chip 
-                              label={performanceData.response < 500 ? 'Good' : 'Slow'} 
-                              color={performanceData.response < 500 ? 'success' : 'warning'}
+                            <Chip
+                              label={
+                                performanceData.response < 500 ? 'Good' : 'Slow'
+                              }
+                              color={
+                                performanceData.response < 500
+                                  ? 'success'
+                                  : 'warning'
+                              }
                               size="small"
                             />
                           </TableCell>
@@ -212,9 +240,15 @@ export default function DevTools() {
                           <TableCell>DOM Processing</TableCell>
                           <TableCell>{performanceData.dom}</TableCell>
                           <TableCell>
-                            <Chip 
-                              label={performanceData.dom < 1000 ? 'Good' : 'Slow'} 
-                              color={performanceData.dom < 1000 ? 'success' : 'warning'}
+                            <Chip
+                              label={
+                                performanceData.dom < 1000 ? 'Good' : 'Slow'
+                              }
+                              color={
+                                performanceData.dom < 1000
+                                  ? 'success'
+                                  : 'warning'
+                              }
                               size="small"
                             />
                           </TableCell>
@@ -223,9 +257,15 @@ export default function DevTools() {
                           <TableCell>Total Load Time</TableCell>
                           <TableCell>{performanceData.total}</TableCell>
                           <TableCell>
-                            <Chip 
-                              label={performanceData.total < 3000 ? 'Good' : 'Slow'} 
-                              color={performanceData.total < 3000 ? 'success' : 'warning'}
+                            <Chip
+                              label={
+                                performanceData.total < 3000 ? 'Good' : 'Slow'
+                              }
+                              color={
+                                performanceData.total < 3000
+                                  ? 'success'
+                                  : 'warning'
+                              }
                               size="small"
                             />
                           </TableCell>
@@ -253,10 +293,17 @@ export default function DevTools() {
                 <Stack spacing={2}>
                   {projectStructure.map((item) => (
                     <Box key={item.path}>
-                      <Typography variant="body2" sx={{ fontFamily: 'monospace', fontWeight: 600 }}>
+                      <Typography
+                        variant="body2"
+                        sx={{ fontFamily: 'monospace', fontWeight: 600 }}
+                      >
                         {item.path}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ ml: 2 }}>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ ml: 2 }}
+                      >
                         {item.description}
                       </Typography>
                     </Box>
@@ -273,11 +320,16 @@ export default function DevTools() {
               <AccordionDetails>
                 <Stack spacing={1}>
                   {features.map((feature) => (
-                    <Stack key={feature.name} direction="row" justifyContent="space-between" alignItems="center">
+                    <Stack
+                      key={feature.name}
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
                       <Typography variant="body2">{feature.name}</Typography>
-                      <Chip 
-                        label={feature.status} 
-                        color="success" 
+                      <Chip
+                        label={feature.status}
+                        color="success"
                         size="small"
                         sx={{ fontWeight: 600 }}
                       />

@@ -1,16 +1,14 @@
 import createMiddleware from 'next-intl/middleware';
 import { locales } from './i18n';
 
-export default createMiddleware({
-  // A list of all locales that are supported
+// Create the middleware
+const intlMiddleware = createMiddleware({
   locales,
-
-  // Used when no locale matches
   defaultLocale: 'en',
-
-  // The locale prefix strategy
   localePrefix: 'always',
 });
+
+export default intlMiddleware;
 
 export const config = {
   // Match only internationalized pathnames

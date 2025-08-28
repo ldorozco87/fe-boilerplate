@@ -8,17 +8,24 @@ const trackPageView = (url: string) => {
   if (typeof window !== 'undefined') {
     // Google Analytics 4 tracking
     if (window.gtag) {
-      window.gtag('config', process.env.NEXT_PUBLIC_GA_ID || 'GA_MEASUREMENT_ID', {
-        page_path: url,
-      });
+      window.gtag(
+        'config',
+        process.env.NEXT_PUBLIC_GA_ID || 'GA_MEASUREMENT_ID',
+        {
+          page_path: url,
+        }
+      );
     }
 
     // Performance monitoring
     if ('performance' in window) {
       // Track page load time
-      const navigationEntry = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+      const navigationEntry = performance.getEntriesByType(
+        'navigation'
+      )[0] as PerformanceNavigationTiming;
       if (navigationEntry) {
-        const loadTime = navigationEntry.loadEventEnd - navigationEntry.loadEventStart;
+        const loadTime =
+          navigationEntry.loadEventEnd - navigationEntry.loadEventStart;
         console.log('📊 Page Load Time:', Math.round(loadTime), 'ms');
       }
 
@@ -34,18 +41,25 @@ const trackPageView = (url: string) => {
 };
 
 // Custom event tracking
-export const trackEvent = (eventName: string, parameters?: Record<string, unknown>) => {
+export const trackEvent = (
+  eventName: string,
+  parameters?: Record<string, unknown>
+) => {
   if (typeof window !== 'undefined') {
     if (window.gtag) {
       window.gtag('event', eventName, parameters);
     }
-    
+
     console.log('📊 Analytics: Event tracked -', eventName, parameters);
   }
 };
 
 // E-commerce tracking
-export const trackPurchase = (transactionId: string, items: Record<string, unknown>[], value: number) => {
+export const trackPurchase = (
+  transactionId: string,
+  items: Record<string, unknown>[],
+  value: number
+) => {
   if (typeof window !== 'undefined') {
     if (window.gtag) {
       window.gtag('event', 'purchase', {
@@ -55,8 +69,12 @@ export const trackPurchase = (transactionId: string, items: Record<string, unkno
         items: items,
       });
     }
-    
-    console.log('📊 Analytics: Purchase tracked -', { transactionId, value, items });
+
+    console.log('📊 Analytics: Purchase tracked -', {
+      transactionId,
+      value,
+      items,
+    });
   }
 };
 
@@ -89,19 +107,22 @@ export const trackFormSubmission = (formName: string, success: boolean) => {
 export const trackPerformance = () => {
   if (typeof window !== 'undefined' && 'performance' in window) {
     // Track important performance metrics
-    const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-    
+    const navigation = performance.getEntriesByType(
+      'navigation'
+    )[0] as PerformanceNavigationTiming;
+
     if (navigation) {
       const metrics = {
         dns_lookup: navigation.domainLookupEnd - navigation.domainLookupStart,
         tcp_connection: navigation.connectEnd - navigation.connectStart,
         server_response: navigation.responseEnd - navigation.requestStart,
-        dom_processing: navigation.domContentLoadedEventEnd - navigation.responseEnd,
+        dom_processing:
+          navigation.domContentLoadedEventEnd - navigation.responseEnd,
         page_load: navigation.loadEventEnd - navigation.loadEventStart,
       };
-      
+
       console.log('📊 Performance Metrics:', metrics);
-      
+
       // Track slow performance
       if (metrics.page_load > 3000) {
         trackEvent('slow_page_load', {

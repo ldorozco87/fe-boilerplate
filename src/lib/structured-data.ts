@@ -71,10 +71,7 @@ export function generateOrganizationSchema() {
     description: siteConfig.description,
     url: siteConfig.url,
     logo: `${siteConfig.url}/logo.svg`,
-    sameAs: [
-      siteConfig.links.github,
-      siteConfig.links.twitter,
-    ],
+    sameAs: [siteConfig.links.github, siteConfig.links.twitter],
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+1-555-123-4567',

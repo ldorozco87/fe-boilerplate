@@ -22,8 +22,6 @@ import ContactForm from '@/components/forms/ContactForm';
 
 const MotionBox = motion.create(Box);
 
-
-
 export default function ContactSection() {
   const theme = useTheme();
   const t = useTranslations('ContactSection');
@@ -90,14 +88,14 @@ export default function ContactSection() {
                   fontSize: { xs: '2.5rem', md: '3rem' },
                 }}
               >
-{t('title')}
+                {t('title')}
               </Typography>
               <Typography
                 variant="h6"
                 color="text.secondary"
                 sx={{ mb: 4, lineHeight: 1.6, fontWeight: 300 }}
               >
-{t('subtitle')}
+                {t('subtitle')}
               </Typography>
 
               <Stack spacing={3}>
@@ -151,7 +149,7 @@ export default function ContactSection() {
                         </Typography>
                         <Typography
                           variant="body1"
-                          sx={{ 
+                          sx={{
                             fontWeight: 500,
                             color: theme.palette.text.primary,
                           }}

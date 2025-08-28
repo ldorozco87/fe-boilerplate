@@ -1,17 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@/__tests__/utils/test-utils';
 import userEvent from '@testing-library/user-event';
 import Navbar from '@/components/layout/Navbar';
-import { ThemeProvider } from '@mui/material/styles';
-import { createTheme } from '@mui/material/styles';
-
-// Mock the theme provider
-const theme = createTheme();
-
-const MockedNavbar = () => (
-  <ThemeProvider theme={theme}>
-    <Navbar />
-  </ThemeProvider>
-);
 
 describe('Navbar Component', () => {
   beforeEach(() => {
@@ -23,17 +12,15 @@ describe('Navbar Component', () => {
   });
 
   test('renders navbar with navigation items', () => {
-    render(<MockedNavbar />);
+    render(<Navbar />);
 
     expect(screen.getByText('Next.js Boilerplate')).toBeInTheDocument();
     expect(screen.getByText('home')).toBeInTheDocument();
-    expect(screen.getByText('about')).toBeInTheDocument();
-    expect(screen.getByText('features')).toBeInTheDocument();
-    expect(screen.getByText('contact')).toBeInTheDocument();
+    expect(screen.getByText('ecommerce')).toBeInTheDocument();
   });
 
   test('navbar becomes visible with scroll effect when scrolling down', async () => {
-    render(<MockedNavbar />);
+    render(<Navbar />);
 
     const navbar = screen.getByRole('banner');
 
@@ -55,7 +42,7 @@ describe('Navbar Component', () => {
 
   test('language menu opens and changes language', async () => {
     const user = userEvent.setup();
-    render(<MockedNavbar />);
+    render(<Navbar />);
 
     // Find and click language button
     const languageButton = screen.getByLabelText('change language');
@@ -68,11 +55,12 @@ describe('Navbar Component', () => {
 
   test('theme toggle button works', async () => {
     const user = userEvent.setup();
-    render(<MockedNavbar />);
+    render(<Navbar />);
 
-    // Find theme toggle button
-    const themeButton = screen.getByLabelText('toggle theme');
-    expect(themeButton).toBeInTheDocument();
+    // Find theme toggle button (use getAllByLabelText since there are multiple)
+    const themeButtons = screen.getAllByLabelText('toggle theme');
+    expect(themeButtons).toHaveLength(2); // One for desktop, one for mobile
+    const themeButton = themeButtons[0]; // Use the first one
 
     // Click theme toggle
     await user.click(themeButton);
@@ -91,7 +79,7 @@ describe('Navbar Component', () => {
       value: 500,
     });
 
-    render(<MockedNavbar />);
+    render(<Navbar />);
 
     // Find mobile menu button
     const mobileMenuButton = screen.getByLabelText('open navigation menu');

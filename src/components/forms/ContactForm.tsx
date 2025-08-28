@@ -73,7 +73,7 @@ export default function ContactForm() {
       // - Email service like SendGrid, Mailgun, etc.
       // - CRM like HubSpot, Salesforce, etc.
       // - Form handling service like Formspree, Netlify Forms, etc.
-      
+
       console.log('✅ Form submitted successfully! In production, this would:');
       console.log('• Send email notification to your team');
       console.log('• Store submission in database');
@@ -104,20 +104,21 @@ export default function ContactForm() {
         </Typography>
 
         {isSubmitted && (
-          <Alert 
-            severity="success" 
-            sx={{ 
+          <Alert
+            severity="success"
+            sx={{
               mb: 3,
               '& .MuiAlert-message': {
-                width: '100%'
-              }
+                width: '100%',
+              },
             }}
           >
             <Typography variant="body2" sx={{ fontWeight: 600, mb: 0.5 }}>
               Message sent successfully! 🎉
             </Typography>
             <Typography variant="body2">
-              We&apos;ll get back to you within 24 hours. Check the console to see the simulated API call details.
+              We&apos;ll get back to you within 24 hours. Check the console to
+              see the simulated API call details.
             </Typography>
           </Alert>
         )}

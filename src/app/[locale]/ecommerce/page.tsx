@@ -17,7 +17,6 @@ import {
   Tab,
   TextField,
   InputAdornment,
-
   Fab,
   Badge,
   useTheme,
@@ -44,23 +43,27 @@ function EcommerceContent() {
   const theme = useTheme();
 
   const { addToCart, getTotalItems } = useCart();
-  
+
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [cartOpen, setCartOpen] = useState(false);
-  
-  const filteredProducts = getProductsByCategory(selectedCategory).filter(product =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    product.description.toLowerCase().includes(searchQuery.toLowerCase())
+
+  const filteredProducts = getProductsByCategory(selectedCategory).filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleCategoryChange = (_event: React.SyntheticEvent, newValue: string) => {
+  const handleCategoryChange = (
+    _event: React.SyntheticEvent,
+    newValue: string
+  ) => {
     setSelectedCategory(newValue);
   };
 
   const handleAddToCart = (product: Product) => {
     addToCart(product, 1);
-    
+
     // Track analytics event
     trackAddToCart({
       item_id: product.id,
@@ -102,8 +105,8 @@ function EcommerceContent() {
               color="text.secondary"
               sx={{ maxWidth: 600, mx: 'auto', lineHeight: 1.6 }}
             >
-              Experience a fully functional e-commerce interface with cart management, 
-              product filtering, and checkout simulation.
+              Experience a fully functional e-commerce interface with cart
+              management, product filtering, and checkout simulation.
             </Typography>
           </MotionBox>
 
@@ -159,11 +162,7 @@ function EcommerceContent() {
                   }}
                 >
                   {categories.map((category) => (
-                    <Tab
-                      key={category}
-                      label={category}
-                      value={category}
-                    />
+                    <Tab key={category} label={category} value={category} />
                   ))}
                 </Tabs>
               </Box>
@@ -211,7 +210,7 @@ function EcommerceContent() {
                         {product.name}
                       </Typography>
                     </CardMedia>
-                    
+
                     {/* Stock Status */}
                     <Chip
                       label={product.inStock ? 'In Stock' : 'Out of Stock'}
@@ -223,7 +222,7 @@ function EcommerceContent() {
                         right: 12,
                       }}
                     />
-                    
+
                     {/* Featured Badge */}
                     {product.featured && (
                       <Chip
@@ -260,7 +259,7 @@ function EcommerceContent() {
                         >
                           {product.name}
                         </Typography>
-                        
+
                         <Typography
                           variant="body2"
                           color="text.secondary"
@@ -304,7 +303,7 @@ function EcommerceContent() {
                         >
                           ${product.price}
                         </Typography>
-                        
+
                         <Button
                           variant="contained"
                           size="small"
@@ -360,10 +359,7 @@ function EcommerceContent() {
       </Fab>
 
       {/* Shopping Cart Drawer */}
-      <ShoppingCartDrawer
-        open={cartOpen}
-        onClose={() => setCartOpen(false)}
-      />
+      <ShoppingCartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
     </Box>
   );
 }

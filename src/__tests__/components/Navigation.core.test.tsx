@@ -4,6 +4,7 @@
  */
 
 import { render, screen } from '@testing-library/react';
+import Link from 'next/link';
 
 // Simple navigation component for testing core functionality
 function MockNavigation() {
@@ -24,11 +25,15 @@ function MockNavigation() {
           <a href="#contact">contact</a>
         </li>
         <li>
-          <a href="/en/ecommerce">ecommerce</a>
+          <Link href="/en/ecommerce">ecommerce</Link>
         </li>
       </ul>
-      <button aria-label="change language">Language</button>
-      <button aria-label="toggle theme">Theme</button>
+      <button type="button" aria-label="change language">
+        Language
+      </button>
+      <button type="button" aria-label="toggle theme">
+        Theme
+      </button>
     </nav>
   );
 }

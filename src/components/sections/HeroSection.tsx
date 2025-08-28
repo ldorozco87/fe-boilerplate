@@ -51,7 +51,7 @@ export default function HeroSection() {
           zIndex: 0,
         }}
       />
-      
+
       {/* Floating Elements */}
       <MotionBox
         animate={{
@@ -61,7 +61,7 @@ export default function HeroSection() {
         transition={{
           duration: 6,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: 'easeInOut',
         }}
         sx={{
           position: 'absolute',
@@ -83,7 +83,7 @@ export default function HeroSection() {
         transition={{
           duration: 8,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: 'easeInOut',
           delay: 1,
         }}
         sx={{
@@ -196,7 +196,7 @@ export default function HeroSection() {
                   transition: 'all 0.3s ease',
                 }}
               >
-{t('exploreEcommerce')}
+                {t('exploreEcommerce')}
               </Button>
 
               <Button
@@ -240,7 +240,7 @@ export default function HeroSection() {
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: 'easeInOut',
               }}
               sx={{
                 width: 2,

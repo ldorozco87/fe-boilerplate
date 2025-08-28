@@ -39,14 +39,23 @@ interface ShoppingCartDrawerProps {
   onClose: () => void;
 }
 
-export default function ShoppingCartDrawer({ open, onClose }: ShoppingCartDrawerProps) {
+export default function ShoppingCartDrawer({
+  open,
+  onClose,
+}: ShoppingCartDrawerProps) {
   const theme = useTheme();
-  const { items, updateQuantity, removeFromCart, getTotalPrice, getTotalItems } = useCart();
+  const {
+    items,
+    updateQuantity,
+    removeFromCart,
+    getTotalPrice,
+    getTotalItems,
+  } = useCart();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   const handleQuantityChange = (productId: string, newQuantity: number) => {
-    const item = items.find(item => item.product.id === productId);
-    
+    const item = items.find((item) => item.product.id === productId);
+
     if (newQuantity < 1) {
       if (item) {
         trackRemoveFromCart({
@@ -75,9 +84,10 @@ export default function ShoppingCartDrawer({ open, onClose }: ShoppingCartDrawer
         PaperProps={{
           sx: {
             width: { xs: '100vw', sm: 450 },
-            background: theme.palette.mode === 'dark' 
-              ? alpha(theme.palette.background.paper, 0.95)
-              : theme.palette.background.paper,
+            background:
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.background.paper, 0.95)
+                : theme.palette.background.paper,
             backdropFilter: 'blur(20px)',
           },
         }}
@@ -177,11 +187,14 @@ export default function ShoppingCartDrawer({ open, onClose }: ShoppingCartDrawer
                                   background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.2)}, ${alpha(theme.palette.secondary.main, 0.2)})`,
                                 }}
                               >
-                                <Typography variant="caption" sx={{ fontWeight: 600 }}>
+                                <Typography
+                                  variant="caption"
+                                  sx={{ fontWeight: 600 }}
+                                >
                                   IMG
                                 </Typography>
                               </Avatar>
-                              
+
                               <Box sx={{ flexGrow: 1, minWidth: 0 }}>
                                 <Typography
                                   variant="subtitle2"
@@ -212,7 +225,10 @@ export default function ShoppingCartDrawer({ open, onClose }: ShoppingCartDrawer
                                 sx={{
                                   color: 'error.main',
                                   '&:hover': {
-                                    backgroundColor: alpha(theme.palette.error.main, 0.1),
+                                    backgroundColor: alpha(
+                                      theme.palette.error.main,
+                                      0.1
+                                    ),
                                   },
                                 }}
                               >
@@ -226,10 +242,19 @@ export default function ShoppingCartDrawer({ open, onClose }: ShoppingCartDrawer
                               justifyContent="space-between"
                               alignItems="center"
                             >
-                              <Stack direction="row" alignItems="center" spacing={1}>
+                              <Stack
+                                direction="row"
+                                alignItems="center"
+                                spacing={1}
+                              >
                                 <IconButton
                                   size="small"
-                                  onClick={() => handleQuantityChange(item.product.id, item.quantity - 1)}
+                                  onClick={() =>
+                                    handleQuantityChange(
+                                      item.product.id,
+                                      item.quantity - 1
+                                    )
+                                  }
                                   sx={{
                                     border: 1,
                                     borderColor: 'divider',
@@ -240,13 +265,16 @@ export default function ShoppingCartDrawer({ open, onClose }: ShoppingCartDrawer
                                 >
                                   <RemoveIcon fontSize="small" />
                                 </IconButton>
-                                
+
                                 <TextField
                                   size="small"
                                   value={item.quantity}
                                   onChange={(e) => {
                                     const value = parseInt(e.target.value) || 1;
-                                    handleQuantityChange(item.product.id, value);
+                                    handleQuantityChange(
+                                      item.product.id,
+                                      value
+                                    );
                                   }}
                                   inputProps={{
                                     style: { textAlign: 'center', width: 40 },
@@ -260,10 +288,15 @@ export default function ShoppingCartDrawer({ open, onClose }: ShoppingCartDrawer
                                     },
                                   }}
                                 />
-                                
+
                                 <IconButton
                                   size="small"
-                                  onClick={() => handleQuantityChange(item.product.id, item.quantity + 1)}
+                                  onClick={() =>
+                                    handleQuantityChange(
+                                      item.product.id,
+                                      item.quantity + 1
+                                    )
+                                  }
                                   sx={{
                                     border: 1,
                                     borderColor: 'divider',
@@ -281,7 +314,10 @@ export default function ShoppingCartDrawer({ open, onClose }: ShoppingCartDrawer
                                 color="primary"
                                 sx={{ fontWeight: 700 }}
                               >
-                                ${(item.product.price * item.quantity).toFixed(2)}
+                                $
+                                {(item.product.price * item.quantity).toFixed(
+                                  2
+                                )}
                               </Typography>
                             </Stack>
                           </Stack>
@@ -306,9 +342,13 @@ export default function ShoppingCartDrawer({ open, onClose }: ShoppingCartDrawer
             >
               <Stack spacing={3}>
                 <Divider />
-                
+
                 {/* Total */}
-                <Stack direction="row" justifyContent="space-between" alignItems="center">
+                <Stack
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
                   <Typography variant="h6" sx={{ fontWeight: 600 }}>
                     Total:
                   </Typography>

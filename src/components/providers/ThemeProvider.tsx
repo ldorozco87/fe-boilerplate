@@ -3,7 +3,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
-import { createAppTheme, type ThemeMode, type ThemeContextType } from '@/styles/theme';
+import {
+  createAppTheme,
+  type ThemeMode,
+  type ThemeContextType,
+} from '@/styles/theme';
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
@@ -29,7 +33,9 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
       setMode(savedMode);
     } else {
       // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const prefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)'
+      ).matches;
       setMode(prefersDark ? 'dark' : 'light');
     }
   }, []);

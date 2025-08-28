@@ -4,7 +4,8 @@ export const products: Product[] = [
   {
     id: '1',
     name: 'Modern Wireless Headphones',
-    description: 'Premium noise-cancelling wireless headphones with superior sound quality and long battery life.',
+    description:
+      'Premium noise-cancelling wireless headphones with superior sound quality and long battery life.',
     price: 299.99,
     image: '/api/placeholder/300/300',
     category: 'Electronics',
@@ -16,7 +17,8 @@ export const products: Product[] = [
   {
     id: '2',
     name: 'Smart Fitness Tracker',
-    description: 'Advanced fitness tracker with heart rate monitoring, GPS, and waterproof design.',
+    description:
+      'Advanced fitness tracker with heart rate monitoring, GPS, and waterproof design.',
     price: 199.99,
     image: '/api/placeholder/300/300',
     category: 'Electronics',
@@ -28,7 +30,8 @@ export const products: Product[] = [
   {
     id: '3',
     name: 'Organic Cotton T-Shirt',
-    description: 'Soft, comfortable organic cotton t-shirt in various colors. Perfect for everyday wear.',
+    description:
+      'Soft, comfortable organic cotton t-shirt in various colors. Perfect for everyday wear.',
     price: 29.99,
     image: '/api/placeholder/300/300',
     category: 'Clothing',
@@ -39,7 +42,8 @@ export const products: Product[] = [
   {
     id: '4',
     name: 'Eco-Friendly Water Bottle',
-    description: 'Sustainable stainless steel water bottle that keeps drinks cold for 24 hours.',
+    description:
+      'Sustainable stainless steel water bottle that keeps drinks cold for 24 hours.',
     price: 39.99,
     image: '/api/placeholder/300/300',
     category: 'Lifestyle',
@@ -51,7 +55,8 @@ export const products: Product[] = [
   {
     id: '5',
     name: 'Wireless Charging Pad',
-    description: 'Fast wireless charging pad compatible with all Qi-enabled devices.',
+    description:
+      'Fast wireless charging pad compatible with all Qi-enabled devices.',
     price: 49.99,
     image: '/api/placeholder/300/300',
     category: 'Electronics',
@@ -62,7 +67,8 @@ export const products: Product[] = [
   {
     id: '6',
     name: 'Minimalist Backpack',
-    description: 'Sleek and functional backpack perfect for work, travel, or daily use.',
+    description:
+      'Sleek and functional backpack perfect for work, travel, or daily use.',
     price: 89.99,
     image: '/api/placeholder/300/300',
     category: 'Accessories',
@@ -73,7 +79,8 @@ export const products: Product[] = [
   {
     id: '7',
     name: 'Plant-Based Protein Powder',
-    description: 'High-quality plant-based protein powder with all essential amino acids.',
+    description:
+      'High-quality plant-based protein powder with all essential amino acids.',
     price: 34.99,
     image: '/api/placeholder/300/300',
     category: 'Health',
@@ -84,7 +91,8 @@ export const products: Product[] = [
   {
     id: '8',
     name: 'Smart Home Speaker',
-    description: 'Voice-controlled smart speaker with premium sound and home automation features.',
+    description:
+      'Voice-controlled smart speaker with premium sound and home automation features.',
     price: 129.99,
     image: '/api/placeholder/300/300',
     category: 'Electronics',
@@ -107,7 +115,8 @@ export const products: Product[] = [
   {
     id: '10',
     name: 'Stainless Steel Cookware Set',
-    description: 'Professional-grade stainless steel cookware set for the modern kitchen.',
+    description:
+      'Professional-grade stainless steel cookware set for the modern kitchen.',
     price: 249.99,
     image: '/api/placeholder/300/300',
     category: 'Home',
@@ -118,7 +127,8 @@ export const products: Product[] = [
   {
     id: '11',
     name: 'LED Desk Lamp',
-    description: 'Adjustable LED desk lamp with multiple brightness levels and USB charging port.',
+    description:
+      'Adjustable LED desk lamp with multiple brightness levels and USB charging port.',
     price: 59.99,
     image: '/api/placeholder/300/300',
     category: 'Home',
@@ -142,7 +152,7 @@ export const products: Product[] = [
 export const categories = [
   'All',
   'Electronics',
-  'Clothing', 
+  'Clothing',
   'Lifestyle',
   'Accessories',
   'Health',
@@ -150,7 +160,11 @@ export const categories = [
   'Food',
 ];
 
-export const getFeaturedProducts = () => products.filter(product => product.featured);
-export const getProductsByCategory = (category: string) => 
-  category === 'All' ? products : products.filter(product => product.category === category);
-export const getProductById = (id: string) => products.find(product => product.id === id);
+export const getFeaturedProducts = () =>
+  products.filter((product) => product.featured);
+export const getProductsByCategory = (category: string) =>
+  category === 'All'
+    ? products
+    : products.filter((product) => product.category === category);
+export const getProductById = (id: string) =>
+  products.find((product) => product.id === id);

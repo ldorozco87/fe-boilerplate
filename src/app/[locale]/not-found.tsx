@@ -7,16 +7,16 @@ export default function NotFound() {
   const locale = useLocale();
 
   return (
-    <Container 
-      maxWidth="md" 
-      sx={{ 
-        minHeight: '80vh', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        justifyContent: 'center', 
+    <Container
+      maxWidth="md"
+      sx={{
+        minHeight: '80vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        py: 8 
+        py: 8,
       }}
     >
       <Typography
@@ -30,7 +30,7 @@ export default function NotFound() {
       >
         404
       </Typography>
-      
+
       <Typography
         variant="h4"
         component="h1"
@@ -43,18 +43,17 @@ export default function NotFound() {
       >
         {locale === 'es' ? 'Página no encontrada' : 'Page Not Found'}
       </Typography>
-      
+
       <Typography
         variant="body1"
         color="text.secondary"
         sx={{ mb: 4, maxWidth: 500 }}
       >
-        {locale === 'es' 
+        {locale === 'es'
           ? 'Lo sentimos, la página que buscas no existe o ha sido movida.'
-          : 'Sorry, the page you are looking for does not exist or has been moved.'
-        }
+          : 'Sorry, the page you are looking for does not exist or has been moved.'}
       </Typography>
-      
+
       <Button
         variant="contained"
         size="large"
