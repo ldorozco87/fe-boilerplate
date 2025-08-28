@@ -21,7 +21,7 @@ export default function Navbar() {
   const t = useTranslations('Navigation');
   const locale = useLocale();
   const pathname = usePathname();
-  
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleLanguageMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -39,7 +39,7 @@ export default function Navbar() {
       segments.shift();
     }
     const newPath = `/${newLocale}/${segments.join('/')}`;
-    
+
     // Use window.location for full page reload to ensure proper locale context
     window.location.href = newPath;
     handleLanguageMenuClose();
@@ -51,7 +51,15 @@ export default function Navbar() {
   ];
 
   return (
-    <AppBar position="sticky" elevation={0} sx={{ backgroundColor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
+    <AppBar
+      position="sticky"
+      elevation={0}
+      sx={{
+        backgroundColor: 'background.paper',
+        borderBottom: 1,
+        borderColor: 'divider',
+      }}
+    >
       <Container maxWidth="lg">
         <Toolbar sx={{ px: { xs: 0 } }}>
           <Typography

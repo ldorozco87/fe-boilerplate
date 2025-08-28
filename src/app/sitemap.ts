@@ -2,10 +2,7 @@ import { MetadataRoute } from 'next';
 import { siteConfig } from '@/config/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [
-    '',
-    '/contact',
-  ];
+  const routes = ['', '/contact'];
 
   return siteConfig.locales.flatMap((locale) =>
     routes.map((route) => ({

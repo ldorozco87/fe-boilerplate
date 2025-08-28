@@ -18,17 +18,15 @@ import { z } from 'zod';
 import { useTranslations } from 'next-intl';
 
 // Validation schema
-const createContactSchema = (t: (key: string) => string) => z.object({
-  name: z.string().min(1, t('nameRequired')),
-  email: z
-    .string()
-    .min(1, t('emailRequired'))
-    .email(t('emailInvalid')),
-  message: z
-    .string()
-    .min(1, t('messageRequired'))
-    .min(10, t('messageMinLength')),
-});
+const createContactSchema = (t: (key: string) => string) =>
+  z.object({
+    name: z.string().min(1, t('nameRequired')),
+    email: z.string().min(1, t('emailRequired')).email(t('emailInvalid')),
+    message: z
+      .string()
+      .min(1, t('messageRequired'))
+      .min(10, t('messageMinLength')),
+  });
 
 type ContactFormData = {
   name: string;
@@ -60,13 +58,13 @@ export default function ContactForm() {
     try {
       // Here you would typically send the data to your API
       console.log('Form data:', data);
-      
+
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       setIsSubmitted(true);
       reset();
-      
+
       // Reset success message after 5 seconds
       setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
@@ -80,7 +78,7 @@ export default function ContactForm() {
         <Typography variant="h5" component="h2" gutterBottom fontWeight={600}>
           {t('submit')}
         </Typography>
-        
+
         {isSubmitted && (
           <Alert severity="success" sx={{ mb: 3 }}>
             Message sent successfully! We&apos;ll get back to you soon.
@@ -105,7 +103,7 @@ export default function ContactForm() {
                 )}
               />
             </Grid>
-            
+
             <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="email"
@@ -123,7 +121,7 @@ export default function ContactForm() {
                 )}
               />
             </Grid>
-            
+
             <Grid size={{ xs: 12 }}>
               <Controller
                 name="message"
@@ -142,7 +140,7 @@ export default function ContactForm() {
                 )}
               />
             </Grid>
-            
+
             <Grid size={{ xs: 12 }}>
               <Button
                 type="submit"

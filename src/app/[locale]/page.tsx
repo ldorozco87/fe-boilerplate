@@ -149,7 +149,8 @@ export default function HomePage() {
                     display: 'flex',
                     flexDirection: 'column',
                     textAlign: 'center',
-                    transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
+                    transition:
+                      'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
                     '&:hover': {
                       transform: 'translateY(-4px)',
                       boxShadow: 4,
@@ -169,7 +170,12 @@ export default function HomePage() {
                     >
                       <IconComponent fontSize="large" />
                     </Box>
-                    <Typography variant="h6" component="h3" gutterBottom fontWeight={600}>
+                    <Typography
+                      variant="h6"
+                      component="h3"
+                      gutterBottom
+                      fontWeight={600}
+                    >
                       {feature.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">

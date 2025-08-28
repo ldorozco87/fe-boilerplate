@@ -59,7 +59,12 @@ export default function Footer() {
           spacing={3}
         >
           <Box textAlign={{ xs: 'center', sm: 'left' }}>
-            <Typography variant="h6" gutterBottom fontWeight={700} color="primary.main">
+            <Typography
+              variant="h6"
+              gutterBottom
+              fontWeight={700}
+              color="primary.main"
+            >
               {siteConfig.name}
             </Typography>
             <Typography variant="body2" color="text.secondary" gutterBottom>

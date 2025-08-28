@@ -10,7 +10,7 @@ interface ContactPageProps {
 }
 
 export async function generateMetadata({
-  params
+  params,
 }: ContactPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'ContactPage' });
