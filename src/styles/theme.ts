@@ -1,6 +1,6 @@
 'use client';
 
-import { createTheme } from '@mui/material/styles';
+import { createTheme, ThemeOptions } from '@mui/material/styles';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({
@@ -30,7 +30,16 @@ declare module '@mui/material/styles' {
   }
 }
 
-export const theme = createTheme({
+// Theme context type
+export type ThemeMode = 'light' | 'dark';
+
+export interface ThemeContextType {
+  mode: ThemeMode;
+  toggleTheme: () => void;
+}
+
+// Light theme
+const lightTheme: ThemeOptions = {
   palette: {
     mode: 'light',
     primary: {
@@ -135,4 +144,38 @@ export const theme = createTheme({
       },
     },
   },
-});
+};
+
+// Dark theme
+const darkTheme: ThemeOptions = {
+  ...lightTheme,
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#42a5f5',
+      light: '#64b5f6',
+      dark: '#1976d2',
+      contrastText: '#ffffff',
+    },
+    secondary: {
+      main: '#ba68c8',
+      light: '#ce93d8',
+      dark: '#9c27b0',
+      contrastText: '#ffffff',
+    },
+    background: {
+      default: '#0a0a0a',
+      paper: '#1a1a1a',
+    },
+    text: {
+      primary: '#ffffff',
+      secondary: '#b3b3b3',
+    },
+  },
+};
+
+export const createAppTheme = (mode: 'light' | 'dark') => {
+  return createTheme(mode === 'light' ? lightTheme : darkTheme);
+};
+
+export const theme = createAppTheme('light');

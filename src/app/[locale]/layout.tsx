@@ -5,6 +5,10 @@ import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/i18n';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import ThemeProvider from '@/components/providers/ThemeProvider';
+import Analytics from '@/components/analytics/Analytics';
+import DevTools from '@/components/dev/DevTools';
+import { generateWebSiteSchema, generateOrganizationSchema, generateSoftwareApplicationSchema } from '@/lib/structured-data';
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -38,11 +42,42 @@ export default async function LocaleLayout({
 
   const messages = await getMessages({ locale });
 
+  // Generate structured data
+  const websiteSchema = generateWebSiteSchema();
+  const organizationSchema = generateOrganizationSchema();
+  const softwareSchema = generateSoftwareApplicationSchema();
+
   return (
-    <NextIntlClientProvider messages={messages} locale={locale}>
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
-    </NextIntlClientProvider>
+    <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(softwareSchema),
+        }}
+      />
+      
+      <NextIntlClientProvider messages={messages} locale={locale}>
+        <ThemeProvider>
+          <Analytics />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <DevTools />
+        </ThemeProvider>
+      </NextIntlClientProvider>
+    </>
   );
 }

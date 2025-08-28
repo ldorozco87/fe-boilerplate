@@ -16,6 +16,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useTranslations } from 'next-intl';
+import { trackFormSubmission } from '@/components/analytics/Analytics';
 
 // Validation schema
 const createContactSchema = (t: (key: string) => string) =>
@@ -56,19 +57,42 @@ export default function ContactForm() {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      // Here you would typically send the data to your API
-      console.log('Form data:', data);
+      console.log('📧 Contact form submission:', {
+        timestamp: new Date().toISOString(),
+        formData: data,
+        userAgent: navigator.userAgent,
+        referrer: document.referrer || 'Direct',
+        locale: window.location.pathname.split('/')[1] || 'en',
+      });
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Simulate API call with realistic timing
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // In a real application, you would send this to:
+      // - Your backend API endpoint
+      // - Email service like SendGrid, Mailgun, etc.
+      // - CRM like HubSpot, Salesforce, etc.
+      // - Form handling service like Formspree, Netlify Forms, etc.
+      
+      console.log('✅ Form submitted successfully! In production, this would:');
+      console.log('• Send email notification to your team');
+      console.log('• Store submission in database');
+      console.log('• Send auto-reply to customer');
+      console.log('• Trigger CRM/analytics events');
+
+      // Track successful form submission
+      trackFormSubmission('contact_form', true);
 
       setIsSubmitted(true);
       reset();
 
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSubmitted(false), 5000);
+      // Reset success message after 8 seconds
+      setTimeout(() => setIsSubmitted(false), 8000);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('❌ Error submitting form:', error);
+      // Track failed form submission
+      trackFormSubmission('contact_form', false);
+      // In production, you would handle this with proper error states
     }
   };
 
@@ -80,8 +104,21 @@ export default function ContactForm() {
         </Typography>
 
         {isSubmitted && (
-          <Alert severity="success" sx={{ mb: 3 }}>
-            Message sent successfully! We&apos;ll get back to you soon.
+          <Alert 
+            severity="success" 
+            sx={{ 
+              mb: 3,
+              '& .MuiAlert-message': {
+                width: '100%'
+              }
+            }}
+          >
+            <Typography variant="body2" sx={{ fontWeight: 600, mb: 0.5 }}>
+              Message sent successfully! 🎉
+            </Typography>
+            <Typography variant="body2">
+              We&apos;ll get back to you within 24 hours. Check the console to see the simulated API call details.
+            </Typography>
           </Alert>
         )}
 

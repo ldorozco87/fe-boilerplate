@@ -62,3 +62,72 @@ export function generateBreadcrumbSchema(
     })),
   };
 }
+
+export function generateOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    logo: `${siteConfig.url}/logo.png`,
+    sameAs: [
+      siteConfig.links.github,
+      siteConfig.links.twitter,
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+1-555-123-4567',
+      contactType: 'Customer Service',
+      availableLanguage: ['en', 'es'],
+    },
+  };
+}
+
+export function generateSoftwareApplicationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    applicationCategory: 'WebApplication',
+    operatingSystem: 'Web Browser',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'Next.js Boilerplate Team',
+    },
+    programmingLanguage: ['TypeScript', 'JavaScript', 'React'],
+    runtimePlatform: 'Node.js',
+  };
+}
+
+export function generateProductSchema(product: Record<string, unknown>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    image: product.image,
+    brand: {
+      '@type': 'Brand',
+      name: 'Demo Store',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: product.price,
+      priceCurrency: 'USD',
+      availability: product.inStock ? 'InStock' : 'OutOfStock',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: product.rating,
+      reviewCount: product.reviews,
+    },
+  };
+}
