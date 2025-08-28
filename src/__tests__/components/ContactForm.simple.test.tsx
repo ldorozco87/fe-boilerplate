@@ -42,11 +42,10 @@ describe('Contact Form Core Tests', () => {
 
     // Should show validation errors
     await waitFor(() => {
-      expect(screen.getByText(/fieldRequired/i)).toBeInTheDocument();
+      expect(screen.getAllByText(/fieldRequired/i)).toHaveLength(2); // name and message fields
     });
 
     expect(screen.getByText(/emailRequired/i)).toBeInTheDocument();
-    expect(screen.getByText(/fieldRequired/i)).toBeInTheDocument();
   });
 
   test('Form accepts valid input and submits', async () => {

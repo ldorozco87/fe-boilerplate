@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Typography,
@@ -21,6 +21,8 @@ import {
 import { motion } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
+import Modal from '@/components/ui/Modal';
+import FeatureModal from '@/components/modals/FeatureModal';
 
 const MotionBox = motion.create(Box);
 
@@ -28,6 +30,15 @@ export default function ShowcaseSection() {
   const theme = useTheme();
   const locale = useLocale();
   const t = useTranslations('ShowcaseSection');
+  const [openModal, setOpenModal] = useState<string | null>(null);
+
+  const handleOpenModal = (feature: string) => {
+    setOpenModal(feature);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(null);
+  };
 
   const showcaseItems = [
     {
@@ -36,6 +47,7 @@ export default function ShowcaseSection() {
       link: '#',
       icon: TestingIcon,
       gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      feature: 'testing' as const,
     },
     {
       title: t('features.zustand.title'),
@@ -43,6 +55,7 @@ export default function ShowcaseSection() {
       link: `/${locale}/zustand-demo`,
       icon: StorageIcon,
       gradient: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
+      feature: 'zustand' as const,
     },
     {
       title: t('features.seo.title'),
@@ -50,6 +63,7 @@ export default function ShowcaseSection() {
       link: '#',
       icon: SearchIcon,
       gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+      feature: 'seo' as const,
     },
     {
       title: t('features.multilang.title'),
@@ -57,6 +71,7 @@ export default function ShowcaseSection() {
       link: '#',
       icon: LanguageIcon,
       gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+      feature: 'multilang' as const,
     },
   ];
 
@@ -121,11 +136,6 @@ export default function ShowcaseSection() {
             <Grid container spacing={{ xs: 3, md: 4 }} justifyContent="center">
               {showcaseItems.map((item, index) => {
                 const IconComponent = item.icon;
-                const isExternal = item.link.startsWith('http');
-                const href =
-                  item.link.startsWith('/') && !item.link.startsWith('/#')
-                    ? `/${locale}${item.link}`
-                    : item.link;
 
                 return (
                   <Grid size={{ xs: 12, sm: 6, lg: 3 }} key={item.title}>
@@ -201,10 +211,10 @@ export default function ShowcaseSection() {
                       {/* Action Button */}
                       <Button
                         variant="outlined"
-                        component={item.link.startsWith('#') ? 'a' : Link}
-                        href={href}
-                        target={isExternal ? '_blank' : undefined}
-                        rel={isExternal ? 'noopener noreferrer' : undefined}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleOpenModal(item.feature);
+                        }}
                         endIcon={<ArrowForwardIcon />}
                         sx={{
                           px: 3,
@@ -223,7 +233,7 @@ export default function ShowcaseSection() {
                           transition: 'all 0.3s ease',
                         }}
                       >
-                        {item.link.startsWith('#') ? t('tryIt') : t('explore')}
+                        {t('learnMore')}
                       </Button>
                     </MotionBox>
                   </Grid>
@@ -275,6 +285,20 @@ export default function ShowcaseSection() {
           </MotionBox>
         </Stack>
       </Container>
+
+      {/* Feature Modal */}
+      <Modal
+        open={openModal !== null}
+        onClose={handleCloseModal}
+        title={openModal ? t(`features.${openModal}.title`) : ''}
+        maxWidth="md"
+      >
+        {openModal && (
+          <FeatureModal
+            feature={openModal as 'testing' | 'zustand' | 'seo' | 'multilang'}
+          />
+        )}
+      </Modal>
     </Box>
   );
 }

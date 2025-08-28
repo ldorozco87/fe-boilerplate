@@ -32,11 +32,10 @@ describe('ContactForm Component', () => {
 
     // Wait for validation errors to appear
     await waitFor(() => {
-      expect(screen.getByText(/fieldRequired/i)).toBeInTheDocument();
+      expect(screen.getAllByText(/fieldRequired/i)).toHaveLength(2); // name and message fields
     });
 
     expect(screen.getByText(/emailRequired/i)).toBeInTheDocument();
-    expect(screen.getByText(/fieldRequired/i)).toBeInTheDocument();
   });
 
   test('shows email validation error for invalid email', async () => {

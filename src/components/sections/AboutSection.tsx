@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Typography,
@@ -18,12 +18,24 @@ import {
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import Modal from '@/components/ui/Modal';
+import AboutFeatureModal from '@/components/modals/AboutFeatureModal';
 
 const MotionBox = motion.create(Box);
 
 export default function AboutSection() {
   const theme = useTheme();
   const t = useTranslations('AboutSection');
+  const [openModal, setOpenModal] = useState<string | null>(null);
+
+  const handleOpenModal = (feature: string) => {
+    console.log('Opening About modal for feature:', feature);
+    setOpenModal(feature);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(null);
+  };
 
   const coreFeatures = [
     {
@@ -31,24 +43,28 @@ export default function AboutSection() {
       title: t('features.performance.title'),
       description: t('features.performance.description'),
       color: '#4caf50',
+      feature: 'performance' as const,
     },
     {
       icon: SecurityIcon,
       title: t('features.production.title'),
       description: t('features.production.description'),
       color: '#f44336',
+      feature: 'production' as const,
     },
     {
       icon: SearchIcon,
       title: t('features.responsive.title'),
       description: t('features.responsive.description'),
       color: '#2196f3',
+      feature: 'responsive' as const,
     },
     {
       icon: TestingIcon,
       title: t('features.developer.title'),
       description: t('features.developer.description'),
       color: '#ff9800',
+      feature: 'developer' as const,
     },
   ];
 
@@ -124,6 +140,7 @@ export default function AboutSection() {
                         y: -8,
                         transition: { duration: 0.3 },
                       }}
+                      onClick={() => handleOpenModal(feature.feature)}
                       sx={{
                         p: 3,
                         borderRadius: 3,
@@ -244,6 +261,26 @@ export default function AboutSection() {
           </MotionBox>
         </Stack>
       </Container>
+
+      {/* Feature Modal */}
+      <Modal
+        open={openModal !== null}
+        onClose={handleCloseModal}
+        title={openModal ? t(`features.${openModal}.title`) : ''}
+        maxWidth="md"
+      >
+        {openModal && (
+          <AboutFeatureModal
+            feature={
+              openModal as
+                | 'performance'
+                | 'production'
+                | 'responsive'
+                | 'developer'
+            }
+          />
+        )}
+      </Modal>
     </Box>
   );
 }

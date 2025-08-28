@@ -23,6 +23,7 @@ export const spacing = {
 
 // Border radius utilities
 export const borderRadius = {
+  xxs: 2,
   xs: 4,
   sm: 6,
   md: 8,
@@ -45,7 +46,7 @@ export const shadows = {
  */
 export const createCardStyles = (theme: Theme) => ({
   card: {
-    borderRadius: borderRadius.md, // 8px (la mitad de 16px)
+    borderRadius: borderRadius.xxs,
     boxShadow: shadows.sm,
     border: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
     transition: 'all 0.3s ease',
