@@ -190,9 +190,9 @@ export default function AboutFeatureModal({ feature }: AboutFeatureModalProps) {
         <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
           Key Benefits
         </Typography>
-        <List sx={{ p: 0 }}>
+        <List sx={{ p: 0 }} role="list" aria-label="Feature benefits">
           {benefits.map((benefit) => (
-            <ListItem key={benefit} sx={{ px: 0, py: 1 }}>
+            <ListItem key={benefit} sx={{ px: 0, py: 1 }} role="listitem">
               <ListItemIcon sx={{ minWidth: 40 }}>
                 <CheckIcon sx={{ color: theme.palette.success.main }} />
               </ListItemIcon>

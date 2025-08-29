@@ -81,6 +81,9 @@ export default function ShoppingCartDrawer({
         anchor="right"
         open={open}
         onClose={onClose}
+        role="dialog"
+        aria-labelledby="cart-title"
+        aria-describedby="cart-description"
         PaperProps={{
           sx: {
             width: { xs: '100vw', sm: 450 },
@@ -107,7 +110,7 @@ export default function ShoppingCartDrawer({
           >
             <Stack direction="row" alignItems="center" spacing={2}>
               <ShoppingBagIcon color="primary" />
-              <Typography variant="h6" sx={{ fontWeight: 600 }}>
+              <Typography id="cart-title" variant="h6" sx={{ fontWeight: 600 }}>
                 Shopping Cart ({getTotalItems()})
               </Typography>
             </Stack>
@@ -117,7 +120,11 @@ export default function ShoppingCartDrawer({
           </Stack>
 
           {/* Cart Items */}
-          <Box sx={{ flexGrow: 1, overflow: 'auto' }}>
+          <Box
+            id="cart-description"
+            sx={{ flexGrow: 1, overflow: 'auto' }}
+            aria-label="Shopping cart items"
+          >
             {items.length === 0 ? (
               <MotionBox
                 initial={{ opacity: 0, y: 20 }}

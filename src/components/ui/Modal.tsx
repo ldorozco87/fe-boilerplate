@@ -40,6 +40,9 @@ export default function Modal({
       onClose={onClose}
       maxWidth={maxWidth}
       fullWidth={fullWidth}
+      role="dialog"
+      aria-labelledby="modal-title"
+      aria-describedby="modal-description"
       PaperProps={{
         sx: {
           borderRadius: 3,
@@ -62,6 +65,7 @@ export default function Modal({
         }}
       >
         <Typography
+          id="modal-title"
           variant="h5"
           component="span"
           sx={{
@@ -79,8 +83,11 @@ export default function Modal({
           sx={{
             color: theme.palette.text.secondary,
             '&:hover': {
-              backgroundColor: alpha(theme.palette.error.main, 0.1),
-              color: theme.palette.error.main,
+              backgroundColor: alpha(
+                theme.palette.error?.main || '#f44336',
+                0.1
+              ),
+              color: theme.palette.error?.main || '#f44336',
             },
             transition: 'all 0.2s ease',
           }}
@@ -91,6 +98,7 @@ export default function Modal({
 
       {/* Content */}
       <DialogContent
+        id="modal-description"
         sx={{
           p: 3,
           '&.MuiDialogContent-root': {

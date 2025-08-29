@@ -207,6 +207,7 @@ export default function Navbar() {
                       ? () => handleSmoothScroll(item.href.slice(1))
                       : undefined
                   }
+                  aria-current={isActive ? 'page' : undefined}
                   sx={{
                     color: isActive ? 'primary.main' : 'text.primary',
                     textTransform: 'none',

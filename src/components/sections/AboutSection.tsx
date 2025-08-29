@@ -40,7 +40,13 @@ export default function AboutSection() {
     setOpenModal(null);
   };
 
-  const coreFeatures = [
+  const coreFeatures: Array<{
+    icon: React.ComponentType<{ sx?: object }>;
+    title: string;
+    description: string;
+    color: string;
+    key: 'performance' | 'production' | 'responsive' | 'developer';
+  }> = [
     {
       icon: SpeedIcon,
       title: t('features.performance.title'),

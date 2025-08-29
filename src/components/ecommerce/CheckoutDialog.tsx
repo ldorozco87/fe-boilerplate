@@ -166,216 +166,222 @@ export default function CheckoutDialog({
     switch (step) {
       case 0:
         return (
-          <Stack spacing={3}>
-            <Typography variant="h6" gutterBottom>
-              Shipping Information
-            </Typography>
+          <fieldset>
+            <legend>
+              <Typography variant="h6" component="span">
+                Shipping Information
+              </Typography>
+            </legend>
+            <Stack spacing={3}>
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    fullWidth
+                    label="Email"
+                    type="email"
+                    error={!!errors.email}
+                    helperText={errors.email?.message}
+                  />
+                )}
+              />
 
-            <Controller
-              name="email"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  fullWidth
-                  label="Email"
-                  type="email"
-                  error={!!errors.email}
-                  helperText={errors.email?.message}
-                />
-              )}
-            />
+              <Grid container spacing={2}>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <Controller
+                    name="firstName"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="First Name"
+                        error={!!errors.firstName}
+                        helperText={errors.firstName?.message}
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <Controller
+                    name="lastName"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Last Name"
+                        error={!!errors.lastName}
+                        helperText={errors.lastName?.message}
+                      />
+                    )}
+                  />
+                </Grid>
+              </Grid>
 
-            <Grid container spacing={2}>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <Controller
-                  name="firstName"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      label="First Name"
-                      error={!!errors.firstName}
-                      helperText={errors.firstName?.message}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <Controller
-                  name="lastName"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      label="Last Name"
-                      error={!!errors.lastName}
-                      helperText={errors.lastName?.message}
-                    />
-                  )}
-                />
-              </Grid>
-            </Grid>
+              <Controller
+                name="address"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    fullWidth
+                    label="Address"
+                    error={!!errors.address}
+                    helperText={errors.address?.message}
+                  />
+                )}
+              />
 
-            <Controller
-              name="address"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  fullWidth
-                  label="Address"
-                  error={!!errors.address}
-                  helperText={errors.address?.message}
-                />
-              )}
-            />
-
-            <Grid container spacing={2}>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <Controller
-                  name="city"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      label="City"
-                      error={!!errors.city}
-                      helperText={errors.city?.message}
-                    />
-                  )}
-                />
+              <Grid container spacing={2}>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <Controller
+                    name="city"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="City"
+                        error={!!errors.city}
+                        helperText={errors.city?.message}
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, sm: 3 }}>
+                  <Controller
+                    name="postalCode"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Postal Code"
+                        error={!!errors.postalCode}
+                        helperText={errors.postalCode?.message}
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, sm: 3 }}>
+                  <Controller
+                    name="country"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Country"
+                        error={!!errors.country}
+                        helperText={errors.country?.message}
+                      />
+                    )}
+                  />
+                </Grid>
               </Grid>
-              <Grid size={{ xs: 12, sm: 3 }}>
-                <Controller
-                  name="postalCode"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      label="Postal Code"
-                      error={!!errors.postalCode}
-                      helperText={errors.postalCode?.message}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid size={{ xs: 12, sm: 3 }}>
-                <Controller
-                  name="country"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      label="Country"
-                      error={!!errors.country}
-                      helperText={errors.country?.message}
-                    />
-                  )}
-                />
-              </Grid>
-            </Grid>
-          </Stack>
+            </Stack>
+          </fieldset>
         );
 
       case 1:
         return (
-          <Stack spacing={3}>
-            <Typography variant="h6" gutterBottom>
-              Payment Details
-            </Typography>
+          <fieldset>
+            <legend>
+              <Typography variant="h6" component="span">
+                Payment Details
+              </Typography>
+            </legend>
+            <Stack spacing={3}>
+              <Controller
+                name="nameOnCard"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    fullWidth
+                    label="Name on Card"
+                    error={!!errors.nameOnCard}
+                    helperText={errors.nameOnCard?.message}
+                  />
+                )}
+              />
 
-            <Controller
-              name="nameOnCard"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  fullWidth
-                  label="Name on Card"
-                  error={!!errors.nameOnCard}
-                  helperText={errors.nameOnCard?.message}
-                />
-              )}
-            />
+              <Controller
+                name="cardNumber"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    fullWidth
+                    label="Card Number"
+                    placeholder="1234 5678 9012 3456"
+                    error={!!errors.cardNumber}
+                    helperText={errors.cardNumber?.message}
+                    inputProps={{ maxLength: 19 }}
+                    onChange={(e) => {
+                      // Format card number with spaces
+                      const value = e.target.value
+                        .replace(/\s/g, '')
+                        .replace(/(.{4})/g, '$1 ')
+                        .trim();
+                      field.onChange(value);
+                    }}
+                  />
+                )}
+              />
 
-            <Controller
-              name="cardNumber"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  fullWidth
-                  label="Card Number"
-                  placeholder="1234 5678 9012 3456"
-                  error={!!errors.cardNumber}
-                  helperText={errors.cardNumber?.message}
-                  inputProps={{ maxLength: 19 }}
-                  onChange={(e) => {
-                    // Format card number with spaces
-                    const value = e.target.value
-                      .replace(/\s/g, '')
-                      .replace(/(.{4})/g, '$1 ')
-                      .trim();
-                    field.onChange(value);
-                  }}
-                />
-              )}
-            />
-
-            <Grid container spacing={2}>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <Controller
-                  name="expiryDate"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      label="Expiry Date"
-                      placeholder="MM/YY"
-                      error={!!errors.expiryDate}
-                      helperText={errors.expiryDate?.message}
-                      inputProps={{ maxLength: 5 }}
-                      onChange={(e) => {
-                        // Format expiry date
-                        const value = e.target.value
-                          .replace(/\D/g, '')
-                          .replace(/(.{2})/, '$1/');
-                        field.onChange(value);
-                      }}
-                    />
-                  )}
-                />
+              <Grid container spacing={2}>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <Controller
+                    name="expiryDate"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="Expiry Date"
+                        placeholder="MM/YY"
+                        error={!!errors.expiryDate}
+                        helperText={errors.expiryDate?.message}
+                        inputProps={{ maxLength: 5 }}
+                        onChange={(e) => {
+                          // Format expiry date
+                          const value = e.target.value
+                            .replace(/\D/g, '')
+                            .replace(/(.{2})/, '$1/');
+                          field.onChange(value);
+                        }}
+                      />
+                    )}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                  <Controller
+                    name="cvc"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        label="CVC"
+                        placeholder="123"
+                        error={!!errors.cvc}
+                        helperText={errors.cvc?.message}
+                        inputProps={{ maxLength: 4 }}
+                      />
+                    )}
+                  />
+                </Grid>
               </Grid>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <Controller
-                  name="cvc"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      label="CVC"
-                      placeholder="123"
-                      error={!!errors.cvc}
-                      helperText={errors.cvc?.message}
-                      inputProps={{ maxLength: 4 }}
-                    />
-                  )}
-                />
-              </Grid>
-            </Grid>
 
-            <Alert severity="info" sx={{ mt: 2 }}>
-              This is a demo checkout. No real payment will be processed.
-            </Alert>
-          </Stack>
+              <Alert severity="info" sx={{ mt: 2 }}>
+                This is a demo checkout. No real payment will be processed.
+              </Alert>
+            </Stack>
+          </fieldset>
         );
 
       case 2:

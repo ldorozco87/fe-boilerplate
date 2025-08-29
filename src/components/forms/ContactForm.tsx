@@ -103,7 +103,7 @@ export default function ContactForm() {
   return (
     <Card sx={{ ...cardStyles.card, maxWidth: 600, mx: 'auto' }}>
       <CardContent sx={cardStyles.cardContent}>
-        <Typography variant="h5" component="h2" gutterBottom fontWeight={600}>
+        <Typography variant="h6" component="h3" gutterBottom fontWeight={600}>
           {t('submit')}
         </Typography>
 
