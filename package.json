@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "description": "A high-performance Next.js 15 boilerplate with Material UI, TypeScript, and internationalization",
   "private": true,
-  "author": "Next.js Boilerplate Team",
+  "author": "Frontend Architecture Team",
   "license": "MIT",
-  "homepage": "https://github.com/nextjs-boilerplate/nextjs-boilerplate",
+  "homepage": "https://github.com/your-org/nextjs-boilerplate",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nextjs-boilerplate/nextjs-boilerplate.git"
+    "url": "https://github.com/your-org/nextjs-boilerplate.git"
   },
   "bugs": {
-    "url": "https://github.com/nextjs-boilerplate/nextjs-boilerplate/issues"
+    "url": "https://github.com/your-org/nextjs-boilerplate/issues"
   },
   "keywords": [
     "nextjs",
@@ -82,6 +82,7 @@
     "cross-env": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
     "jest": "^30.1.1",
     "jest-environment-jsdom": "^30.1.1",
     "prettier": "^3.6.2",

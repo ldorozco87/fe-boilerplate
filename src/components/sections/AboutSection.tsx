@@ -26,10 +26,13 @@ const MotionBox = motion.create(Box);
 export default function AboutSection() {
   const theme = useTheme();
   const t = useTranslations('AboutSection');
-  const [openModal, setOpenModal] = useState<string | null>(null);
+  const [openModal, setOpenModal] = useState<
+    'performance' | 'production' | 'responsive' | 'developer' | null
+  >(null);
 
-  const handleOpenModal = (feature: string) => {
-    console.log('Opening About modal for feature:', feature);
+  const handleOpenModal = (
+    feature: 'performance' | 'production' | 'responsive' | 'developer'
+  ) => {
     setOpenModal(feature);
   };
 
@@ -43,28 +46,28 @@ export default function AboutSection() {
       title: t('features.performance.title'),
       description: t('features.performance.description'),
       color: '#4caf50',
-      feature: 'performance' as const,
+      key: 'performance',
     },
     {
       icon: SecurityIcon,
       title: t('features.production.title'),
       description: t('features.production.description'),
       color: '#f44336',
-      feature: 'production' as const,
+      key: 'production',
     },
     {
       icon: SearchIcon,
       title: t('features.responsive.title'),
       description: t('features.responsive.description'),
       color: '#2196f3',
-      feature: 'responsive' as const,
+      key: 'responsive',
     },
     {
       icon: TestingIcon,
       title: t('features.developer.title'),
       description: t('features.developer.description'),
       color: '#ff9800',
-      feature: 'developer' as const,
+      key: 'developer',
     },
   ];
 
@@ -83,9 +86,10 @@ export default function AboutSection() {
     >
       <Container maxWidth="lg" sx={{ width: '100%' }}>
         <Stack
-          spacing={{ xs: 4, md: 6 }}
+          spacing={{ xs: 4, md: 3, lg: 6 }}
           alignItems="center"
           textAlign="center"
+          sx={{ height: '100%', justifyContent: 'center' }}
         >
           {/* Header */}
           <MotionBox
@@ -100,12 +104,12 @@ export default function AboutSection() {
               gutterBottom
               sx={{
                 fontWeight: 700,
-                mb: 3,
+                mb: { xs: 3, md: 2, lg: 3 },
                 background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                fontSize: { xs: '2.5rem', md: '3.5rem' },
+                fontSize: { xs: '2.5rem', md: '2.8rem', lg: '3.5rem' },
               }}
             >
               {t('title')}
@@ -114,66 +118,84 @@ export default function AboutSection() {
               variant="h5"
               color="text.secondary"
               sx={{
-                maxWidth: 700,
+                maxWidth: { xs: 700, md: 600, lg: 700 },
                 mx: 'auto',
                 lineHeight: 1.6,
                 fontWeight: 300,
+                fontSize: { xs: '1.25rem', md: '1.1rem', lg: '1.25rem' },
               }}
             >
               {t('subtitle')}
             </Typography>
           </MotionBox>
 
-          {/* Core Features Grid */}
-          <Box sx={{ maxWidth: 900, width: '100%' }}>
-            <Grid container spacing={3} justifyContent="center">
+          {/* Core Features Grid - More Condensed */}
+          <Box
+            sx={{ maxWidth: { xs: 1000, md: 800, lg: 1000 }, width: '100%' }}
+          >
+            <Grid
+              container
+              spacing={{ xs: 2, md: 1.5, lg: 2 }}
+              justifyContent="center"
+            >
               {coreFeatures.map((feature, index) => {
                 const IconComponent = feature.icon;
                 return (
                   <Grid size={{ xs: 12, sm: 6, md: 3 }} key={feature.title}>
                     <MotionBox
-                      initial={{ opacity: 0, y: 50 }}
+                      initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
                       whileHover={{
-                        y: -8,
-                        transition: { duration: 0.3 },
+                        y: -4,
+                        transition: { duration: 0.2 },
                       }}
-                      onClick={() => handleOpenModal(feature.feature)}
+                      onClick={() => handleOpenModal(feature.key)}
                       sx={{
-                        p: 3,
-                        borderRadius: 3,
-                        background: `linear-gradient(135deg, ${alpha(feature.color, 0.08)}, ${alpha(feature.color, 0.03)})`,
-                        border: `1px solid ${alpha(feature.color, 0.15)}`,
+                        p: { xs: 2.5, md: 2, lg: 2.5 },
+                        borderRadius: 2,
+                        background: `linear-gradient(135deg, ${alpha(feature.color, 0.06)}, ${alpha(feature.color, 0.02)})`,
+                        border: `1px solid ${alpha(feature.color, 0.12)}`,
                         textAlign: 'center',
                         cursor: 'pointer',
-                        transition: 'all 0.3s ease',
+                        transition: 'all 0.2s ease',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
                         '&:hover': {
-                          border: `1px solid ${alpha(feature.color, 0.4)}`,
-                          boxShadow: `0 8px 32px ${alpha(feature.color, 0.25)}`,
-                          transform: 'translateY(-8px)',
+                          border: `1px solid ${alpha(feature.color, 0.3)}`,
+                          boxShadow: `0 4px 20px ${alpha(feature.color, 0.15)}`,
+                          transform: 'translateY(-4px)',
                         },
                       }}
                     >
                       <Box
                         sx={{
                           display: 'inline-flex',
-                          p: 1.5,
+                          p: { xs: 1, md: 0.8, lg: 1 },
                           borderRadius: '50%',
                           background: `linear-gradient(135deg, ${feature.color}, ${alpha(feature.color, 0.8)})`,
                           color: 'white',
-                          mb: 2,
+                          mb: { xs: 1.5, md: 1, lg: 1.5 },
                         }}
                       >
-                        <IconComponent sx={{ fontSize: 28 }} />
+                        <IconComponent
+                          sx={{ fontSize: { xs: 24, md: 20, lg: 24 } }}
+                        />
                       </Box>
 
                       <Typography
                         variant="h6"
                         component="h3"
                         gutterBottom
-                        sx={{ fontWeight: 600, mb: 1 }}
+                        sx={{
+                          fontWeight: 600,
+                          mb: { xs: 1, md: 0.5, lg: 1 },
+                          fontSize: { xs: '1.1rem', md: '1rem', lg: '1.1rem' },
+                          lineHeight: 1.3,
+                        }}
                       >
                         {feature.title}
                       </Typography>
@@ -181,7 +203,17 @@ export default function AboutSection() {
                       <Typography
                         variant="body2"
                         color="text.secondary"
-                        sx={{ lineHeight: 1.5 }}
+                        sx={{
+                          lineHeight: 1.4,
+                          fontSize: {
+                            xs: '0.875rem',
+                            md: '0.8rem',
+                            lg: '0.875rem',
+                          },
+                          flexGrow: 1,
+                          display: 'flex',
+                          alignItems: 'center',
+                        }}
                       >
                         {feature.description}
                       </Typography>
@@ -202,7 +234,11 @@ export default function AboutSection() {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ mb: 3, fontWeight: 500 }}
+              sx={{
+                mb: { xs: 3, md: 2, lg: 3 },
+                fontWeight: 500,
+                fontSize: { xs: '1rem', md: '0.9rem', lg: '1rem' },
+              }}
             >
               {t('builtWithTech')}
             </Typography>
@@ -266,20 +302,10 @@ export default function AboutSection() {
       <Modal
         open={openModal !== null}
         onClose={handleCloseModal}
-        title={openModal ? t(`features.${openModal}.title`) : ''}
+        title={openModal || ''}
         maxWidth="md"
       >
-        {openModal && (
-          <AboutFeatureModal
-            feature={
-              openModal as
-                | 'performance'
-                | 'production'
-                | 'responsive'
-                | 'developer'
-            }
-          />
-        )}
+        {openModal && <AboutFeatureModal feature={openModal} />}
       </Modal>
     </Box>
   );

@@ -1,18 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
   Typography,
   Container,
   Grid,
-  Button,
   Stack,
   useTheme,
   alpha,
 } from '@mui/material';
 import {
-  ArrowForward as ArrowForwardIcon,
   BugReport as TestingIcon,
   Search as SearchIcon,
   Language as LanguageIcon,
@@ -20,9 +18,6 @@ import {
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
-import Link from 'next/link';
-import Modal from '@/components/ui/Modal';
-import FeatureModal from '@/components/modals/FeatureModal';
 
 const MotionBox = motion.create(Box);
 
@@ -30,15 +25,6 @@ export default function ShowcaseSection() {
   const theme = useTheme();
   const locale = useLocale();
   const t = useTranslations('ShowcaseSection');
-  const [openModal, setOpenModal] = useState<string | null>(null);
-
-  const handleOpenModal = (feature: string) => {
-    setOpenModal(feature);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModal(null);
-  };
 
   const showcaseItems = [
     {
@@ -90,9 +76,10 @@ export default function ShowcaseSection() {
     >
       <Container maxWidth="lg" sx={{ width: '100%' }}>
         <Stack
-          spacing={{ xs: 4, md: 6 }}
+          spacing={{ xs: 4, md: 3, lg: 6 }}
           alignItems="center"
           textAlign="center"
+          sx={{ height: '100%', justifyContent: 'center' }}
         >
           {/* Header */}
           <MotionBox
@@ -107,12 +94,12 @@ export default function ShowcaseSection() {
               gutterBottom
               sx={{
                 fontWeight: 700,
-                mb: 3,
+                mb: { xs: 3, md: 2, lg: 3 },
                 background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                fontSize: { xs: '2.5rem', md: '3.5rem' },
+                fontSize: { xs: '2.5rem', md: '2.8rem', lg: '3.5rem' },
               }}
             >
               {t('title')}
@@ -121,10 +108,11 @@ export default function ShowcaseSection() {
               variant="h5"
               color="text.secondary"
               sx={{
-                maxWidth: 700,
+                maxWidth: { xs: 700, md: 600, lg: 700 },
                 mx: 'auto',
                 lineHeight: 1.6,
                 fontWeight: 300,
+                fontSize: { xs: '1.25rem', md: '1.1rem', lg: '1.25rem' },
               }}
             >
               {t('subtitle')}
@@ -132,8 +120,14 @@ export default function ShowcaseSection() {
           </MotionBox>
 
           {/* Showcase Grid */}
-          <Box sx={{ maxWidth: 1200, width: '100%' }}>
-            <Grid container spacing={{ xs: 3, md: 4 }} justifyContent="center">
+          <Box
+            sx={{ maxWidth: { xs: 1200, md: 1000, lg: 1200 }, width: '100%' }}
+          >
+            <Grid
+              container
+              spacing={{ xs: 3, md: 2, lg: 4 }}
+              justifyContent="center"
+            >
               {showcaseItems.map((item, index) => {
                 const IconComponent = item.icon;
 
@@ -149,8 +143,8 @@ export default function ShowcaseSection() {
                         transition: { duration: 0.3 },
                       }}
                       sx={{
-                        p: 4,
-                        borderRadius: 4,
+                        p: { xs: 4, md: 3, lg: 4 },
+                        borderRadius: { xs: 4, md: 3, lg: 4 },
                         background: `linear-gradient(135deg, ${alpha('#ffffff', 0.8)} 0%, ${alpha('#ffffff', 0.4)} 100%)`,
                         border: `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
                         textAlign: 'center',
@@ -180,22 +174,32 @@ export default function ShowcaseSection() {
                         transition={{ duration: 0.3 }}
                         sx={{
                           display: 'inline-flex',
-                          p: 2.5,
+                          p: { xs: 2.5, md: 2, lg: 2.5 },
                           borderRadius: '50%',
                           background: item.gradient,
                           color: 'white',
-                          mb: 3,
+                          mb: { xs: 3, md: 2, lg: 3 },
                           boxShadow: `0 8px 32px ${alpha(theme.palette.primary.main, 0.2)}`,
                         }}
                       >
-                        <IconComponent sx={{ fontSize: 36 }} />
+                        <IconComponent
+                          sx={{ fontSize: { xs: 36, md: 28, lg: 36 } }}
+                        />
                       </MotionBox>
 
                       <Typography
                         variant="h5"
                         component="h3"
                         gutterBottom
-                        sx={{ fontWeight: 600, mb: 2 }}
+                        sx={{
+                          fontWeight: 600,
+                          mb: { xs: 2, md: 1.5, lg: 2 },
+                          fontSize: {
+                            xs: '1.5rem',
+                            md: '1.3rem',
+                            lg: '1.5rem',
+                          },
+                        }}
                       >
                         {item.title}
                       </Typography>
@@ -203,102 +207,22 @@ export default function ShowcaseSection() {
                       <Typography
                         variant="body1"
                         color="text.secondary"
-                        sx={{ mb: 4, lineHeight: 1.6 }}
+                        sx={{
+                          mb: { xs: 4, md: 3, lg: 4 },
+                          lineHeight: 1.6,
+                          fontSize: { xs: '1rem', md: '0.9rem', lg: '1rem' },
+                        }}
                       >
                         {item.description}
                       </Typography>
-
-                      {/* Action Button */}
-                      <Button
-                        variant="outlined"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleOpenModal(item.feature);
-                        }}
-                        endIcon={<ArrowForwardIcon />}
-                        sx={{
-                          px: 3,
-                          py: 1.5,
-                          borderRadius: 3,
-                          textTransform: 'none',
-                          fontWeight: 600,
-                          borderColor: alpha(theme.palette.primary.main, 0.3),
-                          color: theme.palette.primary.main,
-                          '&:hover': {
-                            background: item.gradient,
-                            color: 'white',
-                            borderColor: 'transparent',
-                            transform: 'translateY(-2px)',
-                          },
-                          transition: 'all 0.3s ease',
-                        }}
-                      >
-                        {t('learnMore')}
-                      </Button>
                     </MotionBox>
                   </Grid>
                 );
               })}
             </Grid>
           </Box>
-
-          {/* Call to Action */}
-          <MotionBox
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            sx={{ maxWidth: 600, mx: 'auto' }}
-          >
-            <Typography
-              variant="h6"
-              color="text.secondary"
-              sx={{ mb: 4, fontWeight: 400 }}
-            >
-              {t('readyToBuild')}
-            </Typography>
-            <Button
-              variant="contained"
-              size="large"
-              component={Link}
-              href="https://github.com/nextjs-boilerplate"
-              target="_blank"
-              rel="noopener noreferrer"
-              endIcon={<ArrowForwardIcon />}
-              sx={{
-                px: 4,
-                py: 2,
-                fontSize: '1.1rem',
-                fontWeight: 600,
-                borderRadius: 3,
-                background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                '&:hover': {
-                  background: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})`,
-                  transform: 'translateY(-2px)',
-                  boxShadow: `0 12px 40px ${alpha(theme.palette.primary.main, 0.3)}`,
-                },
-                transition: 'all 0.3s ease',
-              }}
-            >
-              {t('startBuilding')}
-            </Button>
-          </MotionBox>
         </Stack>
       </Container>
-
-      {/* Feature Modal */}
-      <Modal
-        open={openModal !== null}
-        onClose={handleCloseModal}
-        title={openModal ? t(`features.${openModal}.title`) : ''}
-        maxWidth="md"
-      >
-        {openModal && (
-          <FeatureModal
-            feature={openModal as 'testing' | 'zustand' | 'seo' | 'multilang'}
-          />
-        )}
-      </Modal>
     </Box>
   );
 }

@@ -50,7 +50,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html>
+    <html lang="en">
       <body>
         <ThemeRegistry>{children}</ThemeRegistry>
       </body>

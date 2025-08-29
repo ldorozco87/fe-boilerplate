@@ -125,7 +125,7 @@ A modern, production-ready boilerplate for building high-performance static webs
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/nextjs-boilerplate.git
+   git clone https://github.com/your-org/nextjs-boilerplate.git
    cd nextjs-boilerplate
    ```
 
@@ -534,8 +534,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**[⭐ Star this repo](https://github.com/your-username/nextjs-boilerplate)** if you found it helpful!
+**[⭐ Star this repo](https://github.com/your-org/nextjs-boilerplate)** if you found it helpful!
 
-Made with ❤️ by the Next.js Boilerplate Team
+Made with ❤️ by the Frontend Architecture Team
 
 </div>

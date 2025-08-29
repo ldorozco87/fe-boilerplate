@@ -191,8 +191,8 @@ export default function AboutFeatureModal({ feature }: AboutFeatureModalProps) {
           Key Benefits
         </Typography>
         <List sx={{ p: 0 }}>
-          {benefits.map((benefit, index) => (
-            <ListItem key={index} sx={{ px: 0, py: 1 }}>
+          {benefits.map((benefit) => (
+            <ListItem key={benefit} sx={{ px: 0, py: 1 }}>
               <ListItemIcon sx={{ minWidth: 40 }}>
                 <CheckIcon sx={{ color: theme.palette.success.main }} />
               </ListItemIcon>

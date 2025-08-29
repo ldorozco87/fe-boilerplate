@@ -103,9 +103,14 @@ export default function Navbar() {
 
   const handleSmoothScroll = (sectionId: string) => {
     if (isHomePage) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Special case for home/hero: scroll to top of page to avoid navbar offset
+      if (sectionId === 'hero') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
     }
     handleMobileMenuClose();

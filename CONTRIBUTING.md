@@ -15,7 +15,7 @@ We love your input! We want to make contributing to this project as easy and tra
 
 ```bash
 # Clone your fork
-git clone https://github.com/your-username/nextjs-boilerplate.git
+git clone https://github.com/your-org/nextjs-boilerplate.git
 cd nextjs-boilerplate
 
 # Install dependencies

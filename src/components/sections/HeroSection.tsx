@@ -31,12 +31,12 @@ export default function HeroSection() {
       id="hero"
       sx={{
         // Mobile: altura automática para evitar solapamiento
-        minHeight: { xs: 'auto', md: '100vh' },
-        height: { xs: 'auto', md: '100vh' },
+        minHeight: { xs: 'auto', sm: 'calc(100vh - 64px)' }, // 100vh - navbar height
+        height: { xs: 'auto', sm: 'calc(100vh - 64px)' },
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
-        py: { xs: 4, md: 0 },
+        py: { xs: 4, sm: 0 },
         background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${alpha(theme.palette.secondary.main, 0.1)} 100%)`,
         overflow: 'hidden',
       }}

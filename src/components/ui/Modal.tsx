@@ -63,7 +63,7 @@ export default function Modal({
       >
         <Typography
           variant="h5"
-          component="h2"
+          component="span"
           sx={{
             fontWeight: 600,
             background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
