@@ -1,0 +1,35 @@
+/** @type {import('eslint').Linter.Config} */
+module.exports = {
+  extends: [
+    'next/core-web-vitals',
+    'next/typescript',
+    'plugin:jsx-a11y/recommended',
+  ],
+  rules: {
+    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    'react/no-unescaped-entities': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'react/no-danger-with-children': 'error',
+    'react/no-children-prop': 'error',
+    'react/no-array-index-key': 'warn',
+    'react/button-has-type': 'warn',
+    'react/no-unknown-property': 'warn',
+    'react/void-dom-elements-no-children': 'error',
+    'react/no-render-return-value': 'error',
+    'react/no-string-refs': 'error',
+    'react/self-closing-comp': 'warn',
+    'jsx-a11y/heading-has-content': 'error',
+    'jsx-a11y/no-redundant-roles': 'error',
+  },
+  ignorePatterns: [
+    'node_modules/',
+    '.next/',
+    'out/',
+    'build/',
+    'coverage/',
+    'next-env.d.ts',
+    '*.config.js',
+    '*.config.mjs',
+  ],
+};

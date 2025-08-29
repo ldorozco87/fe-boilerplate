@@ -1,0 +1,140 @@
+{
+  "Navigation": {
+    "home": "Inicio",
+    "contact": "Contacto",
+    "about": "Acerca de",
+    "features": "Características",
+    "ecommerce": "E-commerce",
+    "zustand": "Demo Zustand",
+    "language": "Idioma"
+  },
+  "HomePage": {
+    "title": "Bienvenido al Boilerplate de Next.js",
+    "subtitle": "Un boilerplate moderno y listo para producción con React 19, gestión de estado con Zustand, testing completo y SEO avanzado",
+    "description": "Construido con Next.js 15, React 19, Material UI, TypeScript, Zustand, testing con Jest y más tecnologías de vanguardia.",
+    "getStarted": "Comenzar",
+    "viewGithub": "Ver en GitHub",
+    "exploreEcommerce": "Explorar E-commerce",
+    "exploreZustand": "Explorar Zustand",
+    "featuresTitle": "Características",
+    "features": {
+      "nextjs": {
+        "title": "Next.js 15 + React 19",
+        "description": "Última versión de Next.js con App Router y características de React 19"
+      },
+      "zustand": {
+        "title": "Gestión de Estado con Zustand",
+        "description": "Gestión de estado ligera y escalable con persistencia"
+      },
+      "performance": {
+        "title": "Alto Rendimiento",
+        "description": "Optimizado para velocidad y SEO con generación estática"
+      },
+      "testing": {
+        "title": "Testing Completo",
+        "description": "Jest & React Testing Library con 18+ tests pasando"
+      },
+      "seo": {
+        "title": "SEO Avanzado",
+        "description": "Datos estructurados, metadatos y optimización de búsqueda"
+      }
+    }
+  },
+  "ContactPage": {
+    "title": "Contáctanos",
+    "subtitle": "Ponte en contacto con nuestro equipo"
+  },
+  "ContactForm": {
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "submit": "Enviar Mensaje",
+    "nameRequired": "El nombre es requerido",
+    "emailRequired": "El correo electrónico es requerido",
+    "emailInvalid": "Por favor ingresa un correo electrónico válido",
+    "messageRequired": "El mensaje es requerido",
+    "messageMinLength": "El mensaje debe tener al menos 10 caracteres",
+    "fieldRequired": "Este campo es obligatorio",
+    "minLength": "Debe tener al menos 10 caracteres"
+  },
+  "FormValidation": {
+    "fieldRequired": "Este campo es obligatorio",
+    "emailRequired": "El email es obligatorio",
+    "emailInvalid": "Por favor ingresa un email válido",
+    "phoneRequired": "El número de teléfono es obligatorio",
+    "phoneInvalid": "Por favor ingresa un número de teléfono válido",
+    "urlInvalid": "Por favor ingresa una URL válida",
+    "passwordMinLength": "La contraseña debe tener al menos 8 caracteres",
+    "passwordComplexity": "La contraseña debe contener mayúsculas, minúsculas y números",
+    "minLength": "Debe tener al menos 10 caracteres",
+    "maxLength": "No debe tener más de 500 caracteres",
+    "genericError": "Por favor revisa este campo"
+  },
+  "Footer": {
+    "copyright": "© {year} Boilerplate de Next.js. Todos los derechos reservados.",
+    "builtWith": "Construido con Next.js 15, React 19, Material UI y testing completo"
+  },
+  "AboutSection": {
+    "title": "Base Web Moderna",
+    "subtitle": "Un boilerplate integral que combina tecnologías de vanguardia con React 19, testing completo y SEO avanzado para desarrollo web rápido y escalable.",
+    "builtWithTech": "Construido con tecnologías modernas",
+    "features": {
+      "performance": {
+        "title": "Alto Rendimiento",
+        "description": "Next.js 15 + React 19 con builds optimizadas"
+      },
+      "production": {
+        "title": "Listo para Producción",
+        "description": "TypeScript, testing y mejores prácticas"
+      },
+      "responsive": {
+        "title": "SEO Avanzado",
+        "description": "Datos estructurados y optimización de metadatos"
+      },
+      "developer": {
+        "title": "Aseguramiento de Calidad",
+        "description": "Testing con Jest y linting mejorado"
+      }
+    }
+  },
+  "ShowcaseSection": {
+    "title": "Características en Vivo",
+    "subtitle": "Explora implementaciones del mundo real que muestran patrones modernos, testing completo y optimización SEO avanzada.",
+    "readyToBuild": "¿Listo para construir algo increíble?",
+    "startBuilding": "Comenzar a Construir",
+    "tryIt": "Pruébalo",
+    "explore": "Explorar",
+    "learnMore": "Saber Más",
+    "features": {
+      "testing": {
+        "title": "Testing Completo",
+        "description": "18+ tests pasando con Jest & React Testing Library"
+      },
+      "zustand": {
+        "title": "Gestión de Estado con Zustand",
+        "description": "Gestión de estado ligera y escalable con persistencia"
+      },
+      "seo": {
+        "title": "SEO Avanzado",
+        "description": "Datos estructurados, metadatos y optimización de búsqueda"
+      },
+      "multilang": {
+        "title": "Multi-idioma",
+        "description": "Soporte de internacionalización sin problemas"
+      }
+    }
+  },
+  "ContactSection": {
+    "title": "Ponte en Contacto",
+    "subtitle": "¿Tienes preguntas sobre el boilerplate? Conectemos y hablemos de tu proyecto.",
+    "info": {
+      "email": "Correo electrónico",
+      "location": "Ubicación",
+      "phone": "Teléfono"
+    }
+  },
+  "ZustandDemo": {
+    "title": "Demo de Gestión de Estado con Zustand",
+    "subtitle": "Explora diferentes stores de Zustand y sus capacidades"
+  }
+}

@@ -1,0 +1,56 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.card {
+  @include card;
+  padding: $spacing-lg;
+  margin: $spacing-md;
+  max-width: 400px;
+
+  @include mobile {
+    margin: $spacing-sm;
+    padding: $spacing-md;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+    margin-bottom: $spacing-sm;
+
+    @include text-truncate;
+  }
+
+  .description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: $spacing-md;
+
+    @include text-truncate-multiline(3);
+  }
+
+  .button {
+    @include button-primary;
+    padding: $spacing-sm $spacing-lg;
+    font-size: 0.875rem;
+
+    &:focus {
+      outline: 2px solid lighten($primary-color, 20%);
+      outline-offset: 2px;
+    }
+  }
+
+  &.featured {
+    border: 2px solid $primary-color;
+
+    .title {
+      color: $secondary-color;
+    }
+  }
+
+  &:hover {
+    .title {
+      color: $secondary-color;
+    }
+  }
+}
